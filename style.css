@@ -118,8 +118,7 @@ body.dark-mode  .modal-content a,
 body.dark-mode  .modal-content p,
 body.dark-mode .email-copy-wrapper,
 body.dark-mode #copyBtn,
-body.dark-mode nav a,
-body.dark-mode .loading-text{
+body.dark-mode nav a {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
@@ -517,12 +516,12 @@ a {
 .system-caption {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.6rem;
 
   margin-top: 0px;
   padding: 0rem;
-  text-transform: uppercase;
+  text-transform:;
   text-align: center;
   font-size: 11px;
   line-height: 1.35;
@@ -1447,11 +1446,6 @@ html, body {
   opacity: 0.9;
 }
 
-.system-figure
-{
-  display: none;
-
-}
 
 
 
