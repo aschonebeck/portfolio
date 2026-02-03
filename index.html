@@ -19,7 +19,7 @@
     <header>
      <nav>
   <a href="index" style="color: rgb(0, 0, 0, 0.8);   "  class="nav-link">A.SCHÖNEBECK™</a>
-  <a href="index" style="color: rgb(0, 0, 0, 0.8); "  class="nav-link filter-btn">WORK [8]</a>
+  <a href="index" style="color: rgb(0, 0, 0, 0.8); " id="mobile"  class="nav-link">WORK [8]</a>
   <a href="about" class="nav-link">ABOUT</a>
   <a onclick="openModal()" href="#" class="nav-link">CONTACT</a>
 </nav>
@@ -64,15 +64,13 @@
 
 
 
-    <!-- Floating title -->
-    <div class="floating-title" id="floatingTitle"></div>
-    <br />
-
-
+ 
 
 
 <!-- actual site content (already visible behind loader) -->
 <div id="main-content">
+<section id="intros"><h1 class="introrubrik">AMANDA SCHÖNEBECK<BR><i>UX DESIGNER</i></h1>
+<button class="filter-btn" data-filter="all"> ALL </button> <button class="filter-btn" data-filter="projects">PROJECTS</button> <button class="filter-btn" data-filter="articles">ARTICLES</button> </section>
 
  <div class="parent">
   <div class="div1 glitch" data-category="articles">
@@ -123,7 +121,7 @@
 
   </div>
 
-  <div class="div6 glitch" data-category="articles">
+  <div class="div6 glitch" data-category="projects">
 
      <a href="zsongo" aria-label="zsongo">
     <img src="img/lezsongo.gif" alt="zsongo image" loading="lazy" />
@@ -141,7 +139,7 @@
   </div> 
 
 
-  <div class="div8 glitch" data-category="projects">
+  <div class="div8 glitch" data-category="articles">
   <a href="workshop" aria-label="Workshop: Article image link">
       <img style="opacity:0.9;" src="img/k.png" alt="Workshop Framework" loading="lazy" />
         <p>ARTICLE/11.2020<br /> Workshops with Intention</p>
@@ -265,53 +263,9 @@ document.getElementById("copyBtn").addEventListener("click", () => {
         };
       });
 
-      // Floating title vid hover över grid-items
-      document.addEventListener("DOMContentLoaded", function () {
-        const cards = document.querySelectorAll('.parent > div');
-        const floatingTitle = document.getElementById('floatingTitle');
+  
 
-        cards.forEach((card) => {
-          const titleElement = card.querySelector('.project-title');
-          const titleText = titleElement ? titleElement.textContent : "";
-          card.addEventListener("mouseenter", () => {
-            floatingTitle.textContent = titleText;
-            floatingTitle.style.opacity = 1;
-          });
-          card.addEventListener("mouseleave", () => {
-            floatingTitle.style.opacity = 0;
-          });
-        });
-      });
-
-      // Filterfunktion för grid-items
-      document.addEventListener("DOMContentLoaded", function () {
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        const gridItems = document.querySelectorAll(".parent > div");
-
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", (e) => {
-            const category = e.target.getAttribute("data-category");
-            gridItems.forEach((item) => {
-              const itemCategory = item.getAttribute("data-category");
-              item.style.display =
-                category === "all" || itemCategory === category
-                  ? "block"
-                  : "none";
-            });
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            e.target.classList.add("active");
-          });
-        });
-      });
-
-      // Slumpmässig delay för flyt-animationen
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .querySelectorAll(".parent > div")
-          .forEach((el) => {
-            el.style.setProperty("--float-delay", `${Math.random() * 5}s`);
-          });
-      });
+     
     </script>
 
      <script>
@@ -418,7 +372,7 @@ function resetTextSize() {
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".parent > div");
+ const images = document.querySelectorAll(".parent > div:not(.is-background) img");
 
   // === 1. Reveal on scroll ===
   const observer = new IntersectionObserver(entries => {
@@ -435,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === 2. Breathing floating effect — desktop only ===
   if (window.innerWidth > 768) {
-    const images = document.querySelectorAll(".parent > div img");
+   const images = document.querySelectorAll(".parent > div:not(.is-background) img");
 
     images.forEach(img => {
       let angle = 0;
@@ -487,6 +441,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll("#intros .filter-btn");
+  const items = document.querySelectorAll(".parent > div");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+
+      items.forEach(item => {
+        const category = item.dataset.category;
+
+        if (filter === "all") {
+          item.classList.remove("is-background");
+        } else if (category === filter) {
+          item.classList.remove("is-background");
+        } else {
+          item.classList.add("is-background");
+        }
+      });
+
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+});
 </script>
 
 <script>

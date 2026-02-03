@@ -49,7 +49,7 @@
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-                 background: rgba( 220, 220, 220, 0.5);
+                 background: rgba( 220, 220, 220, 0.6);
                  kerning: auto;
                 
               font-size: 75%; /* 16px × 0.75 = 12px */
@@ -118,7 +118,8 @@ body.dark-mode  .modal-content a,
 body.dark-mode  .modal-content p,
 body.dark-mode .email-copy-wrapper,
 body.dark-mode #copyBtn,
-body.dark-mode nav a {
+body.dark-mode nav a,
+body.dark-mode .loading-text {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
@@ -243,8 +244,9 @@ padding-top: 60px;
   grid-template-columns: repeat(6, 1fr);
  grid-auto-rows: 300px;
   width: 100%;
-  padding: 100px 0px 00px 0px; /* gives space below for footer */
-  gap: 30px;
+  padding: 60px 0px 60px 0px; /* gives space below for footer */
+  gap: 40px;
+  grid-auto-flow: dense;
 
 }
 
@@ -258,15 +260,26 @@ padding-top: 60px;
   transition: transform 0.5s ease-in-out;
 }
 
-.parent > div {
-  opacity: 0;
-  transform: translateY(20px);
+ .parent > div {
   transition: opacity 0.6s ease, transform 0.6s ease;
-  will-change: transform, opacity;
+    background: rgba(0,0,0,0.001);
+}
+
+/* Background state */
+.parent > div.is-background {
+  filter: blur(20px) brightness(1.1);
+  opacity: 0.8;
+  transform: scale(0.94);
+  pointer-events: none;
+ animation: none !important; 
+  transition: 
+    opacity 0.6s ease,
+    filter 0.6s ease,
+    transform 0.6s ease;
 }
 
 .parent > div.visible {
-  opacity: 1;
+
   transform: translateY(0);
 }
 
@@ -325,8 +338,26 @@ padding-top: 60px;
 
 
 
+
+
 .parent div:hover {
   z-index: 1;  /* Ensure hovered items appear on top */
+}
+
+.introrubrik {
+  font-size: 1.9em;
+  text-align: ;
+  opacity: 0.95;
+  margin-top: 100px;
+  margin-bottom: 50px;
+
+}
+
+#intros {
+    padding-left: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+
 }
 
 
@@ -1240,26 +1271,23 @@ text-transform: uppercase;
 }
 
 
+
 .glitch img {
-  image-rendering: pixelated;
-  transition: filter 0.2s ease-in, opacity 0.2s ease-in, transform 0.2s ease-in;
+  transition:
+    transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+    opacity 0.4s ease,
+    filter 0.5s ease;
 }
 
 .glitch img:hover {
- filter: invert(1) hue-rotate(180deg);
-  transition: 0.2s ease-in;
-  opacity: 0.9;
-  
+  opacity: 0.92;
+  transform: scale(0.89);
+  pointer-events: inherit;
 }
 
 
 
 
-.dark-mode .glitch img:hover {
- filter: invert(1) hue-rotate(180deg);
-  transition: 0.2s ease-in;
-  opacity: 0.9;
-}
 
 
 
@@ -1268,24 +1296,31 @@ text-transform: uppercase;
 
     .filter-btn {
   font-size: 11px;
-      padding-right: 55px;
+      padding-right: 7px;
        position: sticky;
        display: inline-block;
-      margin-right: 0px;
-      padding-top: 37px;
+      margin-right: 5px;
+      padding-top: 7px;
 
       padding-left: 7px;
       padding-bottom: 7px;
 
   color: rgba(0, 0, 0, 0.55);                  /* medium grey text */
   
-      border-radius: 6px;
+      border-radius: 0px;
       text-decoration: none;
-        border: 1px solid rgba(100, 100, 100, 0.1); /* soft inner border */
+      border: 0px;
+        border-bottom: 1px solid rgba(100, 100, 100, 0.1); /* soft inner border */
    backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); Safari support */
 }
+
+ .filter-btn:hover {
+  opacity: 0.5;
+
+
+ }
 
     nav-link.active {
   color: #111;
@@ -1343,7 +1378,8 @@ text-transform: uppercase;
 .filter-btn.active {
   text-decoration: ;
   color:#111;
-   opacity: 0.8; 
+   opacity: 0.4; 
+
 }
 
 
@@ -1436,6 +1472,10 @@ html, body {
   display: block;
 }
 
+#mobile {
+  display: none;
+}
+
 
 #mobile2 {
   display: block;
@@ -1446,6 +1486,12 @@ html, body {
   opacity: 0.9;
 }
 
+
+#intros {
+  padding-left: 0px;
+}
+
+.introrubrik { }
 
 
 
@@ -1535,7 +1581,7 @@ html, body {
     max-width: 100%;
     margin-bottom: 0px;
     padding-bottom: 0px;
-    margin-top: 110px; /* push content below nav/controls */
+    margin-top: 50px; /* push content below nav/controls */
   }
 
   .top-controls-close {
@@ -1905,11 +1951,10 @@ html, body {
   right: 10px;}
 
 
-  .filter-btn {
-    display: none;
-  }
-}
+.filter-btn {
+  font-size: 12.4px;
 
+}
 
 
 @media (min-width: 1500px) {
