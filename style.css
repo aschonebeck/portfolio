@@ -1579,7 +1579,7 @@ html, body {
     max-width: 100%;
     margin-bottom: 0px;
     padding-bottom: 0px;
-    margin-top: 50px; /* push content below nav/controls */
+    margin-top: 40px; /* push content below nav/controls */
   }
 
   .top-controls-close {
@@ -1731,6 +1731,9 @@ html, body {
 
 }
 
+.parent > div {
+  padding: 0px;
+}
  
 
   .div1 {
