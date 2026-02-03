@@ -311,12 +311,20 @@ padding-top: 60px;
 
 
 
-/* Apply animation to all grid items */
+
+ /* hidden state */
 .parent > div {
-  position: relative;
-  animation-delay: calc(var(--float-delay, 0s));
-  will-change: transform;
-  transition: transform 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* revealed */
+.parent > div.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .parent img {

@@ -268,6 +268,29 @@ document.getElementById("copyBtn").addEventListener("click", () => {
      
     </script>
 
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".parent > div");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // one time only
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // subtle stagger
+  let delay = 0;
+  cards.forEach(card => {
+    card.style.transitionDelay = `${delay}s`;
+    delay += 0.06;   // tweak: 0.04 = faster, 0.08 = slower
+    observer.observe(card);
+  });
+});
+</script>
+
      <script>
 // On page load, apply saved theme
 window.addEventListener('DOMContentLoaded', () => {
