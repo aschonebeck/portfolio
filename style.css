@@ -132,8 +132,10 @@ body.dark-mode #ascii-loader {
             position: fixed;
             top: 0; left: 0;
             width: 100%;
+              backdrop-filter: blur(20px) saturate(140%) ;
+      -webkit-backdrop-filter: blur(20px) saturate(140%) ;
             height: 100%;
-            background: rgba(220, 220, 220, 0.2);}
+            background: rgba(220, 220, 220, 0.15);}
 
 
 
@@ -150,7 +152,7 @@ color: rgba(255, 255, 255, 1) !important;
 }
 
 
-/* Optional: dark tint on project images */
+/*  dark tint on project images */
 body.dark-mode .parent img {
   filter: brightness(0.95) contrast(1.05);
 }
@@ -624,9 +626,9 @@ padding-left: 12px;
             top: 0; left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(220, 220, 220, 0.65);
-             backdrop-filter: blur(20px) saturate(180%) ;
-      -webkit-backdrop-filter: blur(20px) saturate(180%) ;
+            background: rgba(220, 220, 220, 0.45);
+             backdrop-filter: blur(20px) saturate(190%) ;
+      -webkit-backdrop-filter: blur(20px) saturate(190%) ;
             display: flex;
             flex-direction: column;
             align-items: center;
