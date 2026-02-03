@@ -118,15 +118,16 @@ body.dark-mode  .modal-content a,
 body.dark-mode  .modal-content p,
 body.dark-mode .email-copy-wrapper,
 body.dark-mode #copyBtn,
-body.dark-mode nav a {
+body.dark-mode nav a,
+body.dark-mode .loading-text{
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
 body.dark-mode #ascii-loader {
    color: rgba(220, 220, 220, 0.6);
-
-
 }
+
+
 
  body.dark-mode  .loader-container {
             position: fixed;
