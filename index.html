@@ -386,32 +386,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cards.forEach(card => observer.observe(card));
 
-
-  // === 2. Breathing floating effect — desktop only ===
-  if (window.innerWidth > 768) {
-   const images = document.querySelectorAll(".parent > div:not(.is-background) img");
-
-    images.forEach(img => {
-      let angle = 0;
-
-      const breathe = () => {
-        angle += 0.01; // controls speed
-        const offsetX = Math.sin(angle) * 0.5; // 2px horizontal floating
-        const offsetY = Math.cos(angle) * 0.5; // 2px vertical floating
-        const scale = 1.01 + Math.sin(angle * 1) * 0.0001; // slight breathing scale
-
-        img.style.transform = `
-          translate(${offsetX}px, ${offsetY}px)
-          scale(${scale})
-        `;
-
-        requestAnimationFrame(breathe);
-      };
-
-      breathe(); // Start breathing
-    });
-  }
-});
 </script>
 
 
