@@ -241,15 +241,13 @@ padding-top: 60px;
 
 .parent {
   display: grid;
-   max-width: 2000px;  
-  margin: 0 auto;
-  grid-template-columns: repeat(6, 1fr);
- grid-auto-rows: 350px;
   width: 100%;
-  padding: 90px 0px 60px 0px; /* gives space below for footer */
-  gap: 40px;
-
-
+  max-width: none;              /* låt scenen vara stor */
+  margin: 0;
+  padding: 90px 120px 60px;     /* skapa luft mot kanterna */
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(280px, auto);
+  gap: 80px;                    /* mer space mellan verk */
 }
 
 
@@ -1959,26 +1957,11 @@ html, body {
 
 }
 
-@media (min-width: 1800px) {
-  .parent {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 80px;
-    max-width: 2000px;
-    margin: 0 auto;
-    grid-auto-rows: minmax(400px, auto);
-  }
 
-  /* remove most manual nudges */
-  .div2,
-  .div4,
-  .div5,
-  .div6,
-  .div7,
-  .div8 {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
+
+@media (min-width: 1800px) {
+
+
 
     #main-content {
       flex: 1;
