@@ -1472,6 +1472,10 @@ html, body {
   overscroll-behavior: none;
 }
 
+.loader-container {
+  z-index: 9999999999999;
+}
+
 #mobil {
   display: block;
 }
@@ -1584,7 +1588,7 @@ html, body {
     padding: 10px;
     max-width: 100%;
     margin-bottom: 0px;
-    padding-bottom: 0px;
+    padding-bottom: 60px;
     margin-top: 100px; /* push content below nav/controls */
   }
 
@@ -1686,7 +1690,7 @@ html, body {
  .footer {
   display: flex;
   box-sizing: border-box;
-  z-index: 99990990999;
+  z-index: 99990999;
   position: relative;
   flex-direction: row;
   justify-content: space-between;
@@ -1699,7 +1703,7 @@ html, body {
   border-top: 0px solid rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
   gap: 0rem;
-  background:#E6E6E6;
+  
 }
 
 .footer-left,
