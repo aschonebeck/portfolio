@@ -697,7 +697,8 @@ padding-left: 12px;
 
         .loading-text {
             font-size: 12px;
-            color: #000;
+            color: #111;
+            opacity: 0.9;
             z-index: 999999;
         }
 
