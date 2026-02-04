@@ -1191,7 +1191,7 @@ text-transform: uppercase;
 
 .typewriter-text {
   overflow: hidden;
-  border-right: 2px solid rgba(0, 0, 0, 0.5);
+  border-right: 2px solid rgba(220, 220, 220, 0.8);
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 1px;
@@ -1208,7 +1208,7 @@ text-transform: uppercase;
 
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: rgba(0, 0, 0, 0.6); }
+  50% { border-color: rgba(220, 220, 220, 0.8); }
 }
 
 
