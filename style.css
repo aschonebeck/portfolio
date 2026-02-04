@@ -574,7 +574,9 @@ a {
 }
 
 .caption-meta {
-  opacity: 0.7;
+  opacity: 0.8;
+  font-size: 12px;
+  padding:5px;
 }
 
 /* Dark mode */
@@ -1580,7 +1582,7 @@ html, body {
     max-width: 100%;
     margin-bottom: 0px;
     padding-bottom: 0px;
-    margin-top: 70px; /* push content below nav/controls */
+    margin-top: 100px; /* push content below nav/controls */
   }
 
   .top-controls-close {
