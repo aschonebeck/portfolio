@@ -244,10 +244,10 @@ padding-top: 60px;
   width: 100%;
   max-width: none;              /* låt scenen vara stor */
   margin: 0;
-  padding: 90px 120px 60px;     /* skapa luft mot kanterna */
+  padding: 120px 0px 0px 0px;     /* skapa luft mot kanterna */
   grid-template-columns: repeat(6, 1fr);
   grid-auto-rows: minmax(280px, auto);
-  gap: 80px;                    /* mer space mellan verk */
+  gap: 70px;                    /* mer space mellan verk */
 }
 
 
@@ -263,7 +263,8 @@ padding-top: 60px;
  .parent > div {
   transition: opacity 0.6s ease, transform 0.6s ease;
     background: rgba(0,0,0,0.001);
-     padding: 12px;
+     padding: 10px;
+      max-width: 770px;  
 }
 
 /* Background state */
@@ -523,8 +524,8 @@ a {
 
 .div7 {
   grid-column: 1 / 4;
-  grid-row: 3 / 5;
-  margin-top: 00px;
+  grid-row: 3 / 3;
+  margin-top: 0px;
 }
 
 /* force .div8 to the bottom of the grid */
