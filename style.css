@@ -525,7 +525,7 @@ a {
 .div7 {
   grid-column: 1 / 4;
   grid-row: 3 / 3;
-  margin-top: 0px;
+  margin-top: -50px;
 }
 
 /* force .div8 to the bottom of the grid */
@@ -1403,8 +1403,10 @@ footer {
   width: 100%;
   display: flex;
   justify-content: space-between;
-padding:6px;
 
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 0px;
 padding-bottom: 0px;
   font-size: 11px;
   text-transform: uppercase;
@@ -1570,8 +1572,8 @@ html, body {
   margin-bottom: 0px;
     padding-bottom: 0px;
     padding-top: 40px;
-    padding-left: 15px;
-      padding-right: 15px;
+    padding-left: 0px;
+      padding-right: 0px;
 
 }
   /* Grid layout */
@@ -1579,7 +1581,7 @@ html, body {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     grid-auto-rows: 270px;
-    padding: 0px;
+    padding: 10px;
     max-width: 100%;
     margin-bottom: 0px;
     padding-bottom: 0px;
@@ -1683,12 +1685,13 @@ html, body {
 */
  .footer {
   display: flex;
+  box-sizing: border-box;
   z-index: 99990990999;
   position: relative;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 17px;
+  padding-bottom: 10px;
   padding-left: 10px;
     padding-right: 10px;
   font-size: 0.875rem;
@@ -1701,8 +1704,8 @@ html, body {
 
 .footer-left,
 .footer-right {
-  flex: 1 1 45%;
-  min-width: 120px;
+  flex: 1 1 50%;
+   max-width: 50%;
 }
 
 .footer-left {
@@ -1791,6 +1794,8 @@ html, body {
 
    grid-column: 1 / 3; /* span both columns */
   grid-row: 2;
+  margin-top: 25px;
+
 
 
  
