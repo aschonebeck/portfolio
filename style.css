@@ -1869,7 +1869,7 @@ html, body {
   bottom: 17px;
   font-family: "Helvetica Now MT", "Arial", sans-serif; /* enforce your text font */
   font-feature-settings: "liga" 0; /* optional: disable ligatures if needed */
-  right: 11px;
+  left: 9px;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.5);
   padding: 10px 12px;
