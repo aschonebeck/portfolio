@@ -635,11 +635,13 @@ width: 40%;
 blockquote {
   font-size: 22px;
   line-height: 1.3;
+  padding: 20px;
 }
 
 blockquote span{
   font-size: inherit;
   text-decoration: none !important;
+  line-height: 1;
 }
 
 
@@ -655,6 +657,7 @@ font-size: 17px;
 font-weight: bolder;
 text-transform: uppercase;
 padding-left: 12px;
+letter-spacing: -0.3px;
 
 }
 
@@ -1111,7 +1114,7 @@ body:not(.index) img.in-view:not(.intro-section img) {
 
 .description {
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.6;
 margin-top:3PX;
   padding-right: 25%;
 }
@@ -1528,12 +1531,13 @@ html, body {
 
     .description blockquote {
     font-size: 19px;     /* eller vad du vill */
-    padding: 0 5px;     /* eller t.ex. 0 15px */
+    padding: 15px;     /* eller t.ex. 0 15px */
     margin: 16px 0;      /* om du vill styra luft runt */
         line-height: 1.6;
   }
 
       .description blockquote span {
+        line-height: ;
 
 }
 
@@ -1588,7 +1592,7 @@ html, body {
     grid-auto-rows: 270px;
     padding: 10px;
     max-width: 100%;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
     padding-bottom: 100px;
     margin-top: 100px; /* push content below nav/controls */
   }
@@ -1676,6 +1680,7 @@ html, body {
     position: fixed;
     right: 0;
     bottom: 0;
+    opacity: 0.9;
     max-width: 30%;
   }
 /*
@@ -1733,6 +1738,7 @@ html, body {
     margin-top: 00px;
     max-width: 100%;
     padding: 10px;
+    margin-bottom: 25px;
   }
 
 
@@ -1920,6 +1926,8 @@ html, body {
 .description {
  
   padding-right: 2%;
+  padding-bottom: 30px;
+  line-height: 1.3;
 }
 
 
