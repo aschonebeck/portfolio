@@ -2186,3 +2186,18 @@ footer {
 
 
 }
+
+
+@media (min-width: 2000px) {
+  .parent {
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(60px, 4vw, 120px);
+    padding-top: 160px;
+   
+  }
+
+  .parent > div {
+    max-width: none;
+  }
+}
+
