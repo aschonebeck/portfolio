@@ -661,6 +661,9 @@ letter-spacing: -0.2px;
 
 }
 
+.description strong + br::before { opacity: 0.8; }
+
+
 
 
 
