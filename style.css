@@ -625,7 +625,7 @@ width: 40%;
 
 #about ul{
   text-decoration: none;
-  padding-top: 10px;
+  padding-top: 20px;
   font-size: 12.5px;
   list-style: none;
 }
@@ -1685,6 +1685,7 @@ letter-spacing: -0.3px;
 #about ul{
 
   font-size: 12.5px;
+  padding-top: 25px;
 
 }
 
@@ -2041,7 +2042,7 @@ width: 85%;
 
 #about ul {
   text-decoration: none;
-  padding-top: 30px;
+  padding-top: 50px;
 
   list-style: none;
 }
