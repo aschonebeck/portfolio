@@ -435,6 +435,15 @@ a {
    text-decoration: none;
 }
 
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: none;
+}
+
+
+
 .scroll-blur {
   transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
   will-change: filter, transform, opacity;
