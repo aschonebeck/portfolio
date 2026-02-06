@@ -675,6 +675,7 @@ font-weight: lighter;
 text-transform: ;
 padding-left: 12px;
 letter-spacing: -0.2px;
+max-width: 40%;
 
 }
 
@@ -1565,8 +1566,9 @@ html, body {
 
 #rubbe {
 font-size: 19px;
-font-weight: bolder;
-text-transform: uppercase;
+font-weight: lighter;
+max-width: 60%;
+text-transform:;
 padding-left: 5px;
 padding-bottom: 15px;
 letter-spacing: -0.3px;
