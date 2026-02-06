@@ -1976,6 +1976,13 @@ letter-spacing: -0.3px;
 
 }
 
+.other_img {
+  padding: 20px;
+  opacity: 0.995;
+width: 100%;
+}
+
+
 .description {
  
   padding-right: 2%;
