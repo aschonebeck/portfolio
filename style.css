@@ -109,7 +109,6 @@ body.dark-mode .parent div p,
 body.dark-mode #themeToggle,
 body.dark-mode .text-size-controls button,
 body.dark-mode footer,
-body.dark-mode footer a,
 body.dark-mode .description a,
 body.dark-mode #about ul a,
 body.dark-mode .description span,
@@ -122,6 +121,13 @@ body.dark-mode #copyBtn,
 body.dark-mode nav a,
 body.dark-mode .loading-text {
   color: rgba(255, 255, 255, 0.7) !important;
+}
+
+
+
+body.dark-mode footer a {
+  color:rgba(255, 255, 255, 0.95) 
+
 }
 
 body.dark-mode #ascii-loader {
@@ -1426,7 +1432,7 @@ padding-bottom: 0px;
   margin-left: 1.2rem;
   text-decoration: none;
   opacity: 0.6;
-  color: #000;
+  color: #111;
   font-size: 11px;
   transition: opacity 0.2s ease;
 }
@@ -1440,6 +1446,21 @@ padding-bottom: 0px;
   display: flex;
   align-items: center;
 }
+
+.ux {
+  opacity: 0.95;
+}
+
+.copy {
+  opacity: 0.5;
+}
+
+.other_img {
+  padding: 160px;
+  opacity: 0.995;
+width: 100%;
+}
+
 
 .customizer-wrapper {
   position: relative;
@@ -1748,6 +1769,10 @@ letter-spacing: -0.3px;
 
 .footer-left p {
   margin: 0;
+}
+
+.ux {
+  display: none;
 }
 
 
@@ -2193,7 +2218,7 @@ footer {
     grid-template-columns: repeat(12, 1fr);
     gap: clamp(60px, 4vw, 120px);
     padding-top: 160px;
-   
+
   }
 
   .parent > div {
