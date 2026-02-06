@@ -1138,6 +1138,13 @@ body:not(.index) img.in-view:not(.intro-section img) {
   line-height: 1.6;
 margin-top:3PX;
   padding-right: 25%;
+  padding-bottom: 60px;
+}
+
+.description img {
+  padding-top: 60px;
+   padding-bottom: 40px;
+  width: 100%;
 }
 
 .description h2 {
