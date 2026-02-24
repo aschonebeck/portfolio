@@ -138,11 +138,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // On page load, apply saved theme
 window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = sessionStorage.getItem('theme');
-  if (savedTheme === 'dark') {
+
+  if (savedTheme === 'light') {
+    // user explicitly chose light
+    document.body.classList.remove('dark-mode');
+    updateThemeLabel('light');
+  } else {
+    // default = dark
     document.body.classList.add('dark-mode');
     updateThemeLabel('dark');
-  } else {
-    updateThemeLabel('light');
+    sessionStorage.setItem('theme', 'dark');
   }
 });
 
