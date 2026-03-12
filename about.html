@@ -139,15 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = sessionStorage.getItem('theme');
 
-  if (savedTheme === 'light') {
-    // user explicitly chose light
-    document.body.classList.remove('dark-mode');
-    updateThemeLabel('light');
-  } else {
-    // default = dark
+  if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
     updateThemeLabel('dark');
-    sessionStorage.setItem('theme', 'dark');
+  } else {
+    // default = light
+    document.body.classList.remove('dark-mode');
+    updateThemeLabel('light');
+    sessionStorage.setItem('theme', 'light');
   }
 });
 
