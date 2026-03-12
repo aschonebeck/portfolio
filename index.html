@@ -80,7 +80,7 @@
  <div class="parent">
   <div class="div1 glitch" data-category="articles">
     <a href="stillness" aria-label="Designing for Stillness">
-      <img  style="opacity: 0.9;" src="img/fizzle.gif" alt="Fizzled out flowers" loading="lazy" />
+      <img  style="opacity: 0.95;" src="img/fizzle.gif" alt="Fizzled out flowers" loading="lazy" />
       <p>ARTICLE/2025<br />FIZZLED OUT: Designing for Stillness</p>
      
     </a>
@@ -311,12 +311,12 @@ window.addEventListener('DOMContentLoaded', () => {
     // user explicitly chose light
     document.body.classList.remove('dark-mode');
     updateThemeLabel('light');
-  } else {
-    // default = dark
-    document.body.classList.add('dark-mode');
-    updateThemeLabel('dark');
-    sessionStorage.setItem('theme', 'dark');
-  }
+ } else {
+  // default = light
+  document.body.classList.remove('dark-mode');
+  updateThemeLabel('light');
+  sessionStorage.setItem('theme', 'light');
+}
 });
 
 // Toggle theme
