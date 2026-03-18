@@ -303,7 +303,7 @@ padding-top: 20px;
 
 .mode-toggle {
   padding:3px;
-  margin-top: -5px;
+  margin-top: -3px;
   font-size: 14px;
   background: transparent;
   border:1px solid #e6e6e6;
@@ -322,17 +322,21 @@ padding-top: 20px;
 }
 
 
+
 .project-row div:nth-child(3) {
   font-variant-numeric: tabular-nums;
 }
 
 
+
 .project-header {
   display: none;
 }
+
 .project-row:focus {
  
 }
+
 /* HEADER */
 
 .site-header {
@@ -358,6 +362,7 @@ opacity: 0.9;
 filter: invert(100);
 transition: width 0.9s cubic-bezier(.76,0,.24,1);
 }
+
 
 .logo img.shrink{
 width: 90px;
@@ -392,6 +397,8 @@ position:relative;
 max-width:100%;
 margin-top:40px;
 }
+
+
 
 .container {
   opacity: 1 !important;
