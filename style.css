@@ -1016,11 +1016,11 @@ transform: translateX(-1px);
   /* ------------------ */
 
   .site-header {
-    margin-bottom: 40px;
+    margin-bottom: 80px;
   }
 
   .logo img {
-    width: 100px !important; /* kill huge intro logo on mobile */
+    width: 90px !important; /* kill huge intro logo on mobile */
   }
 
   /* ------------------ */
@@ -1039,6 +1039,7 @@ transform: translateX(-1px);
   .project-row {
     padding-top: 25px;
     padding-bottom: 25px;
+    text-align: left !important;
   }
 
   /* ------------------ */
@@ -1049,7 +1050,7 @@ transform: translateX(-1px);
     font-size: 42px !important;
     line-height: 1;
     max-width: 100%;
-    text-align: left;
+    text-align: left !important;
   }
 
 
@@ -1314,6 +1315,10 @@ body.light-mode #upper {
   display: none;
 }
 
+
+.mode-toggle {
+  display: none;
+}
 }
 
 
