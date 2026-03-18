@@ -393,6 +393,12 @@ max-width:100%;
 margin-top:40px;
 }
 
+.container {
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+}
+
 
 
 .about-title{
@@ -634,19 +640,15 @@ max-width: 100%;
 }
 
 
-body.loading .mode-toggle {
+.loading .mode-toggle {
   opacity: 0;
   pointer-events: none;
 }
 
 .mode-toggle {
-  transition: opacity 0.9s ease;
+  transition: opacity 0.8s ease;
 }
 
-body.loading .mode-toggle {
-  opacity: 0;
-  pointer-events: none;
-}
 
 #full {
   width: 100%;
@@ -1155,10 +1157,11 @@ margin-top: 5px;
   }
 
 
-  body.loading main,
-  body.loading footer {
-    opacity: 0;
-  }
+.loading main,
+.loading header,
+.loading footer {
+  opacity: 0;
+}
 
     .logo img {
     opacity: 0;
