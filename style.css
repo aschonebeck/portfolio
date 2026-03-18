@@ -185,6 +185,12 @@ body.light-mode .info {
 }
 
 
+body.light-mode #biggie {
+
+  color:#111;
+}
+
+
 body.light-mode h3 {
 
   color:#111;
@@ -346,7 +352,7 @@ color: #111;
 }
 
 .logo img{
-width: 1300px;
+width: 90vw;
 max-width: none;
 opacity: 0.9;
 filter: invert(100);
@@ -622,10 +628,24 @@ color: #e6e6e6;
 
 
 .righty {
-
 padding-top: 60px;
 padding-bottom: 60px;
+max-width: 100%;
+}
 
+
+body.loading .mode-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mode-toggle {
+  transition: opacity 0.9s ease;
+}
+
+body.loading .mode-toggle {
+  opacity: 0;
+  pointer-events: none;
 }
 
 #full {
@@ -1030,6 +1050,14 @@ transform: translateX(-1px);
     max-width: 100%;
     text-align: left; 
   }
+
+  h3 {
+  color: #e6e6e6;
+  font-family: ;
+  text-transform: uppercase;
+  padding-top: 40px;
+  padding-bottom: 0px;
+}
 
   /* even rows (keep contrast but reduce impact) */
   .project-row:nth-child(even) .title {

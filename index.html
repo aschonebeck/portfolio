@@ -20,6 +20,11 @@
 
 <body>
 
+  
+<script>
+document.body.classList.add("loading");
+</script>
+
 <header class="site-header">
 
   <div class="logo"><a href="index.html"><img src="img/as2.png"></a></div>
@@ -166,7 +171,7 @@
 
   <div class="footer-right">
     <a href="mailto:your@email.com">Email</a>
-    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+    <a target="blank" href="https://www.linkedin.com/in/amandaschonebeck/" target="_blank">LinkedIn</a>
   </div>
 
 </footer>
@@ -343,10 +348,6 @@ project.style.display = "none";
 
 <script>
 window.__skipLoader = sessionStorage.getItem("loaderShown") === "true";
-
-if (!window.__skipLoader) {
-  sessionStorage.setItem("loaderShown", "true");
-}
 </script>
 
 <script>
