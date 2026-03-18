@@ -1233,6 +1233,7 @@ margin-top: 5px;
 
   .info {
     max-width: 100%;
+    padding-top: 0px;
   }
 
   .cv-section {
@@ -1257,7 +1258,7 @@ line-height: 1.4;
 
 .about-left {
   max-width: 100%;
-   display: flex;
+   display: block;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -1267,7 +1268,7 @@ line-height: 1.4;
 }
 
 .about-grid {
-  display: grid;
+  display: block;
   grid-template-columns: 1fr 1fr;
   gap: 0px;
   padding-top: 60px;
