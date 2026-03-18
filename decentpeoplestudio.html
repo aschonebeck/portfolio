@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Studio — A.Schönebeck</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/x-icon" href="img/as.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="about_body">
+
+<header class="site-header">
+
+  <div class="logo">
+    <a href="index.html">
+      <img src="img/as2.png">
+    </a>
+  </div>
+
+  <nav class="main-nav">
+    <a  href="index.html">WORK,</a>
+    <a  href="info.html">INFO</a>
+  </nav>
+
+      <button class="mode-toggle">LIGHT</button>
+
+
+</header>
+
+<main class="container project-page">
+
+
+
+<div class="project-row grid project-static">
+  <div class="title2">Forming a Design Studio</div>
+ <span id="upper">UX DESIGN, 2020-23</span>
+</div>
+
+  <!-- Project Header -->
+
+  <div class="project-intro">
+
+  <!-- Hero Image -->
+
+  
+    <img src="img/dppaper.png" alt="Burning flower flames">
+
+   <h1>
+    Decent People —  Design Studio</h1>
+
+  </div>
+
+
+
+
+
+
+    
+       <p class="project-description">
+              Role: Co-Founder / Designer<br>
+       <br>
+   I was part of co-founding a design studio focused on human-centered and co-creative design practice. We supported other organisations in their creative processes and challenges by combining design sprints, workshops, UX research, UI Design, and other tailored methods.<br><br>
+
+</p>
+
+
+<img id="projimg" src="img/believe.png">
+
+
+    </div>
+
+  </div>
+
+
+
+
+    <h3>OFFERING</h3>
+    
+       <p class="project-description">
+Our focus was on understanding real needs, testing early, and shaping ideas that made sense in the world they’d live in. Based on our clients’ needs and our observations of what was required in each process, we delivered:
+<br><br>
+→ Design Sprints — structured frameworks to align stakeholders, prototype ideas and test solutions early.
+<br><br>
+→ Workshops and Facilitation — customised sessions to unlock creativity, build shared understanding, and strengthen team collaboration.
+<br><br>
+→ UX Projects — design work for digital platforms and products, spanning user research, idea generation, prototyping, 
+<br><br>
+→ Lectures — hands-on sessions for organisations and schools.
+
+</p> 
+
+
+
+<img id="projimg" src="img/feed.png">
+
+
+<h3>Selected Work</h3>
+    
+       <p class="project-description">
+
+        <br>
+
+Exhibition Workshop — a collaborative design session to shape interactive experiences. <br> <br>
+
+Educational Sessions — teaching teamwork and design methods at Konstfack and Hyper Island. <br> <br>
+
+Webshop for active wear — a user-centered retail experience <br> <br>
+
+Support System for Schizophrenia — a human-centred service design exploration. <br> <br>
+
+Pregnancy Health App — user-centered design supporting real user journeys. <br> <br>
+
+Covid-19 Challenge — a solution designed to meet the sudden needs of the pandemic in 2020.
+</p>
+
+  <!-- Images -->
+
+  <section class="project-images">
+
+ 
+
+    
+
+  </section>
+
+
+
+  <!-- Back link -->
+
+  <div class="project-back">
+
+    <a href="index.html">← Back to projects</a>
+
+  </div>
+
+
+
+</main>
+
+<footer class="site-footer">
+
+  <div class="footer-left">
+    © 2026 Amanda Schönebeck
+  </div>
+
+  <div class="footer-right">
+    <a href="mailto:your@email.com">Email</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn ↗</a>
+  </div>
+
+</footer>
+  <script>
+
+// apply saved mode immediately
+const savedMode = localStorage.getItem("mode");
+
+if (savedMode === "light") {
+  document.body.classList.add("light-mode");
+}
+
+</script>
+<script>
+
+const toggle = document.querySelector(".mode-toggle");
+
+if (toggle) {
+
+  const savedMode = localStorage.getItem("mode");
+
+  if (savedMode === "light") {
+    document.body.classList.add("light-mode");
+    toggle.textContent = "DARK";
+  }
+
+  toggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("light-mode");
+
+    const isLight = document.body.classList.contains("light-mode");
+
+    toggle.textContent = isLight ? "DARK" : "LIGHT";
+
+    localStorage.setItem("mode", isLight ? "light" : "dark");
+
+  });
+
+}
+
+</script>
+</body>
+</html>

@@ -1,593 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A.S—PORTFOLIO</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <meta property="og:url" content="www.amandaschonebeck.com" />
-    <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
-    <meta property="og:description" content="UX Designer based in Stockholm, exploring how people connect with digital and physical artifacts in everyday life. I craft thoughtful user experiences through interaction design, facilitation, technology, workshops, and user research. © 2026 Amanda Schönebeck" />
-  <meta property="og:image" content="https://amandaschonebeck.com/img/hello.png" />
-  <meta property="og:type" content="website" />
-<link rel="canonical" href="https://www.amandaschonebeck.com/" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A. Schönebeck — Portfolio</title>
+<link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="img/as.ico">
 
-      <link rel="shortcut icon" href="soft.ico"/>
-        <link rel="preload" as="image" href="img/fizzled.svg" /> 
-         <link rel="preload" as="image" href="img/lezsongo.gif" />
-  </head>
-  <body class="index">
-    <!-- Menyn  -->
-    <header>
-     <nav>
-  <a href="index" style="color: rgb(0, 0, 0, 0.8);   "  class="nav-link">A.SCHÖNEBECK™</a>
-  <a href="index" style="color: rgb(0, 0, 0, 0.8); " id="mobile"  class="nav-link">WORK [8]</a>
-  <a href="about" class="nav-link">ABOUT</a>
-  <a onclick="openModal()" href="#" class="nav-link">CONTACT</a>
-</nav>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap" rel="stylesheet">
+</head>
 
+<body>
+
+<header class="site-header">
+
+  <div class="logo"><a href="index.html"><img src="img/as2.png"></a></div>
+
+  <nav class="main-nav">
+    <a  href="index.html"><U>WORK,</U></a>
+    <a  href="info.html">INFO</a>
+  </nav>
+<button class="mode-toggle">LIGHT</button>
+</header>
 
 
-    </header>
 
-    <div class="customizer-wrapper">
-  <button class="customizer-toggle" aria-label="Toggle customizer">☼ / Aa+-</button>
+<div class="mobile-loader">
+  <img src="img/as2.png" alt="Logo">
 </div>
 
-<div class="top-controls">
-  <button class="top-controls-close" aria-label="Close customizer">×</button>
 
-  <button id="themeToggle" aria-label="Toggle dark mode">
-   <span id="themeLabel"><span id="light"> LIGHT </span>  / <span id="dark"> DARK</span></span>
-  </button>
+<main class="container">
 
-  <div class="text-size-controls">
-    <button onclick="decreaseTextSize()"><span id="smaller">A–</span></button>
-    <button onclick="resetTextSize()">A</button>
-    <button onclick="increaseTextSize()"><span id="bigger">A+</span></button>
+  <div class="filter">
+  
+    <a class="active"  data-filter="all" href="#">ALL</a>
+    <a data-filter="ux" href="#"> UX </a>
+    <a data-filter="web" href="#"> WEB </a>
+    <a data-filter="writing" href="#"> WRITING </a>
   </div>
 
-
-
-</div>
-
-
-
-    <!-- Loader -->
-
-<!-- Loader -->
-<div class="loader-container">
-  <div class="loader-bar-wrapper">
-    <div class="loader-bar"></div>
-  </div>
-  <p class="loading-text">WWW.AMANDASCHONEBECK.COM</p>
-  <pre id="ascii-loader"></pre><span class="cursor" id="ascii-cursor"></span>
-</div>
 
 
 
  
 
 
-<div id="main-content">
-  <!--
-<section id="intros"><h1 class="introrubrik">AMANDA SCHÖNEBECK<BR><i>UX DESIGNER</i></h1>
-<button class="filter-btn" data-filter="all"> ALL </button> <button class="filter-btn" data-filter="projects">PROJECTS</button> <button class="filter-btn" data-filter="articles">ARTICLES</button> </section>-->
+  <a data-category="web" class="project-row grid" href="appelltrastudio.html" data-img="img/tra.png">
 
+    <div class="title">Cabinetmaker Studio Website</div> 
+    <span id="upper">WEB PROJECT, 2025</span>
 
-
-<!-- actual site content (already visible behind loader) -->
- <div class="parent">
-  <div class="div1 glitch" data-category="articles">
-    <a href="stillness" aria-label="Designing for Stillness">
-      <img  style="opacity: 0.95;" src="img/fizzle.gif" alt="Fizzled out flowers" loading="lazy" />
-      <p>ESSAY/2025<br />FIZZLED OUT: Designing for Stillness</p>
-     
-    </a>
+     <div class="mobile-preview">
+    <img src="img/tra.png" alt="">
+    <p> SEE MORE</p>
   </div>
 
-
-  <div class="div2 glitch " data-category="projects">
-    <a href="dreams" aria-label="Design Sprint @Dreams">
-      <img src="img/dreamsapp.png" alt="Dreams App" loading="lazy" />
-      <p>UX DESIGN/2020<br />Design for Organic Growth</p>
-      
-    </a>
-  </div>
-
-    <div class="div3 glitch " data-category="projects">
-    <a href="appell" aria-label="Website for Appell Trastudio">
-      <img src="img/img.png" alt="Appell Trästudio project" loading="lazy" />
-      <p>WEB PROJECT/2025<br />Cabinetmaker Studio Website</p>
-    </a>
-<!--
-  <div class="div3 glitch " data-category="projects">
-    <a href="zsongo" aria-label="Website for Zsongo.world">
-      <img src="img/lezsongo.gif" alt="Zsongo.world project" loading="lazy" />
-      <p>PROJECT/2025<br />Website for Zsongo.world</p>
-    </a>
-
-   -->
-  </div>
-  <div class="div4 glitch " data-category="articles">
-     <a href="humane" aria-label="Humane Design in Times of Crises">
-      <img style="opacity: 0.9;" src="img/humane.jpg" alt="Humane design article" loading="lazy" />
-      <p>ESSAY/2020<br /> Humane Design in Times of Crises</p>
-     
-    </a>
-  </div>
-
-  <div class="div5 glitch" data-category="projects">
-   <a href="decentpeople" aria-label="Project image link">
-         
-      <img src="img/believe.png" alt="Decent People.Studio" loading="lazy" />
-        <p>UX DESIGN/2020-2023<br />Building a Design Studio</p>
-    </a>
-
-  </div>
-
-  <div class="div6 glitch" data-category="projects">
-
-     <a href="zsongo" aria-label="zsongo">
-    <img src="img/lezsongo.gif" alt="zsongo image" loading="lazy" />
-      <p>WEB PROJECT/2024<br />Zsongo Events Website</p>
   </a>
+
+
+  <a data-category="writing" class="project-row grid" href="stillness.html" data-img="img/fizzle.gif">
+    <div class="title">FIZZLED OUT — Designing for Stillness</div> <span id="upper">ESSAY, 2025</span>
+
+       <div class="mobile-preview">
+    <img src="img/fizzle.gif" alt="">
+    <p> SEE MORE</p>
+  </div>
+    
+  </a>
+
+
+  <a data-category="web" class="project-row grid" href="zsongo.html" data-img="img/events.png">
+    <div class="title">Zsongo Website</div>
+
+    <span id="upper">WEB PROJECT, 2024</span>
+        <div class="mobile-preview">
+    <img src="img/events.png" alt="">
+    <p> SEE MORE</p>
+  </div>
    
+  </a>
+
+
+  <a data-category="ux" class="project-row grid" href="energy.html" data-img="img/ojb.png">
+    <div class="title">Sustainable Energy Use</div>
+      <span id="upper">UX DESIGN, 2021-22</span>
+
+          <div class="mobile-preview">
+    <img src="img/obje.png" alt="">
+    <p> SEE MORE</p>
+  </div>
+ 
+  </a>
+
+
+  <a data-category="ux" class="project-row grid" href="decentpeoplestudio.html" data-img="img/dppaper.png">
+    <div class="title">Forming a Design Studio</div>
+      <span id="upper">UX DESIGN, 2020-23</span>
+
+          <div class="mobile-preview">
+    <img src="img/dppaper.png" alt="">
+    <p> SEE MORE</p>
   </div>
 
-  <div class="div7 glitch" data-category="projects">
-      <a href="energy" aria-label="Article image">
-      <img src="img/obje.png" alt="project image" loading="lazy" />
-        <p>UX DESIGN/2021-2022<br />Sustainable Energy Use</p>
-    </a>
-   
-  </div> 
+  </a>
 
 
-  <div class="div8 glitch" data-category="articles">
-  <a href="workshop" aria-label="Workshop: Article image link">
-      <img style="opacity:0.9;" src="img/teal2.jpg" alt="Workshop Framework" loading="lazy" />
-        <p>ESSAY/2020<br /> Workshops with Intention</p>
-    </a>
+  <a data-category="ux" class="project-row grid" href="dreams.html" data-img="img/dreamsapp_.png">
+    <div class="title">Dreams for Organic Growth</div>
+     <span id="upper">WORKSHOP, 2020</span>
+
+         <div class="mobile-preview">
+    <img src="img/dreamsapp_.png" alt="">
+    <p> SEE MORE</p>
+  </div>
+
+  </a>
+
+
+  <a data-category="writing" class="project-row grid" href="humane-design.html" data-img="img/humane.jpg">
+    <div class="title">Humane Design in Times of Crises</div>
+   <span id="upper">ESSAY, 2020</span>
+
+       <div class="mobile-preview">
+    <img src="img/humane.jpg" alt="">
+    <p> SEE MORE</p>
+  </div>
+
+  </a>
+
+
+  <a data-category="writing" class="project-row grid" href="workshop.html" data-img="img/teal.jpg">
+    <div class="title">Workshops with Intention</div>
+      <span id="upper">ESSAY, 2020</span>
+
+          <div class="mobile-preview">
+    <img src="img/teal.jpg" alt="">
+    <p> SEE MORE</p>
+  </div>
+ 
+  </a>
+
+</div>
+
+</main>
+
+<div class="hover-preview">
+  <img src="" alt="Project img">
 </div>
 
 
-
-  </div>
-
-
-
-
-  <!-- Contact Modal -->
-  <div class="modal-overlay" id="contactModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">×</button>
-      <p>REACH OUT</p>
-  <div class="email-copy-wrapper">
-  <span id="emailText" class="selectable">amanda.schonebeck@gmail.com</span>
-  <button id="copyBtn">COPY </button>
-  <span id="copiedFeedback">COPIED</span>
-</div>
-      <a href="https://www.linkedin.com/in/amandaschonebeck/" target="_blank">LinkedIn ↗</a>
-    </div>
-
-  </div>
-
-  
-
-   <footer class="footer">
-
+<footer class="site-footer">
 
   <div class="footer-left">
-
-    <p class="copy">© 2026 Amanda Schönebeck </p>
+    © 2026 Amanda Schönebeck
   </div>
+
   <div class="footer-right">
-
-    <a href="https://www.linkedin.com/in/amandaschonebeck/" target="_blank">LinkedIn↗</a>
-    <a href="https://se.pinterest.com/amandaschnebeck/" target="_blank">Pinterest↗</a>
-         <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
-
+    <a href="mailto:your@email.com">Email</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn ↗</a>
   </div>
+
 </footer>
 
-
-
-<!--
-    <footer>
-    CODE & DESIGN © 2025 AMANDA SCHÖNEBECK
-   
-    </footer>
-
--->
-
-    <!-- JavaScript -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Amanda Schönebeck",
-  "jobTitle": "UX Designer",
-  "url": "https://www.amandaschonebeck.com",
-  "sameAs": [],
-  "description": "UX Designer in Stockholm creating intuitive, aesthetic, and functional digital experiences.",
-  "image": "https://www.amandaschonebeck.xyz/img/pause.png",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Freelance / Studio"
-  }
-}
-</script>
-
-
-
-<script type="text/javascript">
-document.getElementById("copyBtn").addEventListener("click", () => {
-  const email = document.getElementById("emailText").innerText;
-  const feedback = document.getElementById("copiedFeedback");
-
-  navigator.clipboard.writeText(email).then(() => {
-    feedback.style.opacity = 1;
-    setTimeout(() => {
-      feedback.style.opacity = 0;
-    }, 1500);
-  });
-});
-</script>
-
-    <script>
-  // Open/close panel on "Aa" toggle
-  document.querySelector('.customizer-toggle').addEventListener('click', () => {
-    document.querySelector('.top-controls').classList.toggle('active');
-  });
-
-  // Close panel on mobile "×"
-  document.querySelector('.top-controls-close').addEventListener('click', () => {
-    document.querySelector('.top-controls').classList.remove('active');
-  });
-</script>
-
-
-      <script>
-    function openModal() {
-      document.getElementById("contactModal").classList.add("active");
-    }
-
-    function closeModal() {
-      document.getElementById("contactModal").classList.remove("active");
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
-  </script>
-
-
-    <script>
-      // Loader fade-out
-      document.addEventListener("DOMContentLoaded", function () {
-        const loaderContainer = document.querySelector(".loader-container");
-        window.onload = function () {
-          loaderContainer.classList.add("hidden");
-          setTimeout(() => {
-            loaderContainer.style.display = "none";
-          }, 500);
-        };
-      });
-
-  
-
-     
-    </script>
-
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".parent > div");
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target); // one time only
-      }
-    });
-  }, { threshold: 0.15 });
-
-  // subtle stagger
-  let delay = 0;
-  cards.forEach(card => {
-    card.style.transitionDelay = `${delay}s`;
-    delay += 0.06;   // tweak: 0.04 = faster, 0.08 = slower
-    observer.observe(card);
-  });
-});
-</script>
-
-     <script>
-// On page load, apply saved theme
-window.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = sessionStorage.getItem('theme');
-
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-    updateThemeLabel('dark');
-  } else {
-    // default = light
-    document.body.classList.remove('dark-mode');
-    updateThemeLabel('light');
-    sessionStorage.setItem('theme', 'light');
-  }
-});
-
-// Toggle theme
-document.getElementById('themeToggle').addEventListener('click', () => {
-  const body = document.body;
-  const isDark = body.classList.toggle('dark-mode');
-  const newTheme = isDark ? 'dark' : 'light';
-  sessionStorage.setItem('theme', newTheme);
-  updateThemeLabel(newTheme);
-});
-
-// Update label animation
-function updateThemeLabel(mode) {
-  const light = document.getElementById('light');
-  const dark = document.getElementById('dark');
-
-  light.classList.remove('active');
-  dark.classList.remove('active');
-
-  if (mode === 'dark') {
-    dark.classList.add('active');
-  } else {
-    light.classList.add('active');
-  }
-}
-
-
-</script>
-
-
 <script>
-let fontSizePercent = 100;
-let customScaling = false; // track if user resized from default
-
-// Base font sizes in pixels
-const baseFontSizes = {
-   '.label': 12,
-  '.description': 12,
-  '#about h1': 12,
-  '#about p': 12,
-  '#about ul': 12,
-  '#about li': 12,
-  '.parent div p': 12
-};
-
-window.addEventListener('DOMContentLoaded', () => {
-  updateAllTextSizes();
-});
-
-function updateAllTextSizes() {
-  for (const selector in baseFontSizes) {
-    const baseSize = baseFontSizes[selector];
-    const newSize = customScaling
-      ? baseSize * (fontSizePercent / 100)
-      : baseSize;
-
-    document.querySelectorAll(selector).forEach(el => {
-      el.style.fontSize = `${newSize}px`;
-    });
-  }
-}
-
-function increaseTextSize() {
-  if (fontSizePercent < 160) {
-    fontSizePercent += 5;
-    customScaling = true;
-    updateAllTextSizes();
-  }
-}
-
-function decreaseTextSize() {
-  if (fontSizePercent > 85) {
-    fontSizePercent -= 5;
-    customScaling = true;
-    updateAllTextSizes();
-  }
-}
-
-function resetTextSize() {
-  fontSizePercent = 100;
-  customScaling = false;
-  updateAllTextSizes();
-}
-</script>
 
 
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const images = document.querySelectorAll(".parent > div:not(.is-background) img");
+// ----------------------
+// ELEMENTS
+// ----------------------
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+const preview = document.querySelector(".hover-preview");
+const previewImg = preview.querySelector("img");
 
-  images.forEach(img => observer.observe(img));
-});
-</script>
+let mouseX = 0;
+let mouseY = 0;
 
-<script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function () {
-  const loaderContainer = document.querySelector(".loader-container");
+let previewX = 0;
+let previewY = 0;
 
-  // Add fade-in class to loading text slightly after bar starts
-  setTimeout(() => {
-    loaderContainer.classList.add("show-text");
-  }, 650); // Adjust delay to taste
+let hoverTimeout = null;
 
-  // Then hide loader after full animation
-  window.onload = function () {
-    setTimeout(() => {
-      loaderContainer.classList.add("hidden");
-      setTimeout(() => {
-        loaderContainer.style.display = "none";
-      }, 650); // smooth fade
-    }, 2300);
-  };
+
+// ----------------------
+// PRELOAD IMAGES (fixes "img tra.png" flash)
+// ----------------------
+
+document.querySelectorAll(".project-row").forEach(project => {
+  if (!project.dataset.img) return;
+
+  const img = new Image();
+  img.src = project.dataset.img;
 });
 
 
+// ----------------------
+// HOVER EVENTS (TITLE ONLY)
+// ----------------------
 
+document.querySelectorAll(".project-row").forEach(project => {
 
+  const title = project.querySelector(".title");
+  if (!title) return;
 
+  // ENTER
+  title.addEventListener("mouseenter", (e) => {
+    if (!project.dataset.img) return;
 
-</script>
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll("#intros .filter-btn");
-  const items = document.querySelectorAll(".parent > div");
+    previewX = mouseX;
+    previewY = mouseY;
 
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const filter = btn.dataset.filter;
+    // delay = intentional hover only
+    hoverTimeout = setTimeout(() => {
 
-      items.forEach(item => {
-        const category = item.dataset.category;
+      // hide image before load (prevents flash)
+      previewImg.style.opacity = 0;
 
-        if (filter === "all") {
-          item.classList.remove("is-background");
-        } else if (category === filter) {
-          item.classList.remove("is-background");
-        } else {
-          item.classList.add("is-background");
-        }
-      });
+      previewImg.onload = () => {
+        previewImg.style.opacity = 1;
+      };
 
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-    });
+      previewImg.src = project.dataset.img;
+
+      preview.style.opacity = 1;
+
+      // trigger fade system
+      document.body.classList.add("title-hover-active");
+
+    }, 120);
+
   });
+
+  // LEAVE
+  title.addEventListener("mouseleave", () => {
+    clearTimeout(hoverTimeout);
+
+    preview.style.opacity = 0;
+    document.body.classList.remove("title-hover-active");
+  });
+
+  // MOVE
+  title.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+});
+
+
+// ----------------------
+// ANIMATION LOOP
+// ----------------------
+
+function animatePreview(){
+
+  // smooth follow
+  previewX += (mouseX - previewX) * 0.12;
+  previewY += (mouseY - previewY) * 0.12;
+
+  const offset = 24;
+
+  const previewWidth = preview.offsetWidth;
+  const previewHeight = preview.offsetHeight;
+
+  // horizontal flip
+  let x = previewX + offset;
+
+  if (x + previewWidth > window.innerWidth) {
+    x = previewX - previewWidth - offset;
+  }
+
+  // vertical clamp
+  let y = previewY - previewHeight * 0.3;
+
+  if (y + previewHeight > window.innerHeight) {
+    y = window.innerHeight - previewHeight - offset;
+  }
+
+  if (y < offset) {
+    y = offset;
+  }
+
+  preview.style.left = x + "px";
+  preview.style.top = y + "px";
+
+  requestAnimationFrame(animatePreview);
+}
+
+animatePreview();
+
+</script>
+
+
+
+
+<script> 
+  const filters = document.querySelectorAll(".filter a");
+const projects = document.querySelectorAll(".project-row");
+
+filters.forEach(filter => {
+
+filter.addEventListener("click", e => {
+
+e.preventDefault();
+
+const category = filter.dataset.filter;
+
+filters.forEach(f => f.classList.remove("active"));
+filter.classList.add("active");
+
+projects.forEach(project => {
+
+if(category === "all"){
+project.style.display = "grid";
+return;
+}
+
+if(project.dataset.category === category){
+project.style.display = "grid";
+}else{
+project.style.display = "none";
+}
+
+});
+
+});
+
 });
 </script>
 
 <script>
- const loaderShown = sessionStorage.getItem("loaderShown");
+window.__skipLoader = sessionStorage.getItem("loaderShown") === "true";
 
-const asciiText = `@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:=**=@@@@@@@@@@@@@:---- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ =+*-@@@@@@@@@@::-----------=--@@@@@-@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=+-@@@@@@@@::::-----------==--*-::-=-@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+@-++@@@@*#-:::::-----------====-:::-=-@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@**#@-#%+++@*###*#-::::--------------:::::: @@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@######%%=+*%%==*%+.::::::--:::---::--:--::@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#%###%##++#%:..=%#:::::::-:::::::::::::@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:::.=#%#%#+=*%=..:+**:::::::::::::::::::.:@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@::::::::::::::::@@@@@@@@@:....:=+=@:-*#:.:---::::::::::::::::::::::@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@.::::::::::::::::::::::: @@@@::::....:=: -==:.--:.:::::::::::::::::::..:@@@@@@@@@@@@@@@@@@@@
-@@@@@@:::::::::::::::::------::::::.:::::::::::-::-=.:-:.:::::::::::::::::::::::@@@@@@@@@@@@@@@@@@@@
-@@@@:::::::::---::::::::-----------::::::::::::--:-=.:-.:::::::::::::::::::::@::::::::::@@@@@@@@@@@@
-@@@::::------------::::::-------------::::::::::-::=:-::::::::::::::::::::::::::::::::::-- @@@@@@@@@
-@@:---------=======----------------------::::::::-:-:-:::::::::::::::::::::::--------------:-:@@@@@@
-::--------------@@@=++=======--------------::::::::::::::::::::::::::::::::::==============----::@@@
-:::------@@@@@@@@@@@**%@::------------------:-::-------:::::::-::::::::::::::=++++++++++++===----:@@
-::----:@@@@@@@@@@@@@@*=---------------------:---=========--::--------::::::::=+==-@@@@@+++++==-==--
-::---=@@@@@@@@@@@@@@:::-----------------------=============---=--------::::::::@@@@@@@@@@@@@+==-==--
-::---@@@@@@@@@@@@@.:::------===-------=======----==========+=-====------:::::::@@@@@@@@@@@@@@@====--
-@::---@@@@@@@@@@:-::--------------==++++=======-==========+========-------:::::@@@@@@@@@@@@@@@@=====
-@@@---@@@@@@@@@:::---------::::@@@@@@=+++++=++++=======+=+====++=====------::::@@@@@@@@@@@@@@@@@=---
-@@@@@@@@@@@@@@@::--::::::::.=*+=@@@@@@@@=+++++++++======+====++++-=-===-----:::@@@@@@@@ ++@@@@@=----
-@@@@@@@@@@@@@@::--::::::::::****++:@@@@@@@=+++++=======++===+++=@@--=-==-----::@@@@@@@@@-=+@@@=----@
-@@@@@@@@@@@@@ ::-:::::::.::@@@+**+++=.@@@@@@=++++=====++++++++@@@@@@---===---::@@@@@@@@@:-====----@@
-@@@@@@@@@@@@@:---:::::::.:@@@@@@@++++++++=@@@@=+++++=+++++**+@@@@@@@@@--===---:@@@@@@@@@@:-------@@@
-@@@@@@@@@@@@@::::::::::.::@@@@@@@@@@++++++***@@-++++++*****=@@@@@@@@@@@---==--@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@ -:-:::::..:@@@@@@@@@@@@@@*++*+***@@+********+@@@@@@@@@@@@@--==--@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@------::::@=+ @@@@@@@@@@@@@@++*****@+**##** @@@@@@@@@@@@@@@@@-:@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@----=-:-++++@@@@@@@@@@@@@@@@@+*****.@+##*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@--==-===-@@@@@@@@@@@@@@@@@@@@@*##** *##-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@.---@@@@@@@@@@@@@@@@@@@@@@@@@###*##+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@***##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*## @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #%+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:#%=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`.split("\n");
-
-const container = document.getElementById("ascii-loader");
-const cursor = document.getElementById("ascii-cursor");
-const loaderContainer = document.querySelector(".loader-container");
-const mainContent = document.getElementById("main-content");
-
-let index = 0;
-
-function revealLine() {
-  if (index < asciiText.length) {
-    container.innerHTML += asciiText[index] + "\n";
-    index++;
-    setTimeout(revealLine, 55);
-  } else {
-    cursor.style.display = "none";
-
-    loaderContainer.style.transition = "opacity 1s ease";
-    loaderContainer.style.opacity = "0";
-
-    setTimeout(() => {
-      loaderContainer.style.display = "none";
-      mainContent.style.display = "block";
-    }, 1000);
-  }
+if (!window.__skipLoader) {
+  sessionStorage.setItem("loaderShown", "true");
 }
+</script>
 
+<script>
 window.addEventListener("load", () => {
 
-  if (loaderShown) {
-    loaderContainer.style.display = "none";
-    mainContent.style.display = "block";
+  if (!window.matchMedia("(max-width: 768px)").matches) return;
+
+  const container = document.querySelector(".container");
+  const loader = document.querySelector(".mobile-loader");
+  const headerLogo = document.querySelector(".logo img");
+
+  // skip loader
+  if (window.__skipLoader) {
+    container?.classList.add("visible", "interactive");
+    loader?.remove();
     return;
   }
 
-  sessionStorage.setItem("loaderShown", "true");
+  if (!loader) return;
 
-  setTimeout(revealLine, 800);
+  document.body.classList.add("loading");
+
+  const loaderImg = loader.querySelector("img");
+
+  setTimeout(() => {
+
+    requestAnimationFrame(() => {
+
+      const targetRect = headerLogo.getBoundingClientRect();
+      const loaderRect = loaderImg.getBoundingClientRect();
+
+      const dx = targetRect.left - loaderRect.left;
+      const dy = targetRect.top - loaderRect.top;
+      const scale = targetRect.width / loaderRect.width;
+
+      loaderImg.style.transform = `
+        translate(${dx}px, ${dy}px)
+        scale(${scale})
+      `;
+
+    });
+
+  }, 400);
+
+  setTimeout(() => {
+
+    loader.style.opacity = 0;
+    document.body.classList.remove("loading");
+
+    container?.classList.add("visible", "interactive");
+
+    setTimeout(() => loader.remove(), 600);
+
+  }, 1200);
+
 });
-
-
 </script>
 
-<script type="text/javascript">
-const navLinks = document.querySelectorAll('.nav-link');
-const darkBgSections = document.querySelectorAll('.dark-bg');
+<script>
+window.addEventListener("load", () => {
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    navLinks.forEach(link => {
-      if (entry.isIntersecting) {
-        link.classList.add('light-text');
-        link.classList.remove('dark-text');
-      } else {
-        link.classList.add('dark-text');
-        link.classList.remove('light-text');
-      }
-    });
+  if (window.matchMedia("(max-width: 768px)").matches) return;
+
+  const logo = document.querySelector(".logo img");
+  const container = document.querySelector(".container");
+
+  // skip loader → still keep a micro feel
+  if (window.__skipLoader) {
+
+    document.body.classList.add("loading");
+
+    setTimeout(() => {
+      logo?.classList.add("shrink");
+      container?.classList.add("visible", "interactive");
+      document.body.classList.remove("loading");
+    }, 200);
+
+    return;
+  }
+
+  // full desktop animation
+  setTimeout(() => {
+    logo?.classList.add("shrink");
+  }, 800);
+
+  setTimeout(() => {
+    container?.classList.add("visible");
+  }, 1700);
+
+  setTimeout(() => {
+    container?.classList.add("interactive");
+  }, 2300);
+
+});
+</script>
+
+
+<script>
+const rows = document.querySelectorAll(".project-row");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("in-view");
+    }
   });
 }, {
-  threshold: 0.5
+  threshold: 0.2
 });
 
-darkBgSections.forEach(section => observer.observe(section));
+rows.forEach((row, i) => {
+  row.style.transitionDelay = `${i * 0.08}s`;
+});
 </script>
 
+
+<script>
+
+if (window.innerWidth <= 768) {
+
+  document.querySelectorAll(".project-row").forEach(row => {
+
+    row.addEventListener("click", (e) => {
+
+      const isActive = row.classList.contains("active");
+
+      if (!isActive) {
+        e.preventDefault();
+
+        // close others
+        document.querySelectorAll(".project-row").forEach(r => {
+          r.classList.remove("active");
+        });
+
+        row.classList.add("active");
+      }
+
+      // if already active → allow navigation
+
+    });
+
+  });
+
+}
+
+</script>
+
+<script>
+
+const toggle = document.querySelector(".mode-toggle");
+
+// load saved mode
+const savedMode = localStorage.getItem("mode");
+if (savedMode === "light") {
+  document.body.classList.add("light-mode");
+  toggle.textContent = "DARK";
+}
+
+toggle.addEventListener("click", () => {
+
+  document.body.classList.toggle("light-mode");
+
+  const isLight = document.body.classList.contains("light-mode");
+
+  toggle.textContent = isLight ? "DARK" : "LIGHT";
+
+  localStorage.setItem("mode", isLight ? "light" : "dark");
+
+});
+
+</script>
 
 
 

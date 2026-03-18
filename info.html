@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A. Schönebeck — Portfolio</title>
+<link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="img/as.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap" rel="stylesheet">
+</head>
+
+<body class="about_body">
+
+<header class="site-header">
+
+
+  <div class="logo"><a href="index.html"> <img src="img/as2.png" ></a></div>
+
+  <nav class="main-nav">
+    <a  href="index.html">WORK,</a>
+    <a  href="info.html"><U>INFO</U></a>
+  </nav>
+
+<button class="mode-toggle">LIGHT</button>
+</header>
+
+
+<br>
+<p class="info" style="">UX Designer based in Stockholm<br> exploring how people connect with digital and physical artifacts in everyday life. I enjoy translating complex ideas into clear and usable digital experiences across web, interaction and service design. <br><br></p>
+
+<a class="contact" href=""><u>LinkedIn</u></a>
+<a class="contact" href=""><u>amanda.schonebeck@gmail.com</u></a>
+
+
+<div class="about-grid">
+
+
+
+<section class="cv-section">
+
+<h3>WORK EXPERIENCE</h3>
+
+<div class="cv-row">
+<span class="cv-year">2024-25</span>
+<span>UX Designer, BBH</span>
+</div>
+<div class="cv-row">
+<span class="cv-year">2021-22</span>
+<span>UX Lead, KTH Royal Institute of Technology</span>
+</div>
+
+<div class="cv-row">
+<span class="cv-year">2020-23</span>
+<span>Founder & Designer, Decent People</span>
+</div>
+
+
+
+<div class="cv-row">
+<span class="cv-year">2020</span>
+<span>Guest Teacher, Konstfack University of Arts, Crafts and Design</span>
+</div>
+
+<h3>EDUCATION</h3>
+
+<div class="cv-row">
+<span class="cv-year">2019-20</span>
+<span>Design Lead, Hyper Island</span>
+</div>
+
+<div class="cv-row">
+<span class="cv-year">2015-18</span>
+<span>Computer & Systems Sciences, Stockholm University</span>
+</div>
+
+
+</section>
+ 
+
+
+
+
+
+
+</div>
+
+
+<footer class="site-footer">
+
+  <div class="footer-left">
+    © 2026 Amanda Schönebeck
+  </div>
+
+  <div class="footer-right">
+    <a href="mailto:your@email.com">Email</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn ↗</a>
+  </div>
+
+</footer>
+
+<!--
+<img id="cornerimage" src="img/as2.png">-->
+
+
+<script>
+
+const toggle = document.querySelector(".mode-toggle");
+
+// load saved mode
+const savedMode = localStorage.getItem("mode");
+if (savedMode === "light") {
+  document.body.classList.add("light-mode");
+  toggle.textContent = "DARK";
+}
+
+toggle.addEventListener("click", () => {
+
+  document.body.classList.toggle("light-mode");
+
+  const isLight = document.body.classList.contains("light-mode");
+
+  toggle.textContent = isLight ? "DARK" : "LIGHT";
+
+  localStorage.setItem("mode", isLight ? "light" : "dark");
+
+});
+
+</script>
+</body>
+</html>
