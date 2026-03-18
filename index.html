@@ -119,7 +119,7 @@
 
   <a data-category="ux" class="project-row grid" href="dreams.html" data-img="img/dreamsapp_.png">
     <div class="title">Dreams for Organic Growth</div>
-     <span id="upper">WORKSHOP, 2020</span>
+     <span id="upper">UX DESIGN, 2020</span>
 
          <div class="mobile-preview">
     <img src="img/dreamsapp_.png" alt="">
@@ -463,6 +463,42 @@ toggle.addEventListener("click", () => {
 
   localStorage.setItem("mode", isLight ? "light" : "dark");
 });
+</script>
+<script>
+const logo = document.querySelector(".logo img");
+const toggle = document.querySelector(".mode-toggle");
+
+function showToggle() {
+  toggle.classList.add("visible");
+}
+
+// 1. wait for image load
+if (logo.complete) {
+  init();
+} else {
+  logo.addEventListener("load", init);
+}
+
+function init() {
+
+  let triggered = false;
+
+  const done = () => {
+    if (triggered) return;
+    triggered = true;
+    showToggle();
+  };
+
+  // 2. listen for shrink animation
+  logo.addEventListener("transitionend", (e) => {
+    if (e.propertyName === "width") {
+      done();
+    }
+  });
+
+  // 3. fallback (VERY important)
+  setTimeout(done, 1200);
+}
 </script>
 
 
