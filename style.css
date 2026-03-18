@@ -300,6 +300,11 @@ padding-top: 20px;
   font-feature-settings: "kern", "liga", "clig", "calt";
 }
 
+.artikel_bild {
+    padding-right:150px; padding-left:150px;
+  }
+
+
 
 .mode-toggle {
   padding:3px;
@@ -1023,6 +1028,10 @@ transform: translateX(-1px);
     width: 90px !important; /* kill huge intro logo on mobile */
   }
 
+  .artikel_bild {
+    padding-right:20px; padding-left:20px;
+  }
+
   /* ------------------ */
   /* FILTER */
   /* ------------------ */
@@ -1090,7 +1099,7 @@ color: #e6e6e6;
 max-width:600px;
 opacity:0.8;
 color: #e6e6e6;
-padding-top: 40px;
+padding-top: 30px;
 padding-bottom: 20px;
 }
 
@@ -1310,6 +1319,13 @@ line-height: 1.4;
   color: #e6e6e6;
 
 }
+
+blockquote {
+  font-size: 20px;
+  color: #e6e6e6;
+  padding-top:20px;
+    padding-bottom:20px;
+  max-width: 80%; }
 
 body.light-mode #upper {
   display: none;
