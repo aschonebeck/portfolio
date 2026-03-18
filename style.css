@@ -313,8 +313,21 @@ padding-top: 20px;
   background: transparent;
   border:1px solid #e6e6e6;
   color: #e6e6e6;
+  opacity: 0;
+    pointer-events: none;
+  transition: opacity 0.4s ease;
+
 
 }
+
+
+
+.mode-toggle.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
 
 .filter .active {  color: #FFF; opacity: 0.95; font-weight: bold;}
 
@@ -361,7 +374,7 @@ color: #111;
 }
 
 .logo img{
-width: 90vw;
+width: 90px;
 max-width: none;
 opacity: 0.9;
 filter: invert(100);
@@ -651,15 +664,6 @@ padding-bottom: 60px;
 max-width: 100%;
 }
 
-
-.loading .mode-toggle {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.mode-toggle {
-  transition: opacity 0.8s ease;
-}
 
 
 #full {
@@ -1316,7 +1320,7 @@ line-height: 1.4;
   font-size: 14px;
   background: transparent;
   border:1px solid #e6e6e6;
-  color: #e6e6e6;
+  color: #e6e6e6;  display: none;
 
 }
 
@@ -1332,9 +1336,7 @@ body.light-mode #upper {
 }
 
 
-.mode-toggle {
-  display: none;
-}
+
 }
 
 

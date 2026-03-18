@@ -174,13 +174,20 @@
 
 </footer>
 
+
+
+  <script>
+window.__skipLoader = true;
+</script>
+
 <script>
 // ----------------------
 // GLOBAL LOADING STATE (runs instantly)
 // ----------------------
+
 document.documentElement.classList.remove("loading");
-document.body.classList.remove("loading"); // safety fallback
-window.__skipLoader = sessionStorage.getItem("loaderShown") === "true";
+document.body.classList.remove("loading");
+
 </script>
 
 
