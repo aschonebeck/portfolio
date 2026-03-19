@@ -334,6 +334,10 @@ padding-top: 20px;
 }
 
 
+.expand-arrow {
+  display: none;
+}
+
 
 .project-row div:nth-child(3) {
   font-variant-numeric: tabular-nums;
@@ -394,7 +398,7 @@ width:90px;
   float: ;
   font-size: 14PX;
   z-index: 99;
- letter-spacing: 1px;
+ letter-spacing: 0.5px;
  text-align: right;
  padding: 10px;
  padding-right: 0PX;
@@ -1355,6 +1359,18 @@ body.light-mode #upper {
 display: block;
 grid-template-columns: 1fr;
 align-items: left;
+}
+
+.expand-arrow {
+  display: inline-block;
+  float: right;
+  transition: transform 0.3s ease;
+  opacity: 0.6;
+  margin-top: 1px;
+}
+
+.project-row.active .expand-arrow {
+  transform: rotate(180deg);
 }
 
 
