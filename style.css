@@ -117,9 +117,7 @@ body.light-mode .project-header {
 ------------------------- */
 
 body.light-mode .project-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  align-items: ;
+ 
   padding: 12px 0;
   border-bottom: 1px solid rgba(0,0,0,0.1);
   transition: all 0.3s ease;
@@ -164,11 +162,7 @@ color: #111;
 
 
 body.light-mode .project-static {
-  display: flex !important;
-  justify-content: space-between;
-  align-items: baseline;
-  border:0px;
-  text-align: left;
+ 
 }
 
 body.light-mode .project-description{
@@ -403,6 +397,7 @@ width:90px;
  letter-spacing: 1px;
  text-align: right;
  padding: 10px;
+ padding-top: 0;
  width: 100%;
  line-height: 1.3;
  text-transform: uppercase;
@@ -698,6 +693,12 @@ max-width:600px;
   font-family: lay-medium;
   letter-spacing: 0;
   color:#e6e6e6;
+}
+
+
+.project-description a {
+  color: #e6e6e6;
+  text-transform: uppercase;
 }
 
 .project-meta{
