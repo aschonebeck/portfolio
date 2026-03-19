@@ -464,6 +464,12 @@ font-weight: 600;
 }
 
 
+.info span {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+
 
 .about-intro p {
   font-size: 1.6rem;
@@ -1234,6 +1240,11 @@ margin-top: 5px;
   .info {
     max-width: 100%;
     padding-top: 0px;
+    font-size: 18px;
+  }
+
+  .info span {
+    font-size: 18px;
   }
 
   .cv-section {
@@ -1246,11 +1257,11 @@ margin-top: 0px;
 
 .cv-row {
 display: grid;
-gap: 10px;
+gap: 5px;
 justify-content: space-between;
 grid-template-columns: 100px 1fr;
 margin-bottom:10px;
-font-size: 16px;
+font-size: 14px;
 letter-spacing: -0.2px;
 line-height: 1.4;
 
