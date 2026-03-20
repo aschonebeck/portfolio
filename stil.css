@@ -470,6 +470,7 @@
  margin-bottom: 20px;
  font-family: var(--paragraph);
  opacity: 0.9;
+ max-width: 70%;
 
 }
 
@@ -495,7 +496,10 @@
   width: 100%;
   display: block;
   padding-bottom: 80px;
+  padding-top: 80px;
 }
+
+
 
 
 .project-page .right .lastimg {
@@ -529,6 +533,8 @@ opacity: 0.9;
 .intro-img {
   width: 100%;
   display: block;
+  padding-top: 0px !important;
+  margin-top: 0px !important;
 }
 
 
