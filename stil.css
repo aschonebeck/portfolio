@@ -146,7 +146,7 @@
       background: none; border: none;
       cursor: pointer;
       font-family: var(--font);
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
@@ -203,7 +203,7 @@
       gap: 0 12px;
       padding: 8px 20px;
       border-bottom: 1px solid var(--border);
-      font-size: 10px;
+      font-size: 10.5px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
@@ -244,7 +244,7 @@
     .project-item[data-hidden="true"] { display: none; }
 
     .project-id {
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.06em;
       color: var(--muted);
       transition: color 0.12s;
@@ -263,7 +263,7 @@
     }
 
     .project-type {
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       text-align: right;
@@ -276,7 +276,7 @@
 
 
     .project-year {
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.06em;
       text-align: right;
       color: var(--muted);
@@ -642,7 +642,8 @@ font-family: var(--font);
     position: absolute;
     top: 5px;
     right: 20px;
-    font-size: 30px;
+    font-weight: 400;
+    font-size: 35px;
     color: var(--muted);
   }
 
