@@ -401,6 +401,10 @@
 
 }
 
+.about .right:  {
+  background: var(--bg);
+};
+
 .cv-block {
   display: grid;
   grid-template-columns: 120px 1fr;
@@ -562,6 +566,13 @@ font-family: var(--font);
 
 
 
+  .about p {
+    font-size: 14px;
+  }
+
+
+
+
      .project-item {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -654,12 +665,24 @@ font-family: var(--font);
   padding-top: 20px;
 }
 
+.project-page .right{
+      background: var(--bg);
+}
+
 #meta {
   margin-top: 10px; }
 
 .project-page .wordmark {
   display: none;
 }
+
+
+.project-page p {
+  font-size: 14px;
+  color: var(--text);
+}
+
+
 
 
 
