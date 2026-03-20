@@ -465,11 +465,12 @@
 
 .project-page .right P {
   padding: 20PX;
-  line-height: 1.2;
+  line-height: 1.3;
   color: var(--text);
  margin-bottom: 20px;
  font-family: var(--paragraph);
  opacity: 0.9;
+
  max-width: 70%;
 
 }
@@ -496,7 +497,7 @@
   width: 100%;
   display: block;
   padding-bottom: 80px;
-  padding-top: 80px;
+  padding-top: 60px;
 }
 
 
