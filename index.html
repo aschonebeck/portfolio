@@ -220,7 +220,6 @@ const activeName = document.getElementById('active-name');
 
 let currentSrc = '';
 
-
 // =====================
 // DESKTOP: HOVER PREVIEW
 // =====================
@@ -236,15 +235,19 @@ if (window.innerWidth > 768) {
       activeId.textContent = id;
       activeName.textContent = name;
 
-      if (src && src !== currentSrc) {
-        currentSrc = src;
+      if (src) {
+        rightImg.classList.remove('visible');
         rightImg.src = src;
-        rightImg.classList.add('visible');
+        currentSrc = src;
 
-        rightCaption.textContent = name;
-        rightCaption.classList.add('visible');
-
-        placeholder.classList.add('hidden');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            rightImg.classList.add('visible');
+            rightCaption.textContent = name;
+            rightCaption.classList.add('visible');
+            placeholder.classList.add('hidden');
+          });
+        });
       }
     });
 

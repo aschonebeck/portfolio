@@ -331,12 +331,13 @@
   left: 0;
 
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0s;
 
   will-change: opacity;
     }
 
-    .right-img.visible { opacity: 1; }
+    .right-img.visible { opacity: 1;
+   transition: opacity 0.3s ease; }
 
     .right-placeholder {
       position: absolute;
