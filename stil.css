@@ -303,6 +303,7 @@
       transition: border-color 0.3s;
       font-family: 'Space Mono', serif;
       display: flex;
+      background: var(--bg);
       justify-content: space-between;
       align-items: flex-end;
     }
@@ -323,6 +324,7 @@
       overflow: hidden;
       position: relative;
       background: var(--border);
+
       transition: background 0.3s;
     }
 
@@ -420,6 +422,7 @@
 .cv-row {
   margin-top: 10px;
     font-family: var(--paragraph);
+
 }
 
 .cv-year {
@@ -430,13 +433,16 @@
 .cv-panel {
   padding: 120px 20px;
   overflow-y: auto;
-
     background: var(--bg);
 }
 
 .cv-panel .cv {
-  max-width: 420px;
+  max-width: 100%;
   margin: 0 auto;
+}
+
+.cv {
+
 }
 
 /* LEFT becomes sticky */
@@ -729,5 +735,31 @@ opacity: 0.9;
 
 
 
+.intro-line {
+  width: 67%;
+margin-bottom: 20px;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+font-family: var(--text);
+opacity: 0.8;
+
+}
+
+
+
+
+  .kontakt {
+      padding-top: 5px;
+        font-family: var(--font);
+      
+    }
+
+    .kontakt a {
+      display: block;
+      margin-top: 5px;
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--font);
+    }
 
 }
