@@ -56,6 +56,11 @@
       flex-shrink: 0;
     }
 
+    #abopic {
+  display: block;
+}
+
+
     .nav-links { display: flex; gap: 24px; }
 
     .nav-links a, .nav-brand {
@@ -320,24 +325,23 @@
       background: var(--border);
       transition: background 0.3s;
     }
-
-    .right-img {
-       width: 100%;
+    
+.right-img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
-
   position: absolute;
   top: 0;
   left: 0;
-
   opacity: 0;
-  transition: opacity 0s;
-
+  transition: opacity 0.3s ease;
   will-change: opacity;
-    }
+  pointer-events: none;
+}
 
-    .right-img.visible { opacity: 1;
-   transition: opacity 0.3s ease; }
+.right-img.visible {
+  opacity: 1;
+}
 
     .right-placeholder {
       position: absolute;

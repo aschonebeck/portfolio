@@ -225,6 +225,8 @@ let currentSrc = '';
 // =====================
 if (window.innerWidth > 768) {
 
+  let rafId = null;
+
   document.querySelectorAll('.project-item').forEach(item => {
 
     item.addEventListener('mouseenter', () => {
@@ -236,12 +238,15 @@ if (window.innerWidth > 768) {
       activeName.textContent = name;
 
       if (src) {
-        rightImg.classList.remove('visible');
+        // avbryt eventuell pågående rAF
+        if (rafId) cancelAnimationFrame(rafId);
+
         rightImg.src = src;
         currentSrc = src;
 
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
+        rafId = requestAnimationFrame(() => {
+          rafId = requestAnimationFrame(() => {
+            rafId = null;
             rightImg.classList.add('visible');
             rightCaption.textContent = name;
             rightCaption.classList.add('visible');
@@ -252,6 +257,12 @@ if (window.innerWidth > 768) {
     });
 
     item.addEventListener('mouseleave', () => {
+      // avbryt rAF så visible aldrig läggs till efter leave
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+
       activeId.textContent = '—';
       activeName.textContent = 'Hover a project';
 
@@ -260,13 +271,12 @@ if (window.innerWidth > 768) {
       placeholder.classList.remove('hidden');
 
       currentSrc = '';
+      rightImg.src = '';
     });
 
   });
 
 }
-
-
 // =====================
 // FILTER
 // =====================
