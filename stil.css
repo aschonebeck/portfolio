@@ -682,6 +682,10 @@ font-family: var(--font);
   color: var(--text);
 }
 
+#abopic {
+  display: none;
+}
+
 
 
 
