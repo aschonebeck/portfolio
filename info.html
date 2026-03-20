@@ -1,128 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A. Schönebeck — Portfolio</title>
-<link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="img/as.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Info — A. Schönebeck</title>
+
+  <!-- External CSS -->
+  <title>A.Schönebeck — INFO</title>
+    <link href="stil.css" rel="stylesheet" type="text/css" />
+    <meta property="og:url" content="www.amandaschonebeck.com" />
+    <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
+    <meta property="og:description" content="UX Designer based in Stockholm, exploring how people connect with digital and physical artifacts in everyday life. I craft thoughtful user experiences through interaction design, facilitation, technology, workshops, and user research. © 2026 Amanda Schönebeck" />
+  <meta property="og:image" content="https://amandaschonebeck.com/img/hello.png" />
+  <meta property="og:type" content="website" />
+<link rel="canonical" href="https://www.amandaschonebeck.com/" />
+
+      <link rel="shortcut icon" href="favicon.ico"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
+<body>
 
-<body class="about_body">
+<div class="layout">
 
-<header class="site-header">
+  <!-- LEFT PANEL -->
+  <div class="left">
 
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="info.html" class="active">Info</a>
+        <a href="index.html">Work</a>
+      </div>
+    <span class="nav-brand"><a href="index.html"> A.Schönebeck</a></span>
+      <button id="theme-toggle">Dark / Light</button>
+    </nav>
 
-  <div class="logo"><a href="index.html"> <img src="img/as2.png" ></a></div>
+    <!-- EDITORIAL CONTENT -->
+    <div class="info-content editorial">
 
-  <nav class="main-nav">
-    <a  href="index.html">WORK,</a>
-    <a  href="info.html"><U>INFO</U></a>
-  </nav>
+   
 
-<button class="mode-toggle">LIGHT</button>
-</header>
+      <!-- MAIN ABOUT -->
+      <section class="about">
+        <p>
+          °1994, Stockholm (SWE)<br>
+         Amanda Schönebeck<BR><BR>
+UX designer based in Stockholm, working across interaction design, digital products, and writing. Over the past several years I have worked across institutions, studios, and independent practice — with a focus on how digital and physical experiences shape the way people move through everyday life.<br><br>
+My work sits at the intersection of structure and language: how things are organised, how they communicate, and what gets lost in the gap between the two. This means thinking about flow, context, and the small decisions that determine whether something feels considered or not.<br><br>
+Writing runs alongside my design work — not as documentation, but as a way of working through problems, testing ideas, and articulating what good design is actually trying to do.
+        </p>
 
-
-<br>
-<p class="info" style="">Amanda Sch<span style="font-family: helvetica; font-size: ;">ö</span>nebeck<br>I'm a UX designer and web creator. My work moves between interaction design, digital products, and writing.<br><br><span id="lowercase"> Over the last several years I've worked across institutions, studios, and my own practice — exploring how digital and physical experiences shape the way people move through everyday life. I write to make sense of what I design, and design to test what I write about.</span> <br><br></p>
-
-<div class="about-grid">
-
-
-
-<section class="cv-section">
-
-<h3>EXPERIENCE</h3>
-
-<div class="cv-row">
-<span class="cv-year">2024-25</span>
-<span>UX Designer, BBH</span>
-</div>
-<div class="cv-row">
-<span class="cv-year">2021-22</span>
-<span>UX Lead, KTH Royal Institute of Technology</span>
-</div>
-
-<div class="cv-row">
-<span class="cv-year">2020-23</span>
-<span>Founder & Designer, Decent People</span>
-</div>
-
-
-
-<div class="cv-row">
-<span class="cv-year">2020</span>
-<span>Guest Teacher, Konstfack University of Arts, Crafts and Design</span>
-</div>
-
-<h3>EDUCATION</h3>
-
-<div class="cv-row">
-<span class="cv-year">2019-20</span>
-<span>Design Lead, Hyper Island</span>
-</div>
-
-<div class="cv-row">
-<span class="cv-year">2015-18</span>
-<span>Computer & Systems Sciences, Stockholm University</span>
-</div>
-
-
-</section>
+        <div class="kontakt">
+        <a target="blank" href="www.linkedin.com/in/amandaschonebeck">LinkedIn</a>
+     <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
+     </div>
  
 
+      </section>
+
+      <!-- CV (more editorial / broken grid feel) -->
+      <section class="cv">
+  <div class="cv-row">
+      <span class="cv-year">2024 — 2025</span>
+      <div class="cv-content">
+        UX Designer,
+        <span>BBH</span>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <span class="cv-year">2021 — 2022</span>
+      <div class="cv-content">
+        UX Lead,
+        <span>KTH</span>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <span class="cv-year">2020 — 2023</span>
+      <div class="cv-content">
+        Founder & Designer,
+        <span>Decent People</span>
+      </div>
+    </div>
+
+       <div class="cv-row ">
+      <span class="cv-year">2020</span>
+      <div class="cv-content">
+        Guest Teacher,
+        <span>Konstfack</span>
+      </div>
+    </div>
+
+    <div class="cv-row" style="">
+      <span class="cv-year">2019 — 2020</span>
+      <div class="cv-content">
+        Design Lead,
+        <span>Hyper Island</span>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <span class="cv-year">2015 — 2018</span>
+      <div class="cv-content">
+        Computer & Systems Sciences,
+        <span>Stockholm University</span>
+      </div>
+    </div>
 
 
 
+         </div>
 
+    <div class="wordmark">
+      <span></span>
+      <span class="wordmark-sub">UX Designer<br>Stockholm, SWE</span>
+    </div>
+
+  </div>
+
+
+  <!-- RIGHT PANEL -->
+  <div class="right">
+
+    <!-- Replace later with image / texture / motion -->
+    <div class="right-placeholder subtle">
+      <img src="img/soft.png">
+
+    </div>
+
+  </div>
 
 </div>
-
-
-<footer class="site-footer">
-
-  <div class="footer-left">
-    © 2026 Amanda Schönebeck
-  </div>
-
-  <div class="footer-right">
-    <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
-    <a target="blank" href="https://www.linkedin.com/in/amandaschonebeck/" target="_blank">LinkedIn</a>
-  </div>
-
-</footer>
-
-<!--
-<img id="cornerimage" src="img/as2.png">-->
 
 
 <script>
+// =====================
+// THEME TOGGLE 
+// =====================
 
-const toggle = document.querySelector(".mode-toggle");
+const toggle = document.getElementById('theme-toggle');
 
-// load saved mode
-const savedMode = localStorage.getItem("mode");
-if (savedMode === "light") {
-  document.body.classList.add("light-mode");
-  toggle.textContent = "DARK";
+// set initial theme from localStorage
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
 }
 
-toggle.addEventListener("click", () => {
+// update label
+function updateThemeLabel() {
+  toggle.textContent = document.body.classList.contains('dark')
+    ? 'Mode: Dark'
+    : 'Mode: Light';
+}
 
-  document.body.classList.toggle("light-mode");
+// click handler
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
 
-  const isLight = document.body.classList.contains("light-mode");
+  // save preference
+  localStorage.setItem(
+    'theme',
+    document.body.classList.contains('dark') ? 'dark' : 'light'
+  );
 
-  toggle.textContent = isLight ? "DARK" : "LIGHT";
-
-  localStorage.setItem("mode", isLight ? "light" : "dark");
-
+  updateThemeLabel();
 });
 
+// run on load
+updateThemeLabel();
+
 </script>
+
 </body>
 </html>
+
+

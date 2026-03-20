@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshops — A. Schönebeck</title>
+
+  <!-- External CSS -->
+  <title>A.Schönebeck — PORTFOLIO</title>
+    <link href="stil.css" rel="stylesheet" type="text/css" />
+    <meta property="og:url" content="www.amandaschonebeck.com" />
+    <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
+    <meta property="og:description" content="UX Designer based in Stockholm, exploring how people connect with digital and physical artifacts in everyday life. I craft thoughtful user experiences through interaction design, facilitation, technology, workshops, and user research. © 2026 Amanda Schönebeck" />
+  <meta property="og:image" content="https://amandaschonebeck.com/img/hello.png" />
+  <meta property="og:type" content="website" />
+<link rel="canonical" href="https://www.amandaschonebeck.com/" />
+
+      <link rel="shortcut icon" href="favicon.ico"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="layout project-page">
+
+
+  <!-- LEFT PANEL -->
+  <div class="left">
+
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="info.html" class="">Info</a>
+        <a href="index.html">Work</a>
+      </div>
+    <span class="nav-brand"><a href="index.html"> A.Schönebeck</a></span>
+      <button id="theme-toggle">Dark / Light</button>
+    </nav>
+
+    <!-- EDITORIAL CONTENT -->
+    <div class="info-content editorial">
+  <h1>Workshops with Intention</h1>
+      <!-- INTRO BLOCK (more expressive) -->
+        <p id="meta">
+    PUBLISHED: 2020 <br>
+    ORG: Konstfack, Decent People<br>
+    ROLE: Writer
+
+  </p>
+     
+      <!-- PROJECT -->
+
+
+
+         </div>
+
+    <div class="wordmark">
+      <span></span>
+      <span class="wordmark-sub">UX Designer<br>Stockholm, SWE</span>
+    </div>
+
+  </div>
+
+
+  <!-- RIGHT PANEL -->
+  <div class="right">
+<img class="intro-img" src="img/2020.jpg">
+
+<p class="intro-line">Structure, Facilitation, Flow</p>
+
+
+
+<h2>Workshops A-Z</h2>
+
+<p>
+
+In the fall of 2020, I co-held a series of lectures and workshops for industrial design students at Konstfack, together with my co-founder at Decent People. We explored topics like design methods, team development, communication, and ways of working together.
+<br><br>
+Konstfack later asked us to go deeper into workshop design with the classes of the Industrial Design program - how to plan, shape, and lead sessions with intention, and how to find the right balance between structure and spontaneity.</p>
+
+
+
+        <img style="" src="img/konstfa.jpeg" />
+
+
+
+     
+<p>
+
+To explore the essence of workshops with the students, we started with the basics: What is a workshop actually for? What does a facilitator really do? How do you design a framework with intention rather than habit?<BR>
+<BR>
+From there, we moved into practice. We facilitated a workshop for them, breaking down the format:
+ to give them direct, hands-on experience,
+ to make the thinking behind workshop design visible, and
+ to help them reflect on their own strengths and facilitation style.
+
+
+It was a bit meta - running a workshop about workshops - but that was the beauty of it. Our aim was to make the process feel tangible and to lower the threshold for designing frameworks of their own. The session opened up thoughtful discussion and reflections. By the end of it, students had a clearer understanding of how to design and facilitate workshops themselves - not as rigid formats, but as intentional frameworks they could adapt to their own projects, teams, and personalities.
+
+</p>
+
+
+
+  <img class="" src="img/wsframe.png">
+   
+
+
+<h2>Designing a framework </h2>
+<p>
+
+To explore the essence of workshops with the students, we started with the basics: What is a workshop actually for? What does a facilitator really do? How do you design a framework with intention rather than habit?<BR>
+<BR>
+From there, we moved into practice. We facilitated a workshop for them, breaking down the format:
+ to give them direct, hands-on experience,
+ to make the thinking behind workshop design visible, and
+ to help them reflect on their own strengths and facilitation style.
+
+
+It was a bit meta - running a workshop about workshops - but that was the beauty of it. Our aim was to make the process feel tangible and to lower the threshold for designing frameworks of their own. The session opened up thoughtful discussion and reflections. By the end of it, students had a clearer understanding of how to design and facilitate workshops themselves - not as rigid formats, but as intentional frameworks they could adapt to their own projects, teams, and personalities.
+
+</p>
+
+
+
+
+
+<h2>Navigating Facilitation </h2>
+<p>
+The definition of facilitation is to make (an action or process) easy or easier at its core, it means making something easier creating conditions for flow. In this contect, it meant staying responsive to the energy in the room - knowing when to slow down, when to go deeper, and when to step back and let the group carry the work forward.
+</p>
+
+
+  <img class="" src="img/glad.jpg">
+
+<h2>Why workshop? </h2>
+<p>
+The definition of facilitation is to make (an action or process) easy or easier at its core, it means making something easier creating conditions for flow. In this contect, it meant staying responsive to the energy in the room - knowing when to slow down, when to go deeper, and when to step back and let the group carry the work forward.
+</p>
+
+
+  <img class="lastimg" src="img/kf.jpg">
+
+
+
+
+  </div>
+  </div>
+
+</div>
+
+
+<script>
+// =====================
+// THEME TOGGLE 
+// =====================
+
+const toggle = document.getElementById('theme-toggle');
+
+// set initial theme from localStorage
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
+}
+
+// update label
+function updateThemeLabel() {
+  toggle.textContent = document.body.classList.contains('dark')
+    ? 'Mode: Dark'
+    : 'Mode: Light';
+}
+
+// click handler
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+
+  // save preference
+  localStorage.setItem(
+    'theme',
+    document.body.classList.contains('dark') ? 'dark' : 'light'
+  );
+
+  updateThemeLabel();
+});
+
+// run on load
+updateThemeLabel();
+
+</script>
+
+</body>
+</html>
+
+
+
+
