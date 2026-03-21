@@ -516,7 +516,7 @@ font-size: 14px;
   width: 100%;
   display: block;
   padding-bottom: 80px;
-  padding-top: 60px;
+  padding-top: 40px;
 }
 
 
@@ -563,8 +563,8 @@ font-size: 14px;
 .project-nav a:hover { color: var(--text); }
 
 .intro-line {
-  width: 50%;
-margin-bottom: 20px;
+  width: 55%;
+margin-bottom: 30px;
 letter-spacing: 0px;
 text-transform: ;
 color: var(--muted);
