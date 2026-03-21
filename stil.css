@@ -177,6 +177,8 @@
       margin-top: 5px;
       font-size: 11px;
       color: var(--muted);
+            text-transform: uppercase;
+
       font-family: var(--font);
     }
 
@@ -316,6 +318,13 @@
       background: var(--bg);
       justify-content: space-between;
       align-items: flex-end;
+
+       font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+
+
     }
 
     .wordmark-sub {
@@ -391,7 +400,7 @@
 
     .info-content {
   padding: 20px;
-  padding-top: 40px;
+  padding-top: 60px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -425,6 +434,7 @@
   display: grid;
   grid-template-columns: 120px 1fr;
   gap: 12px;
+  text-align: left;
   margin-bottom: 12px;
   font-size: 13.5px;
 }
@@ -442,15 +452,17 @@
 }
 
 .cv-panel {
-  padding: 120px 20px;
+  padding: 20px 20px;
   overflow-y: auto;
    font-size: 13.5px;
     background: var(--bg);
 }
 
-.cv-panel .cv {
+.cv {
   max-width: 100%;
   margin: 0 auto;
+  margin-top: 60px;
+  padding-bottom: 20px;
    font-size: 13.5px;
 }
 
@@ -563,12 +575,7 @@ font-size: 14px;
 .project-nav a:hover { color: var(--text); }
 
 .project-id-label {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-top: 20px;
-  display: block;
+ 
 }
 
 .intro-line {
