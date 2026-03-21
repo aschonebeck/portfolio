@@ -208,7 +208,9 @@ updateThemeLabel();
 
 <script>
 
-
+document.querySelectorAll('.project-list li').forEach((li, i) => {
+  li.style.animationDelay = `${0.05 + i * 0.07}s`;
+});
 // =====================
 // SHARED ELEMENTS
 // =====================
@@ -251,6 +253,7 @@ if (window.innerWidth > 768) {
             rightCaption.textContent = name;
             rightCaption.classList.add('visible');
             placeholder.classList.add('hidden');
+            
           });
         });
       }
