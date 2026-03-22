@@ -605,7 +605,7 @@ font-size: 16px !important;
   }
 
   .left, .right {
-    height: auto;
+  min-height: 100vh;
     border-right: none;
   }
 
@@ -761,7 +761,7 @@ strong {
   margin-top: 10px; }
 
 .project-page .wordmark {
-  display: none;
+  display:;
 }
 
 
