@@ -302,6 +302,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 
 
  
+ 
 // =====================
 // MOBILE: TAP PREVIEW SYSTEM
 // =====================
@@ -310,39 +311,48 @@ if (window.innerWidth <= 768) {
   const preview = document.getElementById('mobile-preview');
   let activeLink = null;
  
+  function closePreview() {
+    preview.classList.remove('active');
+    if (activeLink) {
+      activeLink.classList.remove('focused');
+      activeLink = null;
+    }
+  }
+ 
   document.querySelectorAll('.project-item').forEach(link => {
  
     link.addEventListener('click', (e) => {
-      e.preventDefault(); // always prevent navigation — only image navigates
+      e.preventDefault(); // only the image navigates
  
-      const li = link.closest('li');
- 
-      // CASE 1: same row tapped again → close/hide preview
+      // CASE 1: same row tapped again → close preview + clear highlight
       if (activeLink === link) {
-        preview.classList.remove('active');
-        activeLink = null;
+        closePreview();
         return;
       }
  
-      // CASE 2: new row → show preview beneath it
+      // CASE 2: switching to a new row → clear old highlight first
+      if (activeLink) activeLink.classList.remove('focused');
+ 
       const src = link.dataset.img;
       const href = link.href;
  
       preview.innerHTML = `<a href="${href}"><img src="${src}" /></a>`;
  
+      const li = link.closest('li');
       li.after(preview);
+ 
       preview.classList.add('active');
+      link.classList.add('focused'); // highlight this row while preview is open
  
       activeLink = link;
     });
  
   });
  
-  // Tapping the × / outside the image (on the preview div itself) closes it
+  // Tap the × area (outside image) → close and clear highlight
   preview.addEventListener('click', (e) => {
     if (e.target.tagName !== 'IMG') {
-      preview.classList.remove('active');
-      activeLink = null;
+      closePreview();
     }
   });
  
