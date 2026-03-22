@@ -301,57 +301,51 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 
+ 
 // =====================
 // MOBILE: TAP PREVIEW SYSTEM
 // =====================
 if (window.innerWidth <= 768) {
-
+ 
   const preview = document.getElementById('mobile-preview');
   let activeLink = null;
-
+ 
   document.querySelectorAll('.project-item').forEach(link => {
-
+ 
     link.addEventListener('click', (e) => {
-
-      // CASE 1: same item tapped again → GO TO PAGE
-      if (activeLink === link) {
-        return; // allow default navigation
-      }
-
-      // CASE 2: new item → show preview
-      e.preventDefault();
-
-      const src = link.dataset.img;
-
-      preview.innerHTML = `<img src="${src}" />`;
-
-      // move preview under correct row
+      e.preventDefault(); // always prevent navigation — only image navigates
+ 
       const li = link.closest('li');
+ 
+      // CASE 1: same row tapped again → close/hide preview
+      if (activeLink === link) {
+        preview.classList.remove('active');
+        activeLink = null;
+        return;
+      }
+ 
+      // CASE 2: new row → show preview beneath it
+      const src = link.dataset.img;
+      const href = link.href;
+ 
+      preview.innerHTML = `<a href="${href}"><img src="${src}" /></a>`;
+ 
       li.after(preview);
-
       preview.classList.add('active');
-
+ 
       activeLink = link;
-
     });
-
+ 
   });
-
-  // CLICK ON PREVIEW
+ 
+  // Tapping the × / outside the image (on the preview div itself) closes it
   preview.addEventListener('click', (e) => {
-
-    // tap image → navigate
-    if (e.target.tagName === 'IMG' && activeLink) {
-      window.location.href = activeLink.href;
-      return;
+    if (e.target.tagName !== 'IMG') {
+      preview.classList.remove('active');
+      activeLink = null;
     }
-
-    // tap outside image → close
-    preview.classList.remove('active');
-    activeLink = null;
-
   });
-
+ 
 }
 
 </script>

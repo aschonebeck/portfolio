@@ -605,9 +605,10 @@ font-size: 16px !important;
   }
 
   .left, .right {
-  min-height: 100vh;
+    height:100vh;
     border-right: none;
   }
+
 
     .right {
     position: relative;
@@ -633,6 +634,14 @@ font-size: 16px !important;
     z-index: 100;
     background: var(--bg);
   }
+
+    .project-page .right: ; {
+    height: auto;
+    z-index: 100;
+    background: var(--bg);
+  }
+
+  .project-page .wordmark { display: none; }
 
 
 
