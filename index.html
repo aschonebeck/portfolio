@@ -1,363 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <title>A.Schönebeck — PORTFOLIO</title>
-    <link href="stil.css" rel="stylesheet" type="text/css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A.S—PORTFOLIO</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
     <meta property="og:url" content="www.amandaschonebeck.com" />
     <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
     <meta property="og:description" content="UX Designer based in Stockholm, exploring how people connect with digital and physical artifacts in everyday life. I craft thoughtful user experiences through interaction design, facilitation, technology, workshops, and user research. © 2026 Amanda Schönebeck" />
-  <meta property="og:image" content="https://amandaschonebeck.com/img/" />
+  <meta property="og:image" content="https://amandaschonebeck.com/img/hello.png" />
   <meta property="og:type" content="website" />
 <link rel="canonical" href="https://www.amandaschonebeck.com/" />
-      <link rel="shortcut icon" href="favicon2.ico"/>
+
+      <link rel="shortcut icon" href="soft.ico"/>
+        <link rel="preload" as="image" href="img/fizzled.svg" /> 
+         <link rel="preload" as="image" href="img/lezsongo.gif" />
+  </head>
+  <body class="index">
+    <!-- Menyn  -->
+    <header>
+     <nav>
+  <a href="index" style="color: rgb(0, 0, 0, 0.8);   "  class="nav-link">A.SCHÖNEBECK™</a>
+  <a href="index" style="color: rgb(0, 0, 0, 0.8); " id="mobile"  class="nav-link">WORK [8]</a>
+  <a href="about" class="nav-link">ABOUT</a>
+  <a onclick="openModal()" href="#" class="nav-link">CONTACT</a>
+</nav>
 
 
-<!--fonts-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-</head>
+
+    </header>
+
+    <div class="customizer-wrapper">
+  <button class="customizer-toggle" aria-label="Toggle customizer">☼ / Aa+-</button>
+</div>
+
+<div class="top-controls">
+  <button class="top-controls-close" aria-label="Close customizer">×</button>
+
+  <button id="themeToggle" aria-label="Toggle dark mode">
+   <span id="themeLabel"><span id="light"> LIGHT </span>  / <span id="dark"> DARK</span></span>
+  </button>
+
+  <div class="text-size-controls">
+    <button onclick="decreaseTextSize()"><span id="smaller">A–</span></button>
+    <button onclick="resetTextSize()">A</button>
+    <button onclick="increaseTextSize()"><span id="bigger">A+</span></button>
+  </div>
 
 
-<body class="index-page">
 
-<div class="layout">
+</div>
 
-  <!-- LEFT -->
-  <div class="left">
 
-    <nav class="top-nav">
-      <div class="nav-links">
-        <a href="info.html">Info</a>
-        <a href="#" class="active">Work</a>
-      </div>
-      <span class="nav-brand"><a href="index.html"> A.Schönebeck</a></span>
-      <button id="theme-toggle">Dark / Light</button>
-    </nav>
 
-    <div class="active-label">
-      <span id="active-id">—</span>
-      <span id="active-name">Hover a project</span>
-    </div>
+    <!-- Loader -->
 
-    <div class="filter-row">
-      <span class="filter-dot"></span>
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="ux">UX</button>
-      <button class="filter-btn" data-filter="web">Web</button>
-      <button class="filter-btn" data-filter="writing">Writing</button>
-    </div>
+<!-- Loader -->
+<div class="loader-container">
+  <div class="loader-bar-wrapper">
+    <div class="loader-bar"></div>
+  </div>
+  <p class="loading-text">WWW.AMANDASCHONEBECK.COM</p>
+  <pre id="ascii-loader"></pre><span class="cursor" id="ascii-cursor"></span>
+</div>
 
-    <div class="table-header">
-      <span>ID</span>
-      <span>Project</span>
-      <span class="th-type">Type</span>
-      <span class="th-year">Year</span>
-    </div>
 
-    <ul class="project-list">
-     <li>
 
-      <a href="appelltrastudio.html" class="project-item"
-       data-category="web"
-       data-img="img/at.jpg"
-       data-id="AS-WB25-001"
-       data-name="Furniture Studio Website">
+ 
 
-        <span class="project-id">AS-WB25-001</span>
-        <span class="project-title">Furniture Studio Website</span>
-        <span class="project-type">Web Design</span>
-        <span class="project-year">2025</span>
-      </a>
 
-      </li>
+<div id="main-content">
+  <!--
+<section id="intros"><h1 class="introrubrik">AMANDA SCHÖNEBECK<BR><i>UX DESIGNER</i></h1>
+<button class="filter-btn" data-filter="all"> ALL </button> <button class="filter-btn" data-filter="projects">PROJECTS</button> <button class="filter-btn" data-filter="articles">ARTICLES</button> </section>-->
 
-      <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/fz.jpg" data-id="AS-ES25-002" data-name="FIZZLED OUT — Designing for Stillness">
-        <span class="project-id">AS-ES25-002</span>
-        <span class="project-title">FIZZLED OUT — Designing for Stillness</span>
-        <span class="project-type">Essay</span>
-        <span class="project-year">2025</span>
-        </a> 
-      </li>
 
-      <li> <a href="zsongo.html" class="project-item" data-category="web" data-img="img/z.jpg" data-id="AS-WB24-003" data-name="Zsongo Events Website">
-        <span class="project-id">AS-WB24-003</span>
-        <span class="project-title">Zsongo Events Website</span>
-        <span class="project-type">Web Design</span>
-        <span class="project-year">2024</span>
-        </a>
-      </li>
 
-      <li> <a href="energy.html" class="project-item" data-category="ux" data-img="img/obje.png" data-id="AS-UX22-004" data-name="Sustainable Energy Use">
-        <span class="project-id">AS-UX22-004</span>
-        <span class="project-title">Sustainable Energy Use</span>
-        <span class="project-type">UX Research</span>
-        <span class="project-year">2021–22</span>
-      </a> 
-      </li>
-      <li > 
+<!-- actual site content (already visible behind loader) -->
+ <div class="parent">
+  <div class="div1 glitch" data-category="articles">
+    <a href="stillness" aria-label="Designing for Stillness">
+      <img  style="opacity: 0.95;" src="img/fizzle.gif" alt="Fizzled out flowers" loading="lazy" />
+      <p>ESSAY/2025<br />FIZZLED OUT: Designing for Stillness</p>
+     
+    </a>
+  </div>
 
-        <a href="decentpeople.html" class="project-item" data-category="ux" data-img="img/dp.png" data-id="AS-UX23-005" data-name="Forming a Design Studio">
-        <span class="project-id">AS-UX23-005</span>
-        <span class="project-title">Forming a Design Studio</span>
-        <span class="project-type">UX Design</span>
-        <span class="project-year">2020–23</span></a>
-      </li>
 
-      <li>
-       <a href="dreams.html" class="project-item" data-category="ux" data-img="img/dreamsapp_.png" data-id="AS-UX20-006" data-name="Design for Organic Growth">
-        <span class="project-id">AS-UX20-006</span>
-        <span class="project-title">Design for Organic Growth</span>
-        <span class="project-type">Workshop</span>
-        <span class="project-year">2020</span></a>
-      </li>
+  <div class="div2 glitch " data-category="projects">
+    <a href="dreams" aria-label="Design Sprint @Dreams">
+      <img src="img/dreamsapp.png" alt="Dreams App" loading="lazy" />
+      <p>UX DESIGN/2020<br />Design for Organic Growth</p>
+      
+    </a>
+  </div>
 
-         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/2wi.jpg" data-id="AS-ES20-007" data-name="Workshops with Intention">
-        <span class="project-id">AS-ES20-007</span>
-        <span class="project-title">Workshops with Intention</span>
-        <span class="project-type">Essay</span>
-        <span class="project-year">2020</span></a>
-      </li>
+    <div class="div3 glitch " data-category="projects">
+    <a href="appell" aria-label="Website for Appell Trastudio">
+      <img src="img/img.png" alt="Appell Trästudio project" loading="lazy" />
+      <p>WEB PROJECT/2025<br />Cabinetmaker Studio Website</p>
+    </a>
+<!--
+  <div class="div3 glitch " data-category="projects">
+    <a href="zsongo" aria-label="Website for Zsongo.world">
+      <img src="img/lezsongo.gif" alt="Zsongo.world project" loading="lazy" />
+      <p>PROJECT/2025<br />Website for Zsongo.world</p>
+    </a>
 
-      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/h.jpg" data-id="AS-ES20-008" data-name="Humane Design in Times of Crises">
-        <span class="project-id">AS-ES20-008</span>
-        <span class="project-title">Humane Design in Times of Crises</span>
-        <span class="project-type">Essay</span>
-        <span class="project-year">2020</span></a>
-      </li>
+   -->
+  </div>
+  <div class="div4 glitch " data-category="articles">
+     <a href="humane" aria-label="Humane Design in Times of Crises">
+      <img style="opacity: 0.9;" src="img/humane.jpg" alt="Humane design article" loading="lazy" />
+      <p>ESSAY/2020<br /> Humane Design in Times of Crises</p>
+     
+    </a>
+  </div>
+
+  <div class="div5 glitch" data-category="projects">
+   <a href="decentpeople" aria-label="Project image link">
+         
+      <img src="img/believe.png" alt="Decent People.Studio" loading="lazy" />
+        <p>UX DESIGN/2020-2023<br />Building a Design Studio</p>
+    </a>
+
+  </div>
+
+  <div class="div6 glitch" data-category="projects">
+
+     <a href="zsongo" aria-label="zsongo">
+    <img src="img/lezsongo.gif" alt="zsongo image" loading="lazy" />
+      <p>WEB PROJECT/2024<br />Zsongo Events Website</p>
+  </a>
    
-    </ul>
+  </div>
 
-    <div id="mobile-preview"></div>
+  <div class="div7 glitch" data-category="projects">
+      <a href="energy" aria-label="Article image">
+      <img src="img/obje.png" alt="project image" loading="lazy" />
+        <p>UX DESIGN/2021-2022<br />Sustainable Energy Use</p>
+    </a>
+   
+  </div> 
 
-    <div class="wordmark">
-      <span>
-</span>
-      <span class="wordmark-sub"> UX Designer<br>Stockholm, SWE</span>
+
+  <div class="div8 glitch" data-category="articles">
+  <a href="workshop" aria-label="Workshop: Article image link">
+      <img style="opacity:0.9;" src="img/teal2.jpg" alt="Workshop Framework" loading="lazy" />
+        <p>ESSAY/2020<br /> Workshops with Intention</p>
+    </a>
+</div>
+
+
+
+  </div>
+
+
+
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <p>REACH OUT</p>
+  <div class="email-copy-wrapper">
+  <span id="emailText" class="selectable">amanda.schonebeck@gmail.com</span>
+  <button id="copyBtn">COPY </button>
+  <span id="copiedFeedback">COPIED</span>
+</div>
+      <a href="https://www.linkedin.com/in/amandaschonebeck/" target="_blank">LinkedIn ↗</a>
     </div>
 
   </div>
 
-  <!-- RIGHT -->
+  
 
-  <div class="right">
-      <div class="right-inner">
+   <footer class="footer">
 
-    <div class="right-placeholder" id="placeholder">— Select a project —</div>
-    <img class="right-img" id="right-img" src="" alt="" />
-    <div class="right-caption" id="right-caption"></div>
+
+  <div class="footer-left">
+
+    <p class="copy">© 2026 Amanda Schönebeck </p>
   </div>
+  <div class="footer-right">
 
-</div>
+    <a href="https://www.linkedin.com/in/amandaschonebeck/" target="_blank">LinkedIn↗</a>
+    <a href="https://se.pinterest.com/amandaschnebeck/" target="_blank">Pinterest↗</a>
+         <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
 
-
-<!-- Before closing </body> -->
-<div aria-hidden="true" style="display:none">
-  <img src="img/at.jpg">
-  <img src="img/fz.jpg">
-  <img src="img/z.jpg">
-  <img src="img/obje.png">
-  <img src="img/dp.png">
-  <img src="img/dreamsapp_.png">
-  <img src="img/2wi.jpg">
-  <img src="img/h.jpg">
-</div>
-
-<script>
-// =====================
-// THEME TOGGLE 
-// =====================
-
-const toggle = document.getElementById('theme-toggle');
-
-// set initial theme from localStorage
-if (localStorage.getItem('theme') === 'dark') {
-  document.body.classList.add('dark');
-}
-
-// update label
-function updateThemeLabel() {
-  toggle.textContent = document.body.classList.contains('dark')
-    ? 'Mode: Dark'
-    : 'Mode: Light';
-}
-
-// click handler
-toggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-
-  // save preference
-  localStorage.setItem(
-    'theme',
-    document.body.classList.contains('dark') ? 'dark' : 'light'
-  );
-
-  updateThemeLabel();
-});
-
-// run on load
-updateThemeLabel();
-
-</script>
+  </div>
+</footer>
 
 
-<script>
 
+<!--
+    <footer>
+    CODE & DESIGN © 2025 AMANDA SCHÖNEBECK
+   
+    </footer>
 
-// =====================
-// SHARED ELEMENTS
-// =====================
-const rightImg = document.getElementById('right-img');
-const rightCaption = document.getElementById('right-caption');
-const placeholder = document.getElementById('placeholder');
-const activeId = document.getElementById('active-id');
-const activeName = document.getElementById('active-name');
+-->
 
-let currentSrc = '';
+    <!-- JavaScript -->
 
-// =====================
-// DESKTOP: HOVER PREVIEW
-// =====================
-if (window.innerWidth > 768) {
-
-  let rafId = null;
-
-  document.querySelectorAll('.project-item').forEach(item => {
-
-    item.addEventListener('mouseenter', () => {
-      const src = item.dataset.img;
-      const id = item.dataset.id;
-      const name = item.dataset.name;
-
-      activeId.textContent = id;
-      activeName.textContent = name;
-
-      if (src) {
-        // avbryt eventuell pågående rAF
-        if (rafId) cancelAnimationFrame(rafId);
-
-        rightImg.src = src;
-        currentSrc = src;
-
-        rafId = requestAnimationFrame(() => {
-          rafId = requestAnimationFrame(() => {
-            rafId = null;
-            rightImg.classList.add('visible');
-            rightCaption.textContent = name;
-            rightCaption.classList.add('visible');
-            placeholder.classList.add('hidden');
-
-          });
-        });
-      }
-    });
-
-    item.addEventListener('mouseleave', () => {
-      // avbryt rAF så visible aldrig läggs till efter leave
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
-
-      activeId.textContent = '—';
-      activeName.textContent = 'Hover a project';
-
-      rightImg.classList.remove('visible');
-      rightCaption.classList.remove('visible');
-      placeholder.classList.remove('hidden');
-
-      currentSrc = '';
-   rightImg.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-    });
-
-  });
-
-}
-// =====================
-// FILTER
-// =====================
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const f = btn.dataset.filter;
-
-    document.querySelectorAll('.project-item').forEach(item => {
-      if (f === 'all' || item.dataset.category === f) {
-        item.removeAttribute('data-hidden');
-      } else {
-        item.setAttribute('data-hidden', 'true');
-      }
-    });
-
-  });
-});
-
-
- 
- 
-// =====================
-// MOBILE: TAP PREVIEW SYSTEM
-// =====================
-if (window.innerWidth <= 768) {
- 
-  const preview = document.getElementById('mobile-preview');
-  let activeLink = null;
- 
-  function closePreview() {
-    preview.classList.remove('active');
-    if (activeLink) {
-      activeLink.classList.remove('focused');
-      activeLink = null;
-    }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Amanda Schönebeck",
+  "jobTitle": "UX Designer",
+  "url": "https://www.amandaschonebeck.com",
+  "sameAs": [],
+  "description": "UX Designer in Stockholm creating intuitive, aesthetic, and functional digital experiences.",
+  "image": "https://www.amandaschonebeck.xyz/img/pause.png",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Freelance / Studio"
   }
- 
-  document.querySelectorAll('.project-item').forEach(link => {
- 
-    link.addEventListener('click', (e) => {
-      e.preventDefault(); // only the image navigates
- 
-      // CASE 1: same row tapped again → close preview + clear highlight
-      if (activeLink === link) {
-        closePreview();
-        return;
-      }
- 
-      // CASE 2: switching to a new row → clear old highlight first
-      if (activeLink) activeLink.classList.remove('focused');
- 
-      const src = link.dataset.img;
-      const href = link.href;
- 
-      preview.innerHTML = `<a href="${href}"><img src="${src}" /></a>`;
- 
-      const li = link.closest('li');
-      li.after(preview);
- 
-      preview.classList.add('active');
-      link.classList.add('focused'); // highlight this row while preview is open
- 
-      activeLink = link;
-    });
- 
+}
+</script>
+
+
+
+<script type="text/javascript">
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const email = document.getElementById("emailText").innerText;
+  const feedback = document.getElementById("copiedFeedback");
+
+  navigator.clipboard.writeText(email).then(() => {
+    feedback.style.opacity = 1;
+    setTimeout(() => {
+      feedback.style.opacity = 0;
+    }, 1500);
   });
- 
-  // Tap the × area (outside image) → close and clear highlight
-  preview.addEventListener('click', (e) => {
-    if (e.target.tagName !== 'IMG') {
-      closePreview();
+});
+</script>
+
+    <script>
+  // Open/close panel on "Aa" toggle
+  document.querySelector('.customizer-toggle').addEventListener('click', () => {
+    document.querySelector('.top-controls').classList.toggle('active');
+  });
+
+  // Close panel on mobile "×"
+  document.querySelector('.top-controls-close').addEventListener('click', () => {
+    document.querySelector('.top-controls').classList.remove('active');
+  });
+</script>
+
+
+      <script>
+    function openModal() {
+      document.getElementById("contactModal").classList.add("active");
     }
+
+    function closeModal() {
+      document.getElementById("contactModal").classList.remove("active");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+
+
+    <script>
+      // Loader fade-out
+      document.addEventListener("DOMContentLoaded", function () {
+        const loaderContainer = document.querySelector(".loader-container");
+        window.onload = function () {
+          loaderContainer.classList.add("hidden");
+          setTimeout(() => {
+            loaderContainer.style.display = "none";
+          }, 500);
+        };
+      });
+
+  
+
+     
+    </script>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".parent > div");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // one time only
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // subtle stagger
+  let delay = 0;
+  cards.forEach(card => {
+    card.style.transitionDelay = `${delay}s`;
+    delay += 0.06;   // tweak: 0.04 = faster, 0.08 = slower
+    observer.observe(card);
   });
- 
+});
+</script>
+
+     <script>
+// On page load, apply saved theme
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = sessionStorage.getItem('theme');
+
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    updateThemeLabel('dark');
+  } else {
+    // default = light
+    document.body.classList.remove('dark-mode');
+    updateThemeLabel('light');
+    sessionStorage.setItem('theme', 'light');
+  }
+});
+
+// Toggle theme
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const body = document.body;
+  const isDark = body.classList.toggle('dark-mode');
+  const newTheme = isDark ? 'dark' : 'light';
+  sessionStorage.setItem('theme', newTheme);
+  updateThemeLabel(newTheme);
+});
+
+// Update label animation
+function updateThemeLabel(mode) {
+  const light = document.getElementById('light');
+  const dark = document.getElementById('dark');
+
+  light.classList.remove('active');
+  dark.classList.remove('active');
+
+  if (mode === 'dark') {
+    dark.classList.add('active');
+  } else {
+    light.classList.add('active');
+  }
 }
 
+
 </script>
+
+
+<script>
+let fontSizePercent = 100;
+let customScaling = false; // track if user resized from default
+
+// Base font sizes in pixels
+const baseFontSizes = {
+   '.label': 12,
+  '.description': 12,
+  '#about h1': 12,
+  '#about p': 12,
+  '#about ul': 12,
+  '#about li': 12,
+  '.parent div p': 12
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  updateAllTextSizes();
+});
+
+function updateAllTextSizes() {
+  for (const selector in baseFontSizes) {
+    const baseSize = baseFontSizes[selector];
+    const newSize = customScaling
+      ? baseSize * (fontSizePercent / 100)
+      : baseSize;
+
+    document.querySelectorAll(selector).forEach(el => {
+      el.style.fontSize = `${newSize}px`;
+    });
+  }
+}
+
+function increaseTextSize() {
+  if (fontSizePercent < 160) {
+    fontSizePercent += 5;
+    customScaling = true;
+    updateAllTextSizes();
+  }
+}
+
+function decreaseTextSize() {
+  if (fontSizePercent > 85) {
+    fontSizePercent -= 5;
+    customScaling = true;
+    updateAllTextSizes();
+  }
+}
+
+function resetTextSize() {
+  fontSizePercent = 100;
+  customScaling = false;
+  updateAllTextSizes();
+}
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll(".parent > div:not(.is-background) img");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  images.forEach(img => observer.observe(img));
+});
+</script>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+  const loaderContainer = document.querySelector(".loader-container");
+
+  // Add fade-in class to loading text slightly after bar starts
+  setTimeout(() => {
+    loaderContainer.classList.add("show-text");
+  }, 650); // Adjust delay to taste
+
+  // Then hide loader after full animation
+  window.onload = function () {
+    setTimeout(() => {
+      loaderContainer.classList.add("hidden");
+      setTimeout(() => {
+        loaderContainer.style.display = "none";
+      }, 650); // smooth fade
+    }, 2300);
+  };
+});
+
+
+
+
+
+
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll("#intros .filter-btn");
+  const items = document.querySelectorAll(".parent > div");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+
+      items.forEach(item => {
+        const category = item.dataset.category;
+
+        if (filter === "all") {
+          item.classList.remove("is-background");
+        } else if (category === filter) {
+          item.classList.remove("is-background");
+        } else {
+          item.classList.add("is-background");
+        }
+      });
+
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+});
+</script>
+
+<script>
+ const loaderShown = sessionStorage.getItem("loaderShown");
+
+const asciiText = `@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:=**=@@@@@@@@@@@@@:---- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ =+*-@@@@@@@@@@::-----------=--@@@@@-@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=+-@@@@@@@@::::-----------==--*-::-=-@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+@-++@@@@*#-:::::-----------====-:::-=-@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@**#@-#%+++@*###*#-::::--------------:::::: @@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@######%%=+*%%==*%+.::::::--:::---::--:--::@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#%###%##++#%:..=%#:::::::-:::::::::::::@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:::.=#%#%#+=*%=..:+**:::::::::::::::::::.:@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@::::::::::::::::@@@@@@@@@:....:=+=@:-*#:.:---::::::::::::::::::::::@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@.::::::::::::::::::::::: @@@@::::....:=: -==:.--:.:::::::::::::::::::..:@@@@@@@@@@@@@@@@@@@@
+@@@@@@:::::::::::::::::------::::::.:::::::::::-::-=.:-:.:::::::::::::::::::::::@@@@@@@@@@@@@@@@@@@@
+@@@@:::::::::---::::::::-----------::::::::::::--:-=.:-.:::::::::::::::::::::@::::::::::@@@@@@@@@@@@
+@@@::::------------::::::-------------::::::::::-::=:-::::::::::::::::::::::::::::::::::-- @@@@@@@@@
+@@:---------=======----------------------::::::::-:-:-:::::::::::::::::::::::--------------:-:@@@@@@
+::--------------@@@=++=======--------------::::::::::::::::::::::::::::::::::==============----::@@@
+:::------@@@@@@@@@@@**%@::------------------:-::-------:::::::-::::::::::::::=++++++++++++===----:@@
+::----:@@@@@@@@@@@@@@*=---------------------:---=========--::--------::::::::=+==-@@@@@+++++==-==--
+::---=@@@@@@@@@@@@@@:::-----------------------=============---=--------::::::::@@@@@@@@@@@@@+==-==--
+::---@@@@@@@@@@@@@.:::------===-------=======----==========+=-====------:::::::@@@@@@@@@@@@@@@====--
+@::---@@@@@@@@@@:-::--------------==++++=======-==========+========-------:::::@@@@@@@@@@@@@@@@=====
+@@@---@@@@@@@@@:::---------::::@@@@@@=+++++=++++=======+=+====++=====------::::@@@@@@@@@@@@@@@@@=---
+@@@@@@@@@@@@@@@::--::::::::.=*+=@@@@@@@@=+++++++++======+====++++-=-===-----:::@@@@@@@@ ++@@@@@=----
+@@@@@@@@@@@@@@::--::::::::::****++:@@@@@@@=+++++=======++===+++=@@--=-==-----::@@@@@@@@@-=+@@@=----@
+@@@@@@@@@@@@@ ::-:::::::.::@@@+**+++=.@@@@@@=++++=====++++++++@@@@@@---===---::@@@@@@@@@:-====----@@
+@@@@@@@@@@@@@:---:::::::.:@@@@@@@++++++++=@@@@=+++++=+++++**+@@@@@@@@@--===---:@@@@@@@@@@:-------@@@
+@@@@@@@@@@@@@::::::::::.::@@@@@@@@@@++++++***@@-++++++*****=@@@@@@@@@@@---==--@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@ -:-:::::..:@@@@@@@@@@@@@@*++*+***@@+********+@@@@@@@@@@@@@--==--@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@------::::@=+ @@@@@@@@@@@@@@++*****@+**##** @@@@@@@@@@@@@@@@@-:@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@----=-:-++++@@@@@@@@@@@@@@@@@+*****.@+##*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@--==-===-@@@@@@@@@@@@@@@@@@@@@*##** *##-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@.---@@@@@@@@@@@@@@@@@@@@@@@@@###*##+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@***##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*## @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@##+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #%+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:#%=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=#%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`.split("\n");
+
+const container = document.getElementById("ascii-loader");
+const cursor = document.getElementById("ascii-cursor");
+const loaderContainer = document.querySelector(".loader-container");
+const mainContent = document.getElementById("main-content");
+
+let index = 0;
+
+function revealLine() {
+  if (index < asciiText.length) {
+    container.innerHTML += asciiText[index] + "\n";
+    index++;
+    setTimeout(revealLine, 55);
+  } else {
+    cursor.style.display = "none";
+
+    loaderContainer.style.transition = "opacity 1s ease";
+    loaderContainer.style.opacity = "0";
+
+    setTimeout(() => {
+      loaderContainer.style.display = "none";
+      mainContent.style.display = "block";
+    }, 1000);
+  }
+}
+
+window.addEventListener("load", () => {
+
+  if (loaderShown) {
+    loaderContainer.style.display = "none";
+    mainContent.style.display = "block";
+    return;
+  }
+
+  sessionStorage.setItem("loaderShown", "true");
+
+  setTimeout(revealLine, 800);
+});
+
+
+</script>
+
+<script type="text/javascript">
+const navLinks = document.querySelectorAll('.nav-link');
+const darkBgSections = document.querySelectorAll('.dark-bg');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    navLinks.forEach(link => {
+      if (entry.isIntersecting) {
+        link.classList.add('light-text');
+        link.classList.remove('dark-text');
+      } else {
+        link.classList.add('dark-text');
+        link.classList.remove('light-text');
+      }
+    });
+  });
+}, {
+  threshold: 0.5
+});
+
+darkBgSections.forEach(section => observer.observe(section));
+</script>
+
+
+
+
 </body>
 </html>

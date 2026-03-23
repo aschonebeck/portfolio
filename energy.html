@@ -1,177 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sustainable Energy Use — A. Schönebeck</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A.S——ENERGY USE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta property="og:url" content="www.amandaschonebeck.com/energy" />
+    <meta property="og:title" content="Amanda Schönebeck — UX DESIGNER" />
+    <meta property="og:description" content="" />
+       <link rel="shortcut icon" href="soft.ico"/>
+            <link rel="preload" as="image" href="img/concrete.png" />
+  </head>
+  <body>
+   <!-- Menyn  -->
+    <header>
+       <nav>
+  <a href="index" style="color: rgb(0, 0, 0, 0.8);" class="nav-link">A.SCHÖNEBECK™</a>
+  <a href="index" id="mobile" style="" class="nav-link">WORK [8]</a>
+  <a href="about" class="nav-link">ABOUT</a>
+  <a onclick="openModal()" href="#" class="nav-link">CONTACT</a>
+</nav>
 
-  <!-- External CSS -->
-  <title>A.Schönebeck — PORTFOLIO</title>
-    <link href="stil.css" rel="stylesheet" type="text/css" />
-    <meta property="og:url" content="www.amandaschonebeck.com" />
-    <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
-    <meta property="og:description" content="UX Designer based in Stockholm, exploring how people connect with digital and physical artifacts in everyday life. I craft thoughtful user experiences through interaction design, facilitation, technology, workshops, and user research. © 2026 Amanda Schönebeck" />
-  <meta property="og:image" content="https://amandaschonebeck.com/img/hello.png" />
-  <meta property="og:type" content="website" />
-<link rel="canonical" href="https://www.amandaschonebeck.com/" />
+    <div class="customizer-wrapper">
+  <button class="customizer-toggle" aria-label="Toggle customizer">☼ / Aa+-</button>
+</div>
 
-      <link rel="shortcut icon" href="favicon.ico"/>
+<div class="top-controls">
+  <button class="top-controls-close" aria-label="Close customizer">×</button>
 
+  <button id="themeToggle" aria-label="Toggle dark mode">
+   <span id="themeLabel"><span id="light">LIGHT </span> / <span id="dark"> DARK</span></span>
+  </button>
 
-  <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-<div class="layout project-page">
-
-
-  <!-- LEFT PANEL -->
-  <div class="left">
-
-    <nav class="top-nav">
-      <div class="nav-links">
-        <a href="info.html" class="">Info</a>
-        <a href="index.html">Work</a>
-      </div>
-    <span class="nav-brand"><a href="index.html"> A.Schönebeck</a></span>
-      <button id="theme-toggle">Dark / Light</button>
-    </nav>
-
-    <!-- EDITORIAL CONTENT -->
-    <div class="info-content editorial">
-
-  <h1>Sustainable<br> Energy Use</h1>
-      <!-- INTRO BLOCK (more expressive) -->
-        <p id="meta">
-    YEAR: 2021-22<br>
-    ORG: KTH<br>
-    ROLE: Research Engineer
-  </p>
+  <div class="text-size-controls">
+    <button onclick="decreaseTextSize()">A–</button>
+    <button onclick="resetTextSize()">A</button>
+    <button onclick="increaseTextSize()">A+</button>
+  </div></div>
      
-      <!-- PROJECT -->
 
 
+    </header>
 
-         </div>
+<div class="intro-section">
 
-    <div class="wordmark">
-      <span>   </span>
-      <span class="wordmark-sub">UX Designer<br>Stockholm, SWE</span>
-    </div>
-
+  <img style=" " src="img/obje.png" alt=" background" id="desktop" class="bg" fetchpriority="high" />
+   <img style=" width: auto; height:100vh;" src="img/ojb.png" alt=" background" id="mobil" class="bg" fetchpriority="high" />
   </div>
+<P class="info" > KTH (Department of Strategic Sustainability)<BR>YEAR: 2021-2022<br>ROLE: Design Lead</P>
 
+<br>
 
-  <!-- RIGHT PANEL -->
-  <div class="right">
-<img class="intro-img" src="img/ojb.png">
-
-
-<p class="intro-line">   Designing Our Relationship<br> with Energy
-
-</p>
-
-
-
-<p>
-This project explored how user-centered design can support households in navigating new energy pricing models, particularly power-based tariffs and real-time electricity feedback. The work was carried out as part of a research collaboration with KTH, Uppsala University, Ellevio, Bright Energy and Ngenic - funded by the Swedish Energy Agency.
+<h1 id="rubbe">Designing Our Relationship with Energy</h1>
+<div class="grid-container">
+  <div class="label"></div>
+  <div class="description">
+This project explored how user-centered design can support households in navigating new energy pricing models, particularly power-based tariffs and real-time electricity feedback. The work was carried out as part of a research collaboration with KTH, Uppsala University, Ellevio, Bright Energy and Ngenic - funded by the <a href="https://www.energimyndigheten.se/en/" target="_blank"> Swedish Energy Agency</a>.
 <br><br>
 As electricity systems become increasingly strained by electrification, flexibility is often treated as a technical issue. This project reframed it as a design and perception problem, asking how people understand energy, power, cost, and climate impact in daily life - and what kinds of feedback actually support meaningful suistanable action.
 <br><br>
-Using user-centered and qualitative methods, conducting interviews, workshops and usability tests with both electricity consumers and prosumers (households with solar panels). Based on these insights, we developed and tested multiple design concepts for real-time energy feedback, including digital interfaces and ambient, physical visualisations.</p>
+Using user-centered and qualitative methods, conducting interviews, workshops and usability tests with both electricity consumers and prosumers (households with solar panels). Based on these insights, we developed and tested multiple design concepts for real-time energy feedback, including digital interfaces and ambient, physical visualisations.
+  </div></div>
 
 
 
-        <img style="filter: saturate(0);" src="img/elwork2.jpg" />
+
+  <img src="img/elwork2.jpg" alt="Urban energy infrastructure" class="full-image">
 
 
+<!--
 
-        <h2>  DESIGN PROCESS</h2>
-<p>
-My contribution focused on user research, facilitating workshops, concept development and gathering user insights - helping translate energy systems into solutions that considers everyday life contexts - rather than fighting them.
-<br><br><br>
-
-USER INSIGHTS<br><br>
-→ Households are primarily motivated by economic effects, while climate impact is often perceived more as a positive 'side effect'.
-<br><br>
-→ Broken down real-time feedback (showing how specific activities and appliances affect usage) has the strongest effects on behaviour.
-<br><br>
-→ The distinction between energy (kWh) and power (kW) is poorly understood and requires careful design to avoid misinterpretation.
-<br><br>
-→ Comparisons work best when based on a household’s own historical data, rather than comparisons with other households.
-<br><br>
-→ Feedback must be personal, coordinated and actionable to be effective.
-<br>
-
-Based on these insights, I developed concepts to meet the needs and behaviours of the two groups: prosumers and consumers. This resulted in prototypes that were tested on the user group.
-
-</p>
-
-
-  <p>[PROTOTYPE 1]</p>
-
-
-  <img src="img/frame.png">
+       <img class="full-image" fetchpriority="high" id="mobil" src="img/collageblue2.png">-->
    
 
 
-  <p>
-[PROTOTYPE 2]</p>
+<div class="grid-container">
+   <div class="label">DESIGN PROCESS</div>
+   <div class="description">
 
 
- <img src="img/load.gif">
+   My contribution focused on user research, facilitating workshops, concept development and synthesis of user insights - helping translate energy systems into solutions that respect everyday life constraints rather than fighting them.
+<br><br>
+<BR>
 
- <p>The project contributes practical design insights to the transition toward a more flexible and resilient energy system, shifting the focus from infrastructure to how people actually experience and engage with energy.</p>
+  <h2 class="">USER INSIGHTS</h2>
 
 
 
-  </div>
-  </div>
+→  Households are primarily motivated by economic effects, while climate impact is often perceived more as a positive 'side effect'.
+<br><br>
+→  Broken down and real-time feedback (showing how specific activities and appliances affect usage) has the strongest potential to influence behaviour.
+<br><br>
+→  The distinction between energy (kWh) and power (kW) is poorly understood and requires careful design to avoid misinterpretation.
+<br><br>
+→  Comparisons work best when based on a household’s own historical data, rather than comparisons with other households.
+<br><br>
+→  Feedback must be personal, coordinated and immediately actionable to be effective.
+
+
+</p>
+
+</div></div>
+
+
+ 
+ 
+
+ 
+
+
+
+
+    <div class="grid-container">
+  <div class="label">[Prototype]<BR> PART OF APP CONCEPT for Consumers</div>
+</div>
+
+<figure class="system-figure full-bleed">
+    <img src="img/kth_mobile.png" alt="Design Process" class="full-image">
+      <figcaption class="system-caption">
+    <div>
+      
+      <span class="caption-meta">Daily energy overview showing production, consumption, and peak load for the household.</span>
+    </div>
+
+    <div>
+     
+      <span class="caption-meta">Monthly energy patterns highlighting average peak load and long-term consumption trends.</span>
+    </div>
+
+    <div>
+   
+      <span class="caption-meta">Real-time notification alerting the user when the local grid is under high load.</span>
+    </div> <div>
+     
+      <span class="caption-meta">Contextual view of local grid capacity with estimated time until normal load is restored.</span>
+    </div> <div>
+
+      <span class="caption-meta">Live snapshot of current power usage, broken down by appliances and categories.</span>
+    </div>
+  </figcaption>
+</figure>
+
+
+ 
+<br><br><br>
+
+<div class="grid-container">
+  <div class="label">[Prototype]<BR> Lamp that allows users to shift perspective between personal energy use and collective power grid load</div>
 
 </div>
 
+<br><br>
+    <img style="opacity: 0.9;" src="img/load.gif" alt="Design Process" class="">
+<br><br>
+<div class="grid-container">
+   <div class="label"></div>
+   <div class="description">
+
+
+ <p>The project contributes practical design insights to the transition toward a more flexible and resilient energy system, shifting the focus from infrastructure to how people actually experience and engage with energy.</p>
+</div></div>
+   
+    <br>    <br>
+  <footer style="" class="footer">
+  <div class="footer-left">
+    <p>© 2026 Amanda Schönebeck </p>
+  </div>
+  <div class="footer-right">
+    <a href="https://www.linkedin.com/in/amandaschonebeck/" target="_blank">LinkedIn↗</a>
+    <a href="https://se.pinterest.com/amandaschnebeck/" target="_blank">Pinterest↗</a>
+   
+  <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
+  </div>
+</footer>
+
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <p>REACH OUT</p>
+  <div class="email-copy-wrapper">
+  <span id="emailText" class="selectable">amanda.schonebeck@gmail.com</span>
+  <button id="copyBtn">COPY </button>
+  <span id="copiedFeedback">COPIED</span>
+</div>
+      <a href="https://www.linkedin.com/in/amandaschonebeck/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const email = document.getElementById("emailText").innerText;
+  const feedback = document.getElementById("copiedFeedback");
+
+  navigator.clipboard.writeText(email).then(() => {
+    feedback.style.opacity = 1;
+    setTimeout(() => {
+      feedback.style.opacity = 0;
+    }, 1500);
+  });
+});
+</script>
 
 <script>
-// =====================
-// THEME TOGGLE 
-// =====================
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleButton = document.querySelector('.customizer-toggle');
+  const closeButton = document.querySelector('.top-controls-close');
+  const topControls = document.querySelector('.top-controls');
 
-const toggle = document.getElementById('theme-toggle');
+  if (toggleButton && topControls) {
+    toggleButton.addEventListener('click', () => {
+      topControls.classList.toggle('active');
+    });
+  }
 
-// set initial theme from localStorage
-if (localStorage.getItem('theme') === 'dark') {
-  document.body.classList.add('dark');
-}
+  if (closeButton && topControls) {
+    closeButton.addEventListener('click', () => {
+      topControls.classList.remove('active');
+    });
+  }
+});
+</script>
 
-// update label
-function updateThemeLabel() {
-  toggle.textContent = document.body.classList.contains('dark')
-    ? 'Mode: Dark'
-    : 'Mode: Light';
-}
 
-// click handler
-toggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-
-  // save preference
-  localStorage.setItem(
-    'theme',
-    document.body.classList.contains('dark') ? 'dark' : 'light'
-  );
-
-  updateThemeLabel();
+     <script>
+// On page load, apply saved theme
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = sessionStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    updateThemeLabel('dark');
+  } else {
+    updateThemeLabel('light');
+  }
 });
 
-// run on load
-updateThemeLabel();
+// Toggle theme
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const body = document.body;
+  const isDark = body.classList.toggle('dark-mode');
+  const newTheme = isDark ? 'dark' : 'light';
+  sessionStorage.setItem('theme', newTheme);
+  updateThemeLabel(newTheme);
+});
+
+// Update label animation
+function updateThemeLabel(mode) {
+  const light = document.getElementById('light');
+  const dark = document.getElementById('dark');
+
+  light.classList.remove('active');
+  dark.classList.remove('active');
+
+  if (mode === 'dark') {
+    dark.classList.add('active');
+  } else {
+    light.classList.add('active');
+  }
+}
+
 
 </script>
 
-</body>
-</html>
+
+<script type="text/javascript">
+function hideLoader(img) {
+  const loader = img.previousElementSibling;
+  loader.style.transform = 'scale(1.3)';
+  loader.style.opacity = '0';
+  img.style.opacity = '1';
+
+  setTimeout(() => {
+    loader.remove();
+  }, 700); // match transition duration
+}
 
 
+</script>
 
 
+  
+
+<script>
+(function(){
+  const KEY = 'textScale';              // localStorage key
+  const DEFAULT_SCALE = 1.0;            // 1.0 = 100%
+  const STEP = 0.075;                   // ~7.5% per step
+  const SELECTORS_TO_SCALE = [
+    'body',
+    '.description',
+    '.label',
+    '.info',
+    '.footer',
+    '.typewriter-text',
+    '.project-title',
+    '.email-copy-wrapper',
+    '.label p',
+    '.description p',
+    '.floating-title',
+    '.caption-meta'
+  
+  ];
+
+  // get all elements for scaling and stash original sizes
+  function collectElements() {
+    const elems = new Set();
+    SELECTORS_TO_SCALE.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => elems.add(el));
+    });
+    return Array.from(elems);
+  }
+
+  function ensureOrigSize(el) {
+    if (el.dataset.origFontSize) return;
+    const computed = window.getComputedStyle(el).fontSize; // e.g. "14px"
+    const px = parseFloat(computed) || 16;
+    el.dataset.origFontSize = px; // store numeric px
+  }
+
+  // Apply scale (number, e.g. 1.15)
+  function applyScale(scale) {
+    // Set root font-size (helps rem-based rules)
+    document.documentElement.style.fontSize = (100 * scale) + '%';
+
+    // Scale elements that use px sizes by setting inline style from original px * scale
+    const elements = collectElements();
+    elements.forEach(el => {
+      ensureOrigSize(el);
+      const orig = parseFloat(el.dataset.origFontSize) || 16;
+      el.style.fontSize = (orig * scale).toFixed(2) + 'px';
+    });
+
+    // Persist
+    try { localStorage.setItem(KEY, String(scale)); } catch (e) { /* ignore */ }
+
+    // optional: add a data-attr to body for styling or tests
+    document.body.dataset.textScale = String(scale);
+    console.info('[text-size] applied scale', scale);
+  }
+
+  // Helpers wired to the HTML onclicks
+  window.increaseTextSize = function() {
+    const current = parseFloat(localStorage.getItem(KEY)) || DEFAULT_SCALE;
+    const next = +(Math.min(current + STEP, 1.35).toFixed(3)); // clamp max ~135%
+    applyScale(next);
+  };
+
+  window.decreaseTextSize = function() {
+    const current = parseFloat(localStorage.getItem(KEY)) || DEFAULT_SCALE;
+    const next = +(Math.max(current - STEP, 0.8).toFixed(3)); // clamp min ~80%
+    applyScale(next);
+  };
+
+  window.resetTextSize = function() {
+    applyScale(DEFAULT_SCALE);
+  };
+
+  // Attach click listeners to controls if present (optional, because your HTML uses inline onclick)
+  function wireControls() {
+    const container = document.querySelector('.text-size-controls');
+    if (!container) return;
+    const btns = container.querySelectorAll('button');
+    if (!btns.length) return;
+    // If inline onclick exists we don't need to attach; but keep it idempotent.
+    btns[0].addEventListener('click', () => window.decreaseTextSize());
+    btns[1].addEventListener('click', () => window.resetTextSize());
+    btns[2].addEventListener('click', () => window.increaseTextSize());
+  }
+
+  // Init on DOM ready, with a single small retry if elements load late
+  function init(r=0) {
+    try {
+      // Collect elements once so we store orig sizes
+      collectElements().forEach(ensureOrigSize);
+
+      // Apply saved scale (or default)
+      const saved = parseFloat(localStorage.getItem(KEY));
+      applyScale(isNaN(saved) ? DEFAULT_SCALE : saved);
+
+      wireControls();
+    } catch (err) {
+      if (r < 1) {
+        setTimeout(() => init(r+1), 60);
+      } else {
+        console.error('[text-size] init failed', err);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // small debug tool
+  window.__textSizeDebug = {
+    current: () => localStorage.getItem(KEY),
+    apply: (s) => applyScale(Number(s))
+  };
+})();
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const typewriter = document.getElementById('typewriterContainer');
+
+
+  // Fade in the typewriter container immediately
+  setTimeout(() => {
+    typewriter.style.opacity = 1;
+  }, 100); // brief delay for transition
+
+  // Fade in grid after typewriter finishes
+  setTimeout(() => {
+    grid.classList.add('visible');
+  }, 2800); // after typing animation
+});
+</script>
+
+  <script>
+    function openModal() {
+      document.getElementById("contactModal").classList.add("active");
+    }
+
+    function closeModal() {
+      document.getElementById("contactModal").classList.remove("active");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector("nav");
+  const triggerSection =
+    document.querySelector(".intro-section") || document.querySelector(".hero-image-trigger");
+
+  if (!nav || !triggerSection) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) {
+        nav.classList.add("inverted");
+      } else {
+        nav.classList.remove("inverted");
+      }
+    },
+    {
+      threshold: 0,
+      rootMargin: "-60px 0px 0px 0px"
+    }
+  );
+
+  observer.observe(triggerSection);
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const isIndexPage =
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("/index") ||
+    window.location.pathname.endsWith("/index.html");
+
+  // Select text + images (excluding intro-section)
+  const elements = isIndexPage
+    ? document.querySelectorAll(".label, .description, .abo")
+    : document.querySelectorAll(".label, .description, .abo, img:not(.intro-section img)");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Soft stagger — images slightly earlier
+        const isImage = entry.target.tagName.toLowerCase() === "img";
+        const delay = isImage ? i * 80 : i * 120; 
+        entry.target.style.transitionDelay = `${delay}ms`;
+        entry.target.classList.add("in-view");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+  </body>
+  </html>
