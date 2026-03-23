@@ -476,6 +476,7 @@ figure img {
   margin-top: 0;   /* ändra från 60px till 0 */
   padding-bottom: 20px;
   font-size: 13.5px;
+  padding-top: 20px;
 }
 
 .cv {
