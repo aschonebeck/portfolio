@@ -817,9 +817,10 @@ strong {
 
 
 .project-page p {
-  font-size: 14px;
+  font-size: 14.5px;
   color: var(--text);
-  max-width: 80%;
+  max-width: 95%;
+  line-height: 1.1;
   font-family: var(--paragraph);
 }
 
