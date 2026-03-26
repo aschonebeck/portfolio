@@ -96,6 +96,29 @@
   color: inherit;
 }
 
+
+/* ── SELECTED WORK LIST ── */
+.project-page .right ul {
+  list-style: none;
+  padding: 20px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  max-width: 70%;
+}
+
+.project-page .right ul li {
+  font-family: var(--paragraph);
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  opacity: 0.9;
+}
+
+.project-page .right ul li:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
     #theme-toggle {
       background: none; border: none;
       cursor: pointer;
@@ -599,7 +622,7 @@ line-height: 0.97 !important;
 text-transform: ;
 color: var(--muted) !important;
 font-family: var(--font);
-font-size: 50px !important;
+font-size: 45px !important;
 
 }
 
@@ -873,6 +896,8 @@ opacity: 0.8;
 }
 
 
-
+.project-page .right ul {
+  max-width: 90%;
+}
 
 }
