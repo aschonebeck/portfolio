@@ -761,8 +761,10 @@ strong {
     position: absolute;
     top: 5px;
     right: 20px;
+    padding: 5px;
+    filter:invert(100);
     font-weight: 400;
-    font-size: 35px;
+    font-size: 40px;
     color: var(--muted);
   }
 
