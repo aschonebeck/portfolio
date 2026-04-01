@@ -165,6 +165,7 @@ body.dark #loader-line { background: #252520; }
 
     #abopic {
   display: block;
+  filter: invert(100);
 }
 
 
@@ -767,9 +768,20 @@ font-size: 40px !important;
     overflow: visible;
   }
 
+
+    .abo_body .right {
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+
   .right-img {
     position: relative;
     height: auto;
+    width: 100%;
   }
 
   .index-page .right {
@@ -801,6 +813,10 @@ font-size: 40px !important;
 
   .about p {
     font-size: 14px;
+  }
+
+  .about {
+    padding-top: 20px;
   }
 
 
@@ -976,7 +992,8 @@ strong {
 }
 
 #abopic {
-  display: none;
+
+  display: inline-block;
 }
 
 
