@@ -18,6 +18,7 @@
 
 <!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -26,18 +27,23 @@
 
 <body class="index-page">
 
+
+
+
+
 <div class="layout">
 
   <!-- LEFT -->
   <div class="left">
 
     <nav class="top-nav">
-      <div class="nav-links">
+      <span class="nav-brand"><a href="index.html">A.Schönebeck</a></span>
+      <div class="nav-links nav-links--desktop">
         <a href="info.html">Info</a>
         <a href="#" class="active">Work</a>
       </div>
-      <span class="nav-brand"><a href="index.html"> A.Schönebeck</a></span>
       <button id="theme-toggle">Dark / Light</button>
+      <a href="info.html" class="mob-plus" aria-label="Info">+</a>
     </nav>
 
     <div class="active-label">
@@ -45,6 +51,28 @@
       <span id="active-name">Hover a project</span>
     </div>
 
+    <!-- MOBILE: view toggle + filter trigger -->
+    <div class="view-filter-row">
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="list">List View</button>
+        <span class="sep">/</span>
+        <button class="view-btn" data-view="grid">Grid View</button>
+      </div>
+      <button class="mob-filter-toggle" id="mob-filter-toggle">
+        <span class="filter-dot"></span>
+        Filter
+      </button>
+    </div>
+
+    <!-- MOBILE: filter expand -->
+    <div class="mob-filter-expand" id="mob-filter-expand">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ux">UX</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="writing">Writing</button>
+    </div>
+
+    <!-- DESKTOP: filter row -->
     <div class="filter-row">
       <span class="filter-dot"></span>
       <button class="filter-btn active" data-filter="all">All</button>
@@ -136,12 +164,11 @@
     <div id="mobile-preview"></div>
 
     <div class="wordmark">
-      <span>
-</span>
+      <span></span>
       <span class="wordmark-sub"> UX Designer<br>Stockholm, SWE</span>
     </div>
 
-  </div>
+  </div><!-- end .left -->
 
   <!-- RIGHT -->
 
@@ -162,7 +189,7 @@
   <img src="img/fz.jpg">
   <img src="img/z.jpg">
   <img src="img/obje.png">
-  <img src="img/dp.png">
+  <img src="img/studio.png">
   <img src="img/dreamsapp_.png">
   <img src="img/2wi.jpg">
   <img src="img/h.jpg">
@@ -304,13 +331,77 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
  
  
 // =====================
-// MOBILE: TAP PREVIEW SYSTEM
+// MOBILE: VIEW TOGGLE + FILTER + TAP PREVIEW
 // =====================
 if (window.innerWidth <= 768) {
- 
+
+  // ── Filter expand ──
+  const mobFilterToggle = document.getElementById('mob-filter-toggle');
+  const mobFilterExpand = document.getElementById('mob-filter-expand');
+
+  mobFilterToggle.addEventListener('click', () => {
+    mobFilterExpand.classList.toggle('open');
+  });
+
+  // Mobile filter buttons — wire to shared filter logic and close panel after
+  mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // update active state in mobile expand only
+      mobFilterExpand.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.project-item').forEach(item => {
+        const li = item.closest('li');
+        if (f === 'all' || item.dataset.category === f) {
+          li.removeAttribute('data-hidden');
+        } else {
+          li.setAttribute('data-hidden', 'true');
+        }
+      });
+
+      mobFilterExpand.classList.remove('open');
+    });
+  });
+
+  // ── View toggle ──
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const list = document.querySelector('.project-list');
+
+      if (btn.dataset.view === 'grid') {
+        list.classList.add('grid-view');
+        // inject thumb + caption into each item if not already done
+        list.querySelectorAll('.project-item').forEach(item => {
+          if (!item.querySelector('.project-thumb')) {
+            const img = document.createElement('img');
+            img.src = item.dataset.img || '';
+            img.className = 'project-thumb';
+            img.alt = item.dataset.name || '';
+
+            const caption = document.createElement('div');
+            caption.className = 'grid-caption';
+            caption.innerHTML =
+              `<span class="project-id">${item.dataset.id}</span>` +
+              `<span class="project-title">${item.dataset.name}</span>`;
+
+            item.prepend(caption);
+            item.prepend(img);
+          }
+        });
+      } else {
+        list.classList.remove('grid-view');
+      }
+    });
+  });
+
+  // ── Tap preview (list view) ──
   const preview = document.getElementById('mobile-preview');
   let activeLink = null;
- 
+
   function closePreview() {
     preview.classList.remove('active');
     if (activeLink) {
@@ -318,46 +409,39 @@ if (window.innerWidth <= 768) {
       activeLink = null;
     }
   }
- 
+
   document.querySelectorAll('.project-item').forEach(link => {
- 
     link.addEventListener('click', (e) => {
-      e.preventDefault(); // only the image navigates
- 
-      // CASE 1: same row tapped again → close preview + clear highlight
-      if (activeLink === link) {
-        closePreview();
-        return;
-      }
- 
-      // CASE 2: switching to a new row → clear old highlight first
+      // in grid view, navigate directly
+      if (document.querySelector('.project-list').classList.contains('grid-view')) return;
+
+      e.preventDefault();
+
+      if (activeLink === link) { closePreview(); return; }
       if (activeLink) activeLink.classList.remove('focused');
- 
+
       const src = link.dataset.img;
       const href = link.href;
- 
+
       preview.innerHTML = `<a href="${href}"><img src="${src}" /></a>`;
- 
+
       const li = link.closest('li');
       li.after(preview);
- 
+
       preview.classList.add('active');
-      link.classList.add('focused'); // highlight this row while preview is open
- 
+      link.classList.add('focused');
       activeLink = link;
     });
- 
   });
- 
-  // Tap the × area (outside image) → close and clear highlight
+
   preview.addEventListener('click', (e) => {
-    if (e.target.tagName !== 'IMG') {
-      closePreview();
-    }
+    if (e.target.tagName !== 'IMG') closePreview();
   });
- 
+
 }
 
 </script>
+
+
 </body>
 </html>

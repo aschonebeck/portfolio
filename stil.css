@@ -10,6 +10,8 @@
      
     }
 
+
+
     body.dark {
       --bg: #0e0e0c;
       --text: #d8d4cc;
@@ -27,6 +29,109 @@
       height: 100%;
     }
 
+  /* ── LOADER ── */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg, #f2f0eb);
+  pointer-events: all;
+  transition: opacity 0.6s ease;
+}
+ 
+body.dark #loader { background: #0e0e0c; }
+ 
+#loader.out {
+  opacity: 0;
+  pointer-events: none;
+}
+ 
+/* Counter — top left, matches nav position */
+#loader-count {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted, #888);
+}
+ 
+body.dark #loader-count { color: #666; }
+ 
+/* Project title — center stage */
+#loader-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 7vw;
+  padding-bottom: 8vh;
+}
+ 
+#loader-title-text {
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 5,00;
+  font-size: clamp(28px, 5.5vw, 72px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--text, #111);
+  max-width: 70vw;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+ 
+body.dark #loader-title-text { color: #d8d4cc; }
+ 
+#loader-title-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+ 
+/* Project ID — below title */
+#loader-id {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 7vw;
+  padding-top: 8vh;
+  padding-top: calc(8vh + clamp(28px, 5.5vw, 72px) * 1.1 + 4px);
+}
+ 
+/* type tag — bottom right */
+#loader-type {
+  position: absolute;
+  bottom: 14px;
+  right: 20px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted, #888);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+ 
+body.dark #loader-type { color: #666; }
+#loader-type.show { opacity: 1; }
+ 
+/* Divider line that grows */
+#loader-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--border, #ccc);
+  width: 0%;
+  transition: width 0.4s ease;
+}
+ 
+body.dark #loader-line { background: #252520; }
 
 
     /* ── LAYOUT ── */
@@ -64,6 +169,11 @@
 
 
     .nav-links { display: flex; gap: 24px; }
+
+    /* new mobile-only elements — hidden on desktop */
+    .mob-plus { display: none; }
+    .view-filter-row { display: none; }
+    .mob-filter-expand { display: none; }
 
     .nav-links a, .nav-brand {
       font-family: var(--font);
@@ -900,5 +1010,158 @@ opacity: 0.8;
 .project-page .right ul {
   max-width: 90%;
 }
+
+  /* ── MOBILE NAV ── */
+  .mob-plus {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--text);
+    text-decoration: none;
+    line-height: 1;
+    padding: 0 2px;
+  }
+
+  .nav-links--desktop { display: none; }
+
+  /* ── VIEW + FILTER ROW ── */
+  .view-filter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .view-toggle {
+    display: flex;
+    align-items: center;
+  }
+
+  .sep {
+    color: var(--muted);
+    margin: 0 7px;
+    font-size: 10.5px;
+  }
+
+  .view-btn {
+    background: none; border: none;
+    font-family: var(--font);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0;
+  }
+  .view-btn.active {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .mob-filter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none; border: none;
+    font-family: var(--font);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  /* ── FILTER EXPAND ── */
+  .mob-filter-expand {
+    display: none;
+    gap: 20px;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border);
+    animation: filterIn 0.15s ease;
+    flex-shrink: 0;
+  }
+  .mob-filter-expand.open { display: flex; }
+
+  @keyframes filterIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* hide desktop filter row on mobile */
+  .filter-row { display: none; }
+
+  /* hide li with data-hidden (mobile filter sets it on li) */
+  li[data-hidden="true"] { display: none; }
+
+  /* ── GRID VIEW ── */
+  .project-list.grid-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .project-list.grid-view li {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    animation: none;
+    opacity: 1;
+  }
+
+  .project-list.grid-view li:nth-child(2n) {
+    border-right: none;
+  }
+
+  .project-list.grid-view .project-item {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 0;
+    gap: 0;
+  }
+
+  .project-list.grid-view .project-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .project-list.grid-view .grid-caption {
+    padding: 8px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .project-list.grid-view .project-id {
+    font-size: 9px;
+    color: var(--muted);
+    display: block;
+  }
+
+  .project-list.grid-view .project-title {
+    font-size: 10px;
+    color: var(--text);
+    white-space: normal;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+  }
+
+  /* hide original span children in grid view — replaced by injected elements */
+  .project-list.grid-view .project-item > .project-id,
+  .project-list.grid-view .project-item > .project-title,
+  .project-list.grid-view .project-item > .project-type,
+  .project-list.grid-view .project-item > .project-year {
+    display: none;
+  }
 
 }
