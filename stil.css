@@ -809,16 +809,41 @@ strong {
 }
 
 
-     .project-item {
+  .project-item {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
     gap: 6px 12px;
     height: auto;
-
     padding: 14px 20px;
-  
+    text-decoration: none;
+    color: var(--text);
+    background: var(--bg);
   }
+
+  /* only allow hover invert on devices that actually have hover (not touch) */
+  @media (hover: hover) {
+    .project-item:hover,
+    .project-item.focused {
+      background: var(--text);
+      color: var(--bg);
+    }
+    .project-item:hover .project-id,
+    .project-item.focused .project-id,
+    .project-item:hover .project-type,
+    .project-item.focused .project-type,
+    .project-item:hover .project-year,
+    .project-item.focused .project-year { color: var(--bg); opacity: 0.6; }
+  }
+
+  /* focused state (tap preview open) still inverts on touch */
+  .project-item.focused {
+    background: var(--text);
+    color: var(--bg);
+  }
+  .project-item.focused .project-id,
+  .project-item.focused .project-type,
+  .project-item.focused .project-year { color: var(--bg); opacity: 0.6; }
 
   .project-id {
     grid-column: 1;
