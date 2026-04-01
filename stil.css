@@ -1126,6 +1126,7 @@ opacity: 0.8;
     height: auto;
     padding: 0;
     gap: 0;
+       border-bottom: 0px;
   }
 
   .project-list.grid-view .project-thumb {
