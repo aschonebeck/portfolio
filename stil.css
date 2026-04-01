@@ -308,7 +308,7 @@ body.dark #loader-line { background: #252520; }
     .kontakt a {
       display: block;
       margin-top: 5px;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
             text-transform: uppercase;
 
@@ -371,6 +371,10 @@ body.dark #loader-line { background: #252520; }
  
 }
 
+
+#artikelbild {
+  padding: 100px;
+}
 
     .project-item {
       display: grid;
@@ -991,7 +995,7 @@ opacity: 0.8;
     .kontakt a {
       display: block;
       margin-top: 5px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
       font-family: var(--font);
     }
