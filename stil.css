@@ -1107,6 +1107,7 @@ opacity: 0.8;
     grid-template-columns: 1fr 1fr;
     overflow-y: auto;
     flex: 1;
+    padding-top: 0;
   }
 
   .project-list.grid-view li {
@@ -1118,6 +1119,7 @@ opacity: 0.8;
 
   .project-list.grid-view li:nth-child(2n) {
     border-right: none;
+
   }
 
   .project-list.grid-view .project-item {
@@ -1132,7 +1134,7 @@ opacity: 0.8;
   .project-list.grid-view .project-thumb {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 6;
     object-fit: cover;
   }
 
@@ -1144,13 +1146,13 @@ opacity: 0.8;
   }
 
   .project-list.grid-view .project-id {
-    font-size: 11px;
+    font-size: 11.5px;
     color: var(--muted);
     display: block;
   }
 
   .project-list.grid-view .project-title {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text);
     white-space: normal;
     line-height: 1.3;
