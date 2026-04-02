@@ -1400,7 +1400,7 @@ opacity: 0.85;
       background: none; border: none;
       cursor: pointer;
       font-family: var(--font);
-      font-size: 12.5px;
+      font-size: 13px;
     }
   /* hide desktop filter row on mobile */
   .filter-row { display: none; }
