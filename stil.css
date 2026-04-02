@@ -799,7 +799,11 @@ figure img {
 }
 
 
-.project-page .right video { width: 100%; margin-bottom: 0; }
+.project-page .right video { width: 100%; margin-bottom: 0; padding-top: 60px;}
+
+.project-intro-text a {
+  color: var(--text);
+}
 
 /* old generic rule — only applies to p NOT inside new project-section blocks */
 .project-page .right p:not(.project-intro-text):not(.project-section p) {
