@@ -270,6 +270,7 @@ body.dark #loader-line { background: #252520; }
  
     .project-video {
       width: 100%;
+      padding-top: 40px;
       display: block;
     }
  
@@ -693,11 +694,11 @@ body.dark #loader-line { background: #252520; }
 
 
 figcaption {
-  margin-top: -40px;
+  margin-top: 20px;
 padding-left: 20px;
 padding-right: 20px;
 opacity: 0.8;
-padding-bottom:40px;}
+padding-bottom:60px;}
 
 figure img {
   padding-bottom: 0px;
@@ -843,7 +844,7 @@ figure img {
 
 
 .project-page .right H2 {
-  padding: 20PX;
+  padding: 0PX;
   padding-bottom: 0PX;
   line-height: 1.2;
   font-weight: 400;
@@ -1018,6 +1019,28 @@ font-size: 40px !important;
 strong {
   font-weight: 500;
 }
+
+ .project-deliverables {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+ 
+    .project-deliverables li {
+      font-family: var(--font);
+      font-size: 11px;
+      width: 100%;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
 
   .project-item {
