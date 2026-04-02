@@ -147,71 +147,176 @@ window.addEventListener('scroll', () => {
   bar.style.width = pct + '%';
 }, { passive: true });
 
-// FADE IN
+// ============================
+// FADE IN (unchanged)
+// ============================
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
   });
 }, { threshold: 0.06 });
+
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+// ============================
+// PROJECT META STATE MACHINE
+// ============================
 const metaTable = document.querySelector('.project-meta-table');
-let lastScroll = 0;
-let timeout;
 
+let lastScrollY = window.scrollY;
+let lastScrollTime = Date.now();
+
+let velocity = 0;
+let direction = 0; // -1 up, 1 down, 0 idle
+
+let state = "TOP";
+
+let upAccumulator = 0;
+let downAccumulator = 0;
+
+let lock = false;
+
+// TUNING VALUES (adjust these first if needed)
+const EDGE_TOP = 250;              // zone where meta is always visible
+const VELOCITY_SMOOTHING = 0.15;   // smoothing factor
+const SCROLL_INTENT_THRESHOLD = 200;
+const IDLE_TIME = 120;             // ms before considered "reading"
+
+
+// ============================
+// UI ACTIONS
+// ============================
 function collapseMeta() {
-  if (metaTable.classList.contains('hidden')) return;
+  if (!metaTable || metaTable.classList.contains('hidden') || lock) return;
+  lock = true;
 
-  // lock current height
   const height = metaTable.offsetHeight;
   metaTable.style.height = height + 'px';
 
-  // force reflow
-  metaTable.offsetHeight;
+  metaTable.offsetHeight; // force reflow
 
-  // animate to 0
   metaTable.classList.add('collapsing');
 
-  clearTimeout(timeout);
-  timeout = setTimeout(() => {
+  setTimeout(() => {
     metaTable.classList.add('hidden');
     metaTable.classList.remove('collapsing');
     metaTable.style.height = '';
+    lock = false;
   }, 250);
 }
 
 function expandMeta() {
-  if (!metaTable.classList.contains('hidden')) return;
+  if (!metaTable || !metaTable.classList.contains('hidden') || lock) return;
+  lock = true;
 
   metaTable.classList.remove('hidden');
 
   const height = metaTable.scrollHeight;
   metaTable.style.height = '0px';
 
-  // force reflow
-  metaTable.offsetHeight;
+  metaTable.offsetHeight; // force reflow
 
   metaTable.style.height = height + 'px';
 
   setTimeout(() => {
     metaTable.style.height = '';
+    lock = false;
   }, 250);
 }
 
+
+// ============================
+// STATE MACHINE
+// ============================
+function updateState(scrollY) {
+  const now = Date.now();
+  const deltaTime = now - lastScrollTime;
+
+  const deltaY = scrollY - lastScrollY;
+
+  // velocity smoothing
+  const instantVelocity = deltaTime > 0 ? deltaY / deltaTime : 0;
+  velocity = velocity * (1 - VELOCITY_SMOOTHING) + instantVelocity * VELOCITY_SMOOTHING;
+
+  // direction
+  if (Math.abs(deltaY) > 1) {
+    direction = deltaY > 0 ? 1 : -1;
+  }
+
+  // ============================
+  // STATE LOGIC
+  // ============================
+
+  // 1. TOP state (always visible)
+  if (scrollY < EDGE_TOP) {
+    state = "TOP";
+    expandMeta();
+    resetAccumulators();
+    return;
+  }
+
+  // 2. Idle / reading detection
+  const isIdle = deltaTime > IDLE_TIME && Math.abs(velocity) < 0.05;
+
+  if (isIdle) {
+    state = "READING";
+    // reading = stable UI, do nothing
+    resetAccumulators();
+    return;
+  }
+
+  // 3. DOWNWARD movement
+  if (direction === 1) {
+    state = "DESCENDING";
+
+    downAccumulator += Math.abs(deltaY);
+    upAccumulator = 0;
+
+    if (downAccumulator > SCROLL_INTENT_THRESHOLD) {
+      collapseMeta();
+      downAccumulator = 0;
+    }
+  }
+
+  // 4. UPWARD movement
+  if (direction === -1) {
+    state = "REVISITING";
+
+    upAccumulator += Math.abs(deltaY);
+    downAccumulator = 0;
+
+    if (upAccumulator > SCROLL_INTENT_THRESHOLD) {
+      expandMeta();
+      upAccumulator = 0;
+    }
+  }
+
+  lastScrollY = scrollY;
+  lastScrollTime = now;
+}
+
+
+// ============================
+// HELPERS
+// ============================
+function resetAccumulators() {
+  upAccumulator = 0;
+  downAccumulator = 0;
+}
+
+
+// ============================
+// SCROLL LISTENER
+// ============================
 window.addEventListener('scroll', () => {
   const isMobile = window.innerWidth <= 768;
   if (!isMobile || !metaTable) return;
 
-  const scrollY = window.scrollY;
-  const delta = scrollY - lastScroll;
-
-  if (scrollY > 400) {
-    if (delta > 5) collapseMeta();
-    else if (delta < -5) expandMeta();
-  } else {
-    expandMeta();
-  }
-
-  lastScroll = scrollY;
+  updateState(window.scrollY);
 });
 
 </script>
