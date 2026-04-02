@@ -212,6 +212,7 @@ body.dark #loader-line { background: #252520; }
       letter-spacing: -0.01em;
       color: var(--text);
       padding: 44px 44px 0;
+  margin-bottom: 44px;
       max-width: 760px;
       opacity: 0.82;
     }
@@ -266,6 +267,7 @@ body.dark #loader-line { background: #252520; }
     .project-image-full {
       width: 100%;
       display: block;
+      margin-top: 0px;
     }
  
     .project-video {
@@ -476,10 +478,11 @@ body.dark #loader-line { background: #252520; }
 
     blockquote {
       padding:20px;
-      font-family: var(--text);
+      font-family: var(--font);
       font-size: 20px;
-      color: var();
-      max-width: 60%;
+      color: var(--text);
+      max-width: 80%;
+      opacity: 0.9;
       padding-bottom: 40px;
     }
 

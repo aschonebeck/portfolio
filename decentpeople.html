@@ -4,56 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decent People Studio — A. Schönebeck</title>
-
-  <!-- External CSS -->
-  <title>A.Schönebeck — PORTFOLIO</title>
-    <link href="stil.css" rel="stylesheet" type="text/css" />
-    <meta property="og:url" content="www.amandaschonebeck.com" />
-    <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
-    <meta property="og:description" content="UX Designer based in Stockholm, exploring how people connect with digital and physical artifacts in everyday life. I craft thoughtful user experiences through interaction design, facilitation, technology, workshops, and user research. © 2026 Amanda Schönebeck" />
-  <meta property="og:image" content="https://amandaschonebeck.com/img/hello.png" />
+  <link href="stil.css" rel="stylesheet" type="text/css" />
+  <meta property="og:url" content="www.amandaschonebeck.com" />
+  <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
+  <meta property="og:description" content="UX Designer based in Stockholm" />
   <meta property="og:type" content="website" />
-<link rel="canonical" href="https://www.amandaschonebeck.com/" />
-
-      <link rel="shortcut icon" href="favicon.ico"/>
-
-
-   <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://www.amandaschonebeck.com/" />
+  <link rel="shortcut icon" href="favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
-<body>
+
+<body class="project-page">
+
+<div id="progress-bar"></div>
 
 <div class="layout project-page">
-
 
   <!-- LEFT PANEL -->
   <div class="left">
 
     <nav class="top-nav">
-      <div class="nav-links">
-        <a href="info.html" class="">Info</a>
-        <a href="index.html">Work</a>
+      <span class="nav-brand"><a href="index.html">A.Schönebeck</a></span>
+      <div class="nav-links nav-links--desktop">
+        <a href="info.html">Info</a>
+        <a href="index.html" class="active">Work</a>
       </div>
-    <span class="nav-brand"><a href="index.html"> A.Schönebeck</a></span>
       <button id="theme-toggle">Dark / Light</button>
+       <a href="info.html" class="mob-plus" aria-label="Info">+</a>
     </nav>
 
-    <!-- EDITORIAL CONTENT -->
     <div class="info-content editorial">
-  <h1>Decent People Studio</h1>
-      <!-- INTRO BLOCK (more expressive) -->
-        <p id="meta">
-    YEAR: 2020-23<br>
-    ORG: Decent People <br>
-    ROLE: Co-founder & Designer
+      <h1>Decent People<br>Studio</h1>
+      <div class="project-meta-table">
+        <div class="project-meta-row">
+          <span class="project-meta-label">Year</span>
+          <span class="project-meta-value">2020–23</span>
+        </div>
+        <div class="project-meta-row">
+          <span class="project-meta-label">Org</span>
+          <span class="project-meta-value">Decent People</span>
+        </div>
+        <div class="project-meta-row">
+          <span class="project-meta-label">Role</span>
+          <span class="project-meta-value">Co-founder &amp;<br>Designer</span>
+        </div>
+        <div class="project-meta-row">
+          <span class="project-meta-label">ID</span>
+          <span class="project-meta-value">AS-UX23-005</span>
+        </div>
+      </div>
+    </div>
 
-  </p>
-     
-      <!-- PROJECT -->
-
-
-
-         </div>
+    <a class="project-back" href="index.html"
+       onclick="event.preventDefault(); history.length > 1 ? history.back() : window.location='index.html'">
+      ← Back to work
+    </a>
 
     <div class="wordmark">
       <span></span>
@@ -62,23 +67,19 @@
 
   </div>
 
-
   <!-- RIGHT PANEL -->
-  <div class="right">
-<img class="intro-img" src="img/studio.png">
+  <div class="right" id="project-right">
+
+    <img class="project-hero fade-in" src="img/studio.png" alt="Decent People Studio">
 
 
-<p class="intro-line">
- Co-founding a design studio focused on human-centered design practice
-</p>
+<p class="project-intro-text fade-in"> 
+    Co-founding a design studio focused on human-centered design practice</p>
 
- <img style="" src="img/believe.png" />
+<img class="project-image-full fade-in" style="" src="img/believe.png" />
 
-
-
-
-
-        <h2> Selected Work</h2>
+    <div class="project-section fade-in">
+<h2> Selected Work</h2>
 
 <p>A small studio supporting organisations through design sprints, workshops, UX research, and web and UI design.</p>
 
@@ -108,9 +109,12 @@
     A rapid-response solution developed with IBM to address critical healthcare needs during the 2020 pandemic.
   </li>
 </ul>
+    </div>
 
-  <img class="lastimg" src="img/feed.png">
-   <br><br>
+<img class="project-image-full fade-in" class="lastimg" src="img/feed.png">
+
+    <div class="project-section fade-in">
+<br><br>
 <h2>OFFERING</h2>
 <p>
 Our focus was on understanding real needs, testing early, and shaping ideas that made sense in the world they’d live in. Based on our clients needs and our observations of what was required in each process, we delivered:
@@ -134,60 +138,51 @@ Our focus was on understanding real needs, testing early, and shaping ideas that
   </li>
   
 </ul>
+    </div>
 
-
-
-
-        <img class="lastimg" src="img/dp.png"> 
+<img class="project-image-full fade-in" class="lastimg" src="img/dp.png">
 
   </div>
-  </div>
-
-
 
 </div>
 
-
 <script>
-// =====================
-// THEME TOGGLE 
-// =====================
-
+// THEME
 const toggle = document.getElementById('theme-toggle');
-
-// set initial theme from localStorage
-if (localStorage.getItem('theme') === 'dark') {
-  document.body.classList.add('dark');
-}
-
-// update label
+if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
 function updateThemeLabel() {
-  toggle.textContent = document.body.classList.contains('dark')
-    ? 'Mode: Dark'
-    : 'Mode: Light';
+  toggle.textContent = document.body.classList.contains('dark') ? 'Mode: Dark' : 'Mode: Light';
 }
-
-// click handler
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
-
-  // save preference
-  localStorage.setItem(
-    'theme',
-    document.body.classList.contains('dark') ? 'dark' : 'light'
-  );
-
+  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
   updateThemeLabel();
 });
-
-// run on load
 updateThemeLabel();
 
+// SCROLL PROGRESS
+const bar = document.getElementById('progress-bar');
+const scroller = document.getElementById('project-right');
+function updateProgress() {
+  const { scrollTop, scrollHeight, clientHeight } = scroller;
+  const pct = scrollHeight > clientHeight ? (scrollTop / (scrollHeight - clientHeight)) * 100 : 0;
+  bar.style.width = pct + '%';
+}
+if (scroller) scroller.addEventListener('scroll', updateProgress, { passive: true });
+window.addEventListener('scroll', () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  const pct = (scrollTop / (scrollHeight - clientHeight)) * 100;
+  bar.style.width = pct + '%';
+}, { passive: true });
+
+// FADE IN
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 
 </body>
 </html>
-
-
-
-
