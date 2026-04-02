@@ -133,7 +133,163 @@ body.dark #loader-type { color: #666; }
  
 body.dark #loader-line { background: #252520; }
 
-
+/* ── SCROLL PROGRESS ── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 1px;
+      width: 0%;
+      background: var(--text);
+      z-index: 9998;
+      opacity: 0.35;
+      transition: width 0.08s linear;
+    }
+ 
+    /* ── LEFT: META TABLE ── */
+    .project-meta-table {
+      display: flex;
+      flex-direction: column;
+      margin-top: 28px;
+    }
+ 
+    .project-meta-row {
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 0 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+    }
+    .project-meta-row:last-child { border-bottom: 1px solid var(--border); }
+ 
+    .project-meta-label {
+      font-family: var(--font);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+ 
+    .project-meta-value {
+      font-family: var(--font);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      line-height: 1.55;
+    }
+ 
+    /* ── LEFT: BACK LINK (desktop only) ── */
+    .project-back {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+      transition: color 0.2s;
+    }
+    .project-back:hover { color: var(--text); }
+ 
+    /* ── RIGHT: CONTENT BLOCKS ── */
+    .project-hero {
+     width: 100%;
+  display: block;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+    }
+ 
+    .project-intro-text {
+      font-family: var(--font);
+      font-size: clamp(16px, 2vw, 28px);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      padding: 44px 44px 0;
+      max-width: 760px;
+      opacity: 0.82;
+    }
+ 
+    .project-section {
+      padding: 48px 44px;
+  
+      max-width: 680px;
+    }
+ 
+    .project-section p {
+      font-family: var(--paragraph);
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--text);
+      opacity: 0.88;
+      margin-bottom: 18px;
+      padding: 0;
+      max-width: 100%;
+    }
+ 
+    .project-section p:last-child { margin-bottom: 0; }
+ 
+    .project-deliverables {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    .project-deliverables li {
+      font-family: var(--font);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .project-deliverables li:last-child { border-bottom: 1px solid var(--border); }
+    .project-deliverables li::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+ 
+    .project-image-full {
+      width: 100%;
+      display: block;
+    }
+ 
+    .project-video {
+      width: 100%;
+      display: block;
+    }
+ 
+    .project-rule {
+      height: 1px;
+      background: var(--border);
+      margin: 0 44px;
+    }
+ 
+    /* ── FADE IN ON SCROLL ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+ 
     /* ── LAYOUT ── */
     .layout {
       display: grid;
@@ -643,18 +799,37 @@ figure img {
 }
 
 
-.project-page .right video { width: 100%; margin-bottom: 80px;}
+.project-page .right video { width: 100%; margin-bottom: 0; }
 
-.project-page .right p {
-  padding: 20PX;
+/* old generic rule — only applies to p NOT inside new project-section blocks */
+.project-page .right p:not(.project-intro-text):not(.project-section p) {
+  padding: 20px;
   line-height: 1.4;
   color: var(--text);
- margin-bottom: 20px;
- font-family: var(--paragraph);
- opacity: 0.9;
-font-size: 14px;
- max-width: 70%;
+  margin-bottom: 20px;
+  font-family: var(--paragraph);
+  opacity: 0.9;
+  font-size: 14px;
+  max-width: 70%;
+}
 
+/* new project-intro-text — override padding/max-width */
+.project-page .right .project-intro-text {
+  padding: 44px 44px 0;
+  max-width: 760px;
+  font-size: clamp(16px, 2vw, 28px);
+  line-height: 1.3;
+  opacity: 0.82;
+}
+
+/* new project-section paragraphs — clean slate */
+.project-page .right .project-section p {
+  padding: 0;
+  max-width: 100%;
+  font-size: 14.5px;
+  line-height: 1.7;
+  opacity: 0.88;
+  margin-bottom: 18px;
 }
 
 #upp {
@@ -678,8 +853,8 @@ font-size: 14px;
 .project-page .right img {
   width: 100%;
   display: block;
-  padding-bottom: 80px;
-  padding-top: 40px;
+  padding-bottom: 0px;
+  padding-top: 0px;
 }
 
 
@@ -755,6 +930,22 @@ font-size: 40px !important;
     grid-template-columns: 1fr;
     height: auto;
   }
+
+    .project-back { display:none; }
+ 
+      .project-hero { height: 60vh; }
+ 
+      .project-intro-text {
+        font-size: 17px;
+        padding: 28px 20px 0;
+      }
+
+      #notshow {
+        display: none;
+
+      }
+ 
+   
 
   .left, .right {
     height:auto;
@@ -1045,7 +1236,7 @@ opacity: 0.85;
 
         .info-content {
   padding: 20px;
-  padding-top: 20px;
+  padding-top: 0px;
   display: flex;
   flex-direction: column;
   gap: 10px;
