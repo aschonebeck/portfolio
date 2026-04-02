@@ -873,7 +873,7 @@ strong {
     grid-row: 2;
     white-space: normal;
     line-height: 1.4;
-      font-size: 12px;
+      font-size: 12.5px;
   letter-spacing: 0.04em;
   }
 
@@ -1099,7 +1099,7 @@ opacity: 0.85;
   .view-btn {
     background: none; border: none;
     font-family: var(--font);
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
@@ -1142,6 +1142,13 @@ opacity: 0.85;
     to   { opacity: 1; transform: translateY(0); }
   }
 
+
+  #theme-toggle {
+      background: none; border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 12px;
+    }
   /* hide desktop filter row on mobile */
   .filter-row { display: none; }
 
@@ -1165,8 +1172,8 @@ opacity: 0.85;
 
 
   .project-list.grid-view li {
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    border-right: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
     animation: none;
     opacity: 1;
   }
@@ -1229,6 +1236,7 @@ opacity: 0.85;
     color: var(--text);
     white-space: normal;
     line-height: 1.4;
+    padding-bottom: 10px;
     letter-spacing: 0.03em;
     max-width: 80%;
   }
