@@ -702,6 +702,8 @@ figcaption {
 padding-left: 20px;
 padding-right: 20px;
 opacity: 0.8;
+font-size: 12px;
+text-transform: uppercase;
 padding-bottom:60px;}
 
 figure img {
@@ -1202,6 +1204,7 @@ strong {
   font-weight: 400;
   max-width: 90%;
   padding-top: 20px;
+ 
 }
 
 
@@ -1298,6 +1301,7 @@ opacity: 0.85;
         .info-content {
   padding: 20px;
   padding-top: 0px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1501,5 +1505,16 @@ opacity: 0.85;
   .project-list.grid-view .project-item > .project-year {
     display: none;
   }
+
+
+    blockquote {
+      padding:20px;
+      font-family: var(--font);
+      font-size: 18px;
+      color: var(--text);
+      max-width: 95%;
+      opacity: 0.9;
+      padding-bottom: 20px;
+    }
 
 }
