@@ -35,6 +35,8 @@
 
     <div class="info-content editorial">
       <h1>Zsongo<br>World Events</h1>
+
+
       <div class="project-meta-table">
         <div class="project-meta-row">
           <span class="project-meta-label">Year</span>
@@ -92,13 +94,12 @@ Though rooted in Madrid, Zsongo hosts events around the globe and is all about c
     <div class="project-section fade-in">
 
 
-          <div class="project-section fade-in">
       <ul class="project-deliverables">
-        <li>Designed and built the website in Webflow, translating Zsongo’s visual identity into a responsive web</li>
-        <li>Defined the visual structure, typography, spacing and composition to create a site that feels dynamic, expressive, and aligned with the culture-driven events.</li>
-        <li>Integrated animated and visuals to add energy and movement.</li>
-        <li>Optimised layouts and assets for desktop and mobile to ensure consistency and usability across screen sizes.</li>
-        <li>From concept to launch within 5 weeks - combining aesthetics, functionality, and technical constraints.</li>
+        <li>Translated Zsongo’s visual identity into a responsive web</li>
+        <li>Visual structure, typography, spacing and composition to create a site that feels dynamic and aligned with the culture-driven events</li>
+        <li>Integrated animated and visuals to add energy and movement</li>
+        <li>Optimised layouts and assets for desktop and mobile to ensure usability across screen sizes</li>
+        <li>From concept to launch within 5 weeks timeframe</li>
       </ul>
     </div>
 
@@ -146,6 +147,66 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.06 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+const metaTable = document.querySelector('.project-meta-table');
+let lastScroll = 0;
+let timeout;
+
+function collapseMeta() {
+  if (metaTable.classList.contains('hidden')) return;
+
+  // lock current height
+  const height = metaTable.offsetHeight;
+  metaTable.style.height = height + 'px';
+
+  // force reflow
+  metaTable.offsetHeight;
+
+  // animate to 0
+  metaTable.classList.add('collapsing');
+
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    metaTable.classList.add('hidden');
+    metaTable.classList.remove('collapsing');
+    metaTable.style.height = '';
+  }, 250);
+}
+
+function expandMeta() {
+  if (!metaTable.classList.contains('hidden')) return;
+
+  metaTable.classList.remove('hidden');
+
+  const height = metaTable.scrollHeight;
+  metaTable.style.height = '0px';
+
+  // force reflow
+  metaTable.offsetHeight;
+
+  metaTable.style.height = height + 'px';
+
+  setTimeout(() => {
+    metaTable.style.height = '';
+  }, 250);
+}
+
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth <= 768;
+  if (!isMobile || !metaTable) return;
+
+  const scrollY = window.scrollY;
+  const delta = scrollY - lastScroll;
+
+  if (scrollY > 400) {
+    if (delta > 5) collapseMeta();
+    else if (delta < -5) expandMeta();
+  } else {
+    expandMeta();
+  }
+
+  lastScroll = scrollY;
+});
+
 </script>
 
 </body>

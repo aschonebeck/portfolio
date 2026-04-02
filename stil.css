@@ -150,6 +150,7 @@ body.dark #loader-line { background: #252520; }
       display: flex;
       flex-direction: column;
       margin-top: 28px;
+
     }
  
     .project-meta-row {
@@ -324,7 +325,7 @@ body.dark #loader-line { background: #252520; }
 
     #abopic {
   display: block;
-  filter: invert(100);
+ 
 }
 
 
@@ -1103,6 +1104,21 @@ strong {
     font-size: 10px;
     color: var(--muted);
   }
+
+
+
+.project-meta-table {
+  overflow: hidden;
+  transition: height 0.25s ease;
+}
+
+.project-meta-table.collapsing {
+  height: 0 !important;
+}
+
+.project-meta-table.hidden {
+  display: none;
+}
 
   .project-title {
     grid-column: 1 / -1;
