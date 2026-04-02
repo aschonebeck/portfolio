@@ -489,7 +489,8 @@ body.dark #loader-line { background: #252520; }
       font-size: 20px;
       color: var(--text);
       max-width: 80%;
-      opacity: 0.9;
+      opacity: 0.8;
+      line-height: 1.5;
       padding-bottom: 40px;
     }
 
@@ -638,7 +639,7 @@ body.dark #loader-line { background: #252520; }
       text-transform: uppercase;
       color: var(--muted);
       font-family: var(--font);
-      font-weight: 400;
+      font-weight: 400;     text-align: right;
       padding-bottom: 4px;
     }
 
