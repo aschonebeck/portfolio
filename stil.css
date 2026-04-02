@@ -6,10 +6,14 @@
       --muted: #888;
       --border: #ccc;
       --font: 'Space Mono', monospace;
-      --paragraph: 'Space Grotesk', sans-serif;
+      --paragraph: 'Space Mono';
      
     }
 
+  
+p {
+  font-style: italic;
+}
 
 
     body.dark {
@@ -210,10 +214,12 @@ body.dark #loader-line { background: #252520; }
       font-family: var(--font);
       font-size: clamp(16px, 2vw, 28px);
       line-height: 1.3;
+      font-style: ;
       letter-spacing: -0.01em;
       color: var(--text);
       padding: 44px 44px 0;
-  margin-bottom: 44px;
+  margin-top: 20px;
+  margin-bottom: 64px;
       max-width: 760px;
       opacity: 0.82;
     }
@@ -750,14 +756,14 @@ figure img {
   text-align: left;
   margin-bottom: 15px;
 
-  font-size: 13.5px;
+  font-size: 13px;
 }
 
 .cv-row {
   margin-top: 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid var(--border);
-    font-family: var(--paragraph);
+    font-family: var(--font);
 
 }
 
@@ -769,7 +775,7 @@ figure img {
 }
 
 .cv-content {
-  font-size: 12 !important;
+  font-size: 11 !important;
 
    float: right;
    opacity: 0.9;
@@ -791,7 +797,7 @@ figure img {
   max-width: 100%;
   margin-top: 0;   /* ändra från 60px till 0 */
   padding-bottom: 20px;
-  font-size: 13.5px;
+  font-size: 12.5px;
   padding-top: 20px;
 }
 
@@ -809,6 +815,7 @@ figure img {
 .project-page h1 {
   font-weight: 400;
   max-width: 60%;
+
   padding-top: 0px;
   letter-spacing: -0.5px;
   font-family: var(--font);
@@ -971,7 +978,14 @@ font-size: 40px !important;
 
       }
  
-   
+   .cv {
+    font-size: 13px;
+    letter-spacing: -0.5px;
+   }
+
+   .cv-year {
+    font-size: 13px;
+   }
 
   .left, .right {
     height:auto;
@@ -1033,7 +1047,7 @@ font-size: 40px !important;
   }
 
   .about {
-    padding-top: 20px;
+    padding-top: 40px;
   }
 
 
@@ -1204,7 +1218,7 @@ strong {
   font-weight: 400;
   max-width: 90%;
   padding-top: 20px;
- 
+
 }
 
 
@@ -1292,7 +1306,7 @@ opacity: 0.85;
 
     .kontakt a {
       display: block;
-      margin-top: 5px;
+      margin-top: 7px;
       font-size: 13px;
       color: var(--muted);
       font-family: var(--font);
