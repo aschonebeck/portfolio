@@ -752,6 +752,8 @@ figure img {
 
 .cv-row {
   margin-top: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border);
     font-family: var(--paragraph);
 
 }
@@ -759,7 +761,20 @@ figure img {
 .cv-year {
   font-family: var(--font);
   color: var(--muted);
-   font-size: 13.5px;
+   font-size: 13px;
+
+}
+
+.cv-content {
+  font-size: 12 !important;
+
+   float: right;
+   opacity: 0.9;
+
+}
+
+.cv-content span {
+    text-transform: uppercase;
 }
 
 .cv-panel {
@@ -1251,7 +1266,7 @@ opacity: 0.85;
 
 
   .kontakt {
-      padding-top: 5px;
+      padding-top: 0px;
         font-family: var(--font);
 
     }
