@@ -989,6 +989,7 @@ font-size: 40px !important;
       .project-intro-text {
         font-size: 20px !important;
         padding: 28px 20px 0;
+        font-family: 'Space Mono' !important;
       }
 
       #notshow {
@@ -1056,7 +1057,8 @@ font-size: 40px !important;
 
   .project-page .wordmark { display: none; }
 
-  .wordmark { border:0px; }
+  .wordmark { border:1px;  
+      padding: 25px 20px; }
 
 .abo_body .wordmark {
    border-top: 1px solid var(--border);
@@ -1527,7 +1529,7 @@ opacity: 0.85;
     color: var(--text);
     white-space: normal;
     line-height: 1.4;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
     letter-spacing: 0.03em;
     max-width: 80%;
   }
