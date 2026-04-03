@@ -6,17 +6,17 @@
       --muted: #888;
       --border: #ccc;
       --font: 'Space Mono', monospace;
-      --paragraph: 'Space Mono';
+      --paragraph: 'Space Grotesk';
      
     }
 
   
 .project-section p {
-  font-family: 'Space Mono', monospace;
-  font-style: italic;
+  font-family: 'Space Grotesk';
+  font-style:;
   font-size: 16px !important;
   line-height: 1.78 !important;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.017em;
   word-spacing: 0.02em;
   max-width: 58ch;
 }
@@ -987,7 +987,7 @@ font-size: 40px !important;
       .project-hero { height: 60vh; }
  
       .project-intro-text {
-        font-size: 20px;
+        font-size: 20px !important;
         padding: 28px 20px 0;
       }
 
