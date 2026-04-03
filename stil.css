@@ -285,8 +285,9 @@ body.dark #loader-line { background: #252520; }
  
     .project-video {
       width: 100%;
-      padding-top: 40px;
+      padding-top: 20px;
       display: block;
+
     }
  
     .project-rule {
@@ -846,7 +847,7 @@ figure img {
 }
 
 
-.project-page .right video { width: 100%; margin-bottom: 0; padding-top: 60px;}
+.project-page .right video { width: 100%; }
 
 .project-intro-text a {
   color: var(--text);
