@@ -999,6 +999,7 @@ font-size: 40px !important;
    .cv {
     font-size: 13px;
     letter-spacing: -0.5px;
+    padding-bottom: 40px;
    }
 
    .cv-year {
