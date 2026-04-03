@@ -812,7 +812,7 @@ figure img {
 
 .cv {
   max-width: 100%;
-  margin-top: 0;   /* ändra från 60px till 0 */
+  margin-top: 40px;   /* ändra från 60px till 0 */
   padding-bottom: 20px;
   font-size: 12.5px;
   padding-top: 20px;
