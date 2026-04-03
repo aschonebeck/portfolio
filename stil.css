@@ -12,7 +12,13 @@
 
   
 p {
+  font-family: 'Space Mono', monospace;
   font-style: italic;
+  font-size: 17px;
+  line-height: 1.78;
+  letter-spacing: -0.015em;
+  word-spacing: 0.02em;
+  max-width: 58ch;
 }
 
 
@@ -153,7 +159,7 @@ body.dark #loader-line { background: #252520; }
     .project-meta-table {
       display: flex;
       flex-direction: column;
-      margin-top: 28px;
+      margin-top: 20px;
 
     }
  
@@ -818,7 +824,7 @@ figure img {
 .project-page h1 {
   font-weight: 400;
   max-width: 60%;
-
+  padding-bottom: 5px;
   padding-top: 0px;
   letter-spacing: -0.5px;
   font-family: var(--font);
@@ -973,7 +979,7 @@ font-size: 40px !important;
       .project-hero { height: 60vh; }
  
       .project-intro-text {
-        font-size: 17px;
+        font-size: 20px;
         padding: 28px 20px 0;
       }
 
@@ -1265,8 +1271,8 @@ strong {
 }
 
 #abopic {
-
-  display: inline-block;
+  
+  display: block;
 }
 
 
