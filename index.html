@@ -48,7 +48,7 @@
 
   <div class="loader-ui">
          <span class="nav-brand"><a href="#">A.Schönebeck</a></span>
-    <div class="progress-text">LOADING PROJECTS <span id="count">1</span>/8</div>
+    <div class="progress-text"><span>Loading</span> <span id="count">1</span> / 8</div>
     <div class="progress-bar">
       <div class="progress-fill"></div>
     </div>
@@ -191,7 +191,7 @@
     <div class="wordmark">
     <span>    <div class="kontakt">
         <a target="blank" href="https://www.linkedin.com/in/amandaschonebeck">LinkedIn</a>
-     <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
+     <a href="/cdn-cgi/l/email-protection#bddcd0dcd3d9dc93ceded5d2d3d8dfd8ded6fddad0dcd4d193ded2d0">Email</a>
      </div></span>
       <span class="wordmark-sub"> ©2026<br>Stockholm, SWE</span>
     </div>
@@ -223,7 +223,7 @@
   <img src="img/h.jpg">
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // =====================
 // THEME TOGGLE 
 // =====================
@@ -496,44 +496,46 @@ if (window.innerWidth <= 768) {
 </script>
 
 <script>
-const thumbs = document.querySelectorAll('.thumb');
-const progressFill = document.querySelector('.progress-fill');
-const countEl = document.getElementById('count');
+(function () {
+  const loader       = document.querySelector('.loader');
+  const thumbs       = document.querySelectorAll('.thumb');
+  const progressFill = document.querySelector('.progress-fill');
+  const countEl      = document.getElementById('count');
 
-let current = 0;
-const total = thumbs.length;
+  // prevent body scroll while loader is running
+  document.body.classList.add('loading');
 
-function activateNext() {
-  // remove active from all
-  thumbs.forEach(t => t.classList.remove('active'));
+  let current = 0;
+  const total = thumbs.length;
 
-  // activate current
-  thumbs[current].classList.add('active');
+  function activateNext() {
+    thumbs.forEach(t => t.classList.remove('active'));
+    thumbs[current].classList.add('active');
 
-  // update progress
-  const progress = ((current + 1) / total) * 100;
-  progressFill.style.width = progress + '%';
+    // update progress bar
+    const pct = ((current + 1) / total) * 100;
+    progressFill.style.width = pct + '%';
 
-  // update text
-  countEl.textContent = current + 1;
+    // update counter
+    countEl.textContent = current + 1;
 
-  current++;
+    current++;
 
-  if (current < total) {
-    setTimeout(activateNext, 600); // timing controls rhythm
-  } else {
-    // DONE → transition out loader
-    setTimeout(() => {
-      document.querySelector('.loader').style.opacity = 0;
-      document.querySelector('.loader').style.pointerEvents = 'none';
-    }, 800);
+    if (current < total) {
+      setTimeout(activateNext, 560);
+    } else {
+      // sequence complete — hold briefly, then fade out
+      setTimeout(() => {
+        loader.classList.add('done');
+        document.body.classList.remove('loading');
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 520); // matches transition duration
+      }, 400);
+    }
   }
-}
 
-// start
-activateNext();
+  // slight delay before starting so first frame is visible
+  setTimeout(activateNext, 120);
+})();
 </script>
-
-
-</body>
-</html>

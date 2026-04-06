@@ -114,6 +114,7 @@
 
 .progress-text {
   color: var(--muted);
+  text-transform: uppercase;
 }
 
 
