@@ -32,7 +32,28 @@
 
 
 
+<div class="loader">
 
+  <div class="loader-grid">
+    <img src="img/at.jpg" class="thumb active" />
+    <img src="img/fz.jpg" class="thumb" />
+    <img src="img/z.jpg" class="thumb" />
+    <img src="img/obje.png" class="thumb" />
+      <img src="img/studio.png" class="thumb" />
+      <img src="img/dreamsapp_.png" class="thumb" />
+           <img src="img/humane1.jpg" class="thumb" />
+              <img src="img/works.jpg" class="thumb" />
+    <!-- etc -->
+  </div>
+
+  <div class="loader-ui">
+    <div class="progress-text">LOADING PROJECTS <span id="count">1</span> / 8</div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+
+</div>
 
 <div class="layout">
 
@@ -471,6 +492,45 @@ if (window.innerWidth <= 768) {
  
 }
 
+</script>
+
+<script>
+const thumbs = document.querySelectorAll('.thumb');
+const progressFill = document.querySelector('.progress-fill');
+const countEl = document.getElementById('count');
+
+let current = 0;
+const total = thumbs.length;
+
+function activateNext() {
+  // remove active from all
+  thumbs.forEach(t => t.classList.remove('active'));
+
+  // activate current
+  thumbs[current].classList.add('active');
+
+  // update progress
+  const progress = ((current + 1) / total) * 100;
+  progressFill.style.width = progress + '%';
+
+  // update text
+  countEl.textContent = current + 1;
+
+  current++;
+
+  if (current < total) {
+    setTimeout(activateNext, 600); // timing controls rhythm
+  } else {
+    // DONE → transition out loader
+    setTimeout(() => {
+      document.querySelector('.loader').style.opacity = 0;
+      document.querySelector('.loader').style.pointerEvents = 'none';
+    }, 800);
+  }
+}
+
+// start
+activateNext();
 </script>
 
 
