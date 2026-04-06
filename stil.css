@@ -1530,12 +1530,12 @@ opacity: 0.85;
 
 .thumb {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   object-fit: cover;
   transform: scale(1);
   transition: transform 0.6s ease, opacity 0.6s ease;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 /* active one grows */
@@ -1543,6 +1543,25 @@ opacity: 0.85;
   transform: scale(2) translate(-10%, -10%);
   opacity: 1;
   z-index: 2;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 9999; /* critical */
+
+  background: #eee;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  padding-bottom: 80px;
+
+  pointer-events: all;
 }
 
 
