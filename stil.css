@@ -351,7 +351,7 @@ body.dark #loader-line { background: #252520; }
 
     .nav-links a, .nav-brand {
       font-family: var(--font);
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text);
@@ -460,7 +460,7 @@ body.dark #loader-line { background: #252520; }
       background: none; border: none;
       cursor: pointer;
       font-family: var(--font);
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
@@ -530,7 +530,7 @@ body.dark #loader-line { background: #252520; }
       gap: 0 12px;
       padding: 8px 20px;
       border-bottom: 1px solid var(--border);
-      font-size: 10.5px;
+      font-size: 11.5px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
@@ -583,7 +583,7 @@ body.dark #loader-line { background: #252520; }
     .project-item[data-hidden="true"] { display: none; }
 
     .project-id {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.06em;
       color: var(--muted);
       transition: color 0.12s;
@@ -593,7 +593,7 @@ body.dark #loader-line { background: #252520; }
     .project-item.focused .project-id { color: var(--bg); opacity: 0.6; }
 
     .project-title {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -602,7 +602,7 @@ body.dark #loader-line { background: #252520; }
     }
 
     .project-type {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       text-align: right;
@@ -615,7 +615,7 @@ body.dark #loader-line { background: #252520; }
 
 
     .project-year {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.06em;
       text-align: right;
       color: var(--muted);
