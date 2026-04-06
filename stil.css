@@ -72,7 +72,7 @@
 .thumb {
   position: absolute;
   width: 80px;
-  height: 80px;
+  height: 100px;
   object-fit: cover;
   transform: scale(1);
   transition: transform 0.6s ease, opacity 0.6s ease;
@@ -81,7 +81,7 @@
 
 /* active one grows */
 .thumb.active {
-  transform: scale(3) translate(-10%, -10%);
+  transform: scale(2.5) translate(-10%, -10%);
   opacity: 1;
   z-index: 2;
 }
