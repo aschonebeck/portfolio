@@ -1603,12 +1603,22 @@ opacity: 0.85;
 }
 
 
+.loader-skip {
+  font-size: 11.5px;
+  padding-top: 0px;
+}
+
+
 .progress-bar {
   height: 4px;
   background: #ccc;
   margin-top: 10px;
+  margin-bottom: 20px;
 
-  margin-bottom: 40px;
+}
+
+.loader .nav-brand {
+  top: 25px;
 }
 
 
