@@ -506,14 +506,12 @@ if (window.innerWidth <= 768) {
   const countEl      = document.getElementById('count');
   const skipBtn      = document.getElementById('loader-skip');
 
-  // ── Only show once per session ──
   if (sessionStorage.getItem('loaderSeen')) {
     loader.style.display = 'none';
     document.body.classList.remove('loading');
     return;
   }
   sessionStorage.setItem('loaderSeen', '1');
-
   document.body.classList.add('loading');
 
   let current = 0;
@@ -534,23 +532,32 @@ if (window.innerWidth <= 768) {
   function activateNext() {
     thumbs.forEach(t => t.classList.remove('active'));
     thumbs[current].classList.add('active');
-
     const pct = ((current + 1) / total) * 100;
     progressFill.style.width = pct + '%';
     countEl.textContent = current + 1;
-
     current++;
-
     if (current < total) {
       timer = setTimeout(activateNext, 450);
     } else {
-      timer = setTimeout(dismissLoader, 250);
+      timer = setTimeout(dismissLoader, 600);
     }
   }
 
   skipBtn.addEventListener('click', dismissLoader);
 
-  timer = setTimeout(activateNext, 120);
+  // ── WAIT FOR ALL THUMBS TO LOAD BEFORE STARTING ──
+  const imagePromises = Array.from(thumbs).map(img => {
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise(resolve => {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true }); // fail gracefully
+    });
+  });
+
+  Promise.all(imagePromises).then(() => {
+    activateNext();
+  });
+
 })();
 </script>
 
