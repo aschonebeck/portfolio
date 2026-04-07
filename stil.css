@@ -1378,7 +1378,7 @@ opacity: 0.85;
         .info-content {
   padding: 20px;
   padding-top: 0px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   display: flex;
   flex-direction: column;
   gap: 10px;
