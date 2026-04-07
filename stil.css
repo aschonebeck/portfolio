@@ -1102,8 +1102,7 @@ strong {
       font-family: var(--font);
       font-size: 11px;
       width: 100%;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.05em;
       color: var(--text);
       padding: 12px 0;
       border-top: 1px solid var(--border);
