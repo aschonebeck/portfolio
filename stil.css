@@ -1588,7 +1588,8 @@ opacity: 0.85;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  padding-bottom: 20px;
+  height: 100dvh;
+  padding-bottom: 40px;
 }
 
 
