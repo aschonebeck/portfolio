@@ -498,7 +498,6 @@ if (window.innerWidth <= 768) {
 
 </script>
 
-
 <script>
 (function () {
   const loader       = document.querySelector('.loader');
@@ -506,16 +505,23 @@ if (window.innerWidth <= 768) {
   const progressFill = document.querySelector('.progress-fill');
   const countEl      = document.getElementById('count');
   const skipBtn      = document.getElementById('loader-skip');
- 
+
+  // ── Only show once per session ──
+  if (sessionStorage.getItem('loaderSeen')) {
+    loader.style.display = 'none';
+    document.body.classList.remove('loading');
+    return;
+  }
+  sessionStorage.setItem('loaderSeen', '1');
+
   document.body.classList.add('loading');
- 
+
   let current = 0;
   const total = thumbs.length;
   let timer = null;
- 
+
   function dismissLoader() {
     if (timer) clearTimeout(timer);
-    // fill bar to 100% instantly on skip
     progressFill.style.transition = 'width 0.25s ease';
     progressFill.style.width = '100%';
     setTimeout(() => {
@@ -524,30 +530,29 @@ if (window.innerWidth <= 768) {
       setTimeout(() => { loader.style.display = 'none'; }, 520);
     }, 200);
   }
- 
+
   function activateNext() {
     thumbs.forEach(t => t.classList.remove('active'));
     thumbs[current].classList.add('active');
- 
+
     const pct = ((current + 1) / total) * 100;
     progressFill.style.width = pct + '%';
     countEl.textContent = current + 1;
- 
+
     current++;
- 
+
     if (current < total) {
       timer = setTimeout(activateNext, 560);
     } else {
       timer = setTimeout(dismissLoader, 400);
     }
   }
- 
+
   skipBtn.addEventListener('click', dismissLoader);
- 
+
   timer = setTimeout(activateNext, 120);
 })();
 </script>
-
 
 </body>
 </html>
