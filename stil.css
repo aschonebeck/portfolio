@@ -12,14 +12,14 @@
 
   
 .project-section p {
-  font-family: 'Space Grotesk';
-  font-style:;
-  font-size: 16px !important;
-  line-height: 1.78 !important;
-  letter-spacing: -0.022em;
-  word-spacing: 0.02em;
-  max-width: 58ch;
+ font-size: 16px;
+  color: var(--text);
+  max-width: 95%;
+  line-height: 1.78;        /* was 1.1 — this was killing it */
+  font-family: var(--paragraph);
 }
+
+
 
 
     body.dark {
@@ -270,7 +270,7 @@
     .project-deliverables li {
       font-family: var(--font);
       font-size: 11px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.02em;
       text-transform: ;
       color: var(--text);
       padding: 12px 0;
@@ -1589,7 +1589,7 @@ opacity: 0.85;
   justify-content: space-between;
   padding: 20px;
   height: 100dvh;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 
 
