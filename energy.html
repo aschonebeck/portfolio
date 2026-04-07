@@ -26,16 +26,15 @@
     <nav class="top-nav">
       <span class="nav-brand"><a href="index.html">A.Schönebeck</a></span>
       <div class="nav-links nav-links--desktop">
-             <a href="index.html" >Work</a>
+        <a href="index.html">Work</a>
         <a href="info.html">Info</a>
-   
       </div>
       <button id="theme-toggle">Dark / Light</button>
       <a href="info.html" class="mob-plus" aria-label="Info">+</a>
     </nav>
 
     <div class="info-content editorial">
-      <h1> Energy as<br>Experience</h1>
+      <h1>Energy as<br>Experience</h1>
       <div class="project-meta-table">
         <div class="project-meta-row">
           <span class="project-meta-label">Year</span>
@@ -74,53 +73,48 @@
     <img class="project-hero fade-in" src="img/energia.jpg" alt="Energy as Experience">
 
     <p class="project-intro-text fade-in">
-    Re-thinking our relationship<br>
-with energy</p>
+    Re-thinking our relationship<br>with energy</p>
 
     <div class="project-section fade-in">
 <p>
-This project explores how design can help households navigate new energy pricing models, including power-based tariffs and real-time feedback. Developed in collaboration with KTH, Uppsala University, Ellevio, Bright, and funded by the Swedish Energy Agency.
+Energy is invisible until it needs attention. This research project asked what it would take for people to actually understand, and act on, their energy use in real time.
 <br><br>
-Rather than treating energy flexibility as a purely technical issue, the work reframes it as a question of design and perception — how people understand energy, cost and climate impact in everyday life.
+Working at KTH and partnering with Uppsala University, Ellevio, and Bright, funded by the Swedish Energy Agency, the project investigated how design can help households navigate new pricing models, including power-based tariffs, without requiring someone to become an energy experts.
 <br><br>
-Through interviews, workshops and usability testing with consumers and prosumers, I developed and tested concepts for real-time feedback, spanning digital interfaces and ambient, physical visualisations.</p>
+Rather than treating flexibility as a technical problem to solve, this project reframed it as a question of perception: how do people understand energy, cost, and climate impact in the context of everyday life? Through interviews, workshops, and usability testing with both consumers and prosumers, I developed and tested concepts spanning digital interfaces and ambient, physical visualisations.
+</p>
     </div>
 
-<img class="project-image-full fade-in" style="filter: saturate(0);" src="img/elwork2.jpg" />
+    <img class="project-image-full fade-in" src="img/post.jpg" />
 
     <div class="project-section fade-in">
-<h2>DESIGN PROCESS</h2>
+<h2>WHAT WE LEARNED</h2>
 <p>
-My contribution focused on user research, facilitating workshops and concept development - helping translate energy systems into solutions that considers everyday life contexts - rather than fighting them. Some of the insights from the research were:
+My contribution focused on user research, facilitated workshops and concept development - translating energy systems into design solutions that fit around everyday life rather than demanding changes to it. Key findings from the research:
 </p>
   <ul class="project-deliverables">
-        <li>Households are primarily motivated by economic effects, while climate impact is often perceived as a positive 'side effect'.</li>
-        <li>Broken down real-time feedback (showing how specific activities affect usage) has the strongest effects on behaviour.</li>
-        <li>The distinction between energy (kWh) and power (kW) is poorly understood and requires careful design to avoid misinterpretation.</li>
-        <li>Comparisons work best when based on a household’s own historical data, rather than comparisons with other households.</li>
-        <li>Feedback must be personal, coordinated and actionable to be effective.</li>
+        <li>Households are primarily motivated by economic effects. Climate impact is real but tends to register as a positive side effect, not a primary driver.</li>
+        <li>Granular real-time feedback — showing how specific activities affect usage — has the strongest influence on behaviour.</li>
+        <li>The distinction between energy (kWh) and power (kW) is poorly understood and requires careful framing to avoid confusion and disengagement.</li>
+        <li>Comparisons are most effective when based on a household's own historical data, not benchmarks against other households.</li>
+        <li>Feedback must be personal, coordinated, and actionable to stick.</li>
       </ul>
 
-
-<br>
-<br><br><p>
-Based on these insights, I developed concepts to meet user needs and behaviours, this resulted in prototypes that later were tested.
-
+<br><br>
+<p>
+These insights shaped the concept development phase - designed to meet users where they actually are, not where energy systems assume they should be.
 </p>
     </div>
 
 <figure>
   <img class="project-image-full fade-in" src="img/mob_kth.png">
-
-  <figcaption>[PROTOTYPE]<br><br>PART OF APP CONCEPT FOR PROSUMERS </figcaption>
+  <figcaption>[PROTOTYPE] — App concept for prosumers. Surfaces real-time consumption data in a way that connects usage to specific household activities.</figcaption>
 </figure>
 
 <figure>
   <img class="project-image-full fade-in" src="img/load.gif">
-  <figcaption>[PROTOTYPE] <br><br>Lamp visualising the load of the power grid by shifting intensity/color </figcaption>
+  <figcaption>[PROTOTYPE] — Ambient lamp that communicates grid load through shifts in light intensity and colour. Designed to make energy visible as a signal in the household - no screen required.</figcaption>
 </figure>
-
-
 
   </div>
 
@@ -155,12 +149,7 @@ window.addEventListener('scroll', () => {
   bar.style.width = pct + '%';
 }, { passive: true });
 
-
-
-
-// ============================
-// FADE IN (unchanged)
-// ============================
+// FADE IN
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -172,17 +161,14 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-
-// ============================
 // PROJECT META STATE MACHINE
-// ============================
 const metaTable = document.querySelector('.project-meta-table');
 
 let lastScrollY = window.scrollY;
 let lastScrollTime = Date.now();
 
 let velocity = 0;
-let direction = 0; // -1 up, 1 down, 0 idle
+let direction = 0;
 
 let state = "TOP";
 
@@ -191,25 +177,18 @@ let downAccumulator = 0;
 
 let lock = false;
 
-// TUNING VALUES (adjust these first if needed)
-const EDGE_TOP = 250;              // zone where meta is always visible
-const VELOCITY_SMOOTHING = 0.15;   // smoothing factor
+const EDGE_TOP = 250;
+const VELOCITY_SMOOTHING = 0.15;
 const SCROLL_INTENT_THRESHOLD = 200;
-const IDLE_TIME = 120;             // ms before considered "reading"
+const IDLE_TIME = 120;
 
-
-// ============================
-// UI ACTIONS
-// ============================
 function collapseMeta() {
   if (!metaTable || metaTable.classList.contains('hidden') || lock) return;
   lock = true;
 
   const height = metaTable.offsetHeight;
   metaTable.style.height = height + 'px';
-
-  metaTable.offsetHeight; // force reflow
-
+  metaTable.offsetHeight;
   metaTable.classList.add('collapsing');
 
   setTimeout(() => {
@@ -228,9 +207,7 @@ function expandMeta() {
 
   const height = metaTable.scrollHeight;
   metaTable.style.height = '0px';
-
-  metaTable.offsetHeight; // force reflow
-
+  metaTable.offsetHeight;
   metaTable.style.height = height + 'px';
 
   setTimeout(() => {
@@ -239,30 +216,18 @@ function expandMeta() {
   }, 250);
 }
 
-
-// ============================
-// STATE MACHINE
-// ============================
 function updateState(scrollY) {
   const now = Date.now();
   const deltaTime = now - lastScrollTime;
-
   const deltaY = scrollY - lastScrollY;
 
-  // velocity smoothing
   const instantVelocity = deltaTime > 0 ? deltaY / deltaTime : 0;
   velocity = velocity * (1 - VELOCITY_SMOOTHING) + instantVelocity * VELOCITY_SMOOTHING;
 
-  // direction
   if (Math.abs(deltaY) > 1) {
     direction = deltaY > 0 ? 1 : -1;
   }
 
-  // ============================
-  // STATE LOGIC
-  // ============================
-
-  // 1. TOP state (always visible)
   if (scrollY < EDGE_TOP) {
     state = "TOP";
     expandMeta();
@@ -270,36 +235,28 @@ function updateState(scrollY) {
     return;
   }
 
-  // 2. Idle / reading detection
   const isIdle = deltaTime > IDLE_TIME && Math.abs(velocity) < 0.05;
 
   if (isIdle) {
     state = "READING";
-    // reading = stable UI, do nothing
     resetAccumulators();
     return;
   }
 
-  // 3. DOWNWARD movement
   if (direction === 1) {
     state = "DESCENDING";
-
     downAccumulator += Math.abs(deltaY);
     upAccumulator = 0;
-
     if (downAccumulator > SCROLL_INTENT_THRESHOLD) {
       collapseMeta();
       downAccumulator = 0;
     }
   }
 
-  // 4. UPWARD movement
   if (direction === -1) {
     state = "REVISITING";
-
     upAccumulator += Math.abs(deltaY);
     downAccumulator = 0;
-
     if (upAccumulator > SCROLL_INTENT_THRESHOLD) {
       expandMeta();
       upAccumulator = 0;
@@ -310,26 +267,16 @@ function updateState(scrollY) {
   lastScrollTime = now;
 }
 
-
-// ============================
-// HELPERS
-// ============================
 function resetAccumulators() {
   upAccumulator = 0;
   downAccumulator = 0;
 }
 
-
-// ============================
-// SCROLL LISTENER
-// ============================
 window.addEventListener('scroll', () => {
   const isMobile = window.innerWidth <= 768;
   if (!isMobile || !metaTable) return;
-
   updateState(window.scrollY);
 });
-
 </script>
 
 </body>
