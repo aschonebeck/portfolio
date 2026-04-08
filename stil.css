@@ -14,7 +14,7 @@
 .chivo-mono {
   font-family: "Chivo Mono", monospace;
   font-optical-sizing: auto;
-  font-weight: 200;
+  font-weight:;
   font-style: normal;
 }
 
@@ -24,7 +24,7 @@
   color: var(--text);
   max-width: 95%;
     font-weight: 300;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.4px;
   line-height: 1.7;        /* was 1.1 — this was killing it */
   font-family: var(--paragraph);
 
@@ -874,7 +874,7 @@ figure img {
   font-size: 14px;
   line-height: 1.5;
   max-width: 480px;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.3px;
   font-weight: 300;
   margin-bottom: 12px;
   font-family: var(--paragraph);
