@@ -1587,7 +1587,13 @@ opacity: 0.85;
     border:0px;
   height: 250px;
     object-fit: cover;
+     opacity: 0;
+  transition: opacity 0.3s ease;
   }
+
+  .project-list.grid-view .project-thumb.loaded {
+  opacity: 1;
+}
 
   .project-list.grid-view .grid-caption {
     padding: 8px 10px 10px;

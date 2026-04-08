@@ -216,17 +216,7 @@
 </div>
 
 
-<!-- Before closing </body> -->
-<div aria-hidden="true" style="display:none">
-  <img src="img/at.jpg">
-  <img src="img/fz.jpg">
-  <img src="img/z.jpg">
-  <img src="img/obje.png">
-  <img src="img/studio.png">
-  <img src="img/dreamsapp_.png">
-  <img src="img/2wi.jpg">
-  <img src="img/h.jpg">
-</div>
+
 
 <script>
 // =====================
@@ -373,28 +363,32 @@ if (window.innerWidth <= 768) {
   let activeLink = null;
   let isGridView = false;
  
-  // ── Inject grid thumbnails (call once, idempotent) ──
-  function injectGridThumbs() {
-    list.querySelectorAll('.project-item').forEach(item => {
-      if (!item.querySelector('.project-thumb')) {
-        const img = document.createElement('img');
-        // use data-img-mobile if present, fall back to data-img
-        img.src = item.dataset.imgMobile || item.dataset.img || '';
-        img.className = 'project-thumb';
-        img.alt = item.dataset.name || '';
- 
-        const caption = document.createElement('div');
-        caption.className = 'grid-caption';
-     caption.innerHTML =
-  `<span class="project-id">${item.dataset.id}</span>` +
-  `<span class="project-title">${item.dataset.name}</span>` +
-  `<span class="project-type-label">${item.querySelector('.project-type')?.textContent || ''}</span>` +
-  `<span class="project-year-label">${item.querySelector('.project-year')?.textContent || ''}</span>`;
-        item.prepend(caption);
-        item.prepend(img);
-      }
-    });
-  }
+// ── Inject grid thumbnails (call once, idempotent) ──
+function injectGridThumbs() {
+  list.querySelectorAll('.project-item').forEach(item => {
+    if (!item.querySelector('.project-thumb')) {
+      const img = document.createElement('img');
+      img.src = item.dataset.imgMobile || item.dataset.img || '';
+      img.className = 'project-thumb';
+      img.alt = item.dataset.name || '';
+
+      // fade in när bilden laddats
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      if (img.complete) img.classList.add('loaded'); // redan cachad
+
+      const caption = document.createElement('div');
+      caption.className = 'grid-caption';
+      caption.innerHTML =
+        `<span class="project-id">${item.dataset.id}</span>` +
+        `<span class="project-title">${item.dataset.name}</span>` +
+        `<span class="project-type-label">${item.querySelector('.project-type')?.textContent || ''}</span>` +
+        `<span class="project-year-label">${item.querySelector('.project-year')?.textContent || ''}</span>`;
+
+      item.prepend(caption);
+      item.prepend(img);
+    }
+  });
+}
  
   // ── Switch to grid view ──
   function enableGridView() {
