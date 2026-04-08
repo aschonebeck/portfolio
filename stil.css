@@ -267,10 +267,16 @@
     .project-hero {
      width: 100%;
   display: block;
-  height: 100vh;
+  min-height: 100vh;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
     }
+
+
+    .project-hero--poster {
+  height: auto;
+  object-fit: contain;
+}
  
     .project-intro-text {
       font-family: var(--font);
