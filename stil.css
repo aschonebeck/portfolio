@@ -25,8 +25,8 @@
     body.dark {
       --bg: #0e0e0c;
       --text: #d8d4cc;
-      --muted: #666;
-      --border: #252520;
+      --muted: #888;
+      --border: #333;
     }
 
     body.loading {
