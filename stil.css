@@ -871,9 +871,11 @@ figure img {
 }
 
 .about p {
-  font-size: 13.5px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.5;
   max-width: 480px;
+  letter-spacing: -0.1px;
+  font-weight: 300;
   margin-bottom: 12px;
   font-family: var(--paragraph);
 
