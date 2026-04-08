@@ -495,6 +495,25 @@
     }
     #theme-toggle:hover { color: var(--text); }
 
+    #theme-toggle .mode-light,
+#theme-toggle .mode-dark {
+  text-decoration: none;
+}
+
+/* light mode aktiv = aria-pressed false */
+#theme-toggle[aria-pressed="false"] .mode-light {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+}
+
+/* dark mode aktiv = aria-pressed true */
+#theme-toggle[aria-pressed="true"] .mode-dark {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+    
+}
+
     /* ACTIVE PROJECT LABEL */
     .active-label {
       display: flex;

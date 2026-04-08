@@ -32,7 +32,7 @@
 
 
 
-<div class="loader">
+<div class="loader" role="status" aria-live="polite" aria-label="Loading projects">
 
   <div class="loader-grid">
     <img src="img/at.jpg" class="thumb active" />
@@ -70,7 +70,9 @@
 
         <a href="#" class="active">Work</a>        <a href="info.html">Info</a>
       </div>
-      <button id="theme-toggle">Dark / Light</button>
+<button id="theme-toggle" aria-pressed="false"> 
+  [<span class="mode-light">Light</span> / <span class="mode-dark">Dark</span>]
+</button>
       <a href="info.html" class="mob-plus" aria-label="Info">+</a>
     </nav>
 
@@ -125,17 +127,19 @@
        data-category="web"
        data-img="img/at.jpg"
        data-id="WB25-001"
-       data-name="Furniture Studio Website">
+       data-name="Furniture Studio Website"
+        data-client="Appell Trästudio">
 
         <span class="project-id">WB25-001</span>
         <span class="project-title">Furniture Studio Platform</span>
         <span class="project-type">Web Design</span>
         <span class="project-year">2025</span>
+
       </a>
 
       </li>
 
-      <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/flowers.gif" data-id="ES25-002" data-name="Designing for Stillness">
+      <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/flowers.gif" data-id="ES25-002" data-name="Designing for Stillness"  data-client="Independent">
         <span class="project-id">ES25-002</span>
         <span class="project-title">FIZZLED OUT — Designing for Stillness</span>
         <span class="project-type">Essay</span>
@@ -143,7 +147,7 @@
         </a> 
       </li>
 
-      <li> <a href="zsongo.html" class="project-item" data-category="web" data-img="img/zsongo.gif" data-id="WB24-003" data-name="Zsongo Events Website">
+      <li> <a href="zsongo.html" class="project-item" data-category="web" data-img="img/zsongo.gif" data-id="WB24-003" data-name="Zsongo Events Website"  data-client="Zsongo">
         <span class="project-id">WB24-003</span>
         <span class="project-title">Zsongo World Events</span>
         <span class="project-type">Web Design</span>
@@ -151,7 +155,7 @@
         </a>
       </li>
 
-      <li> <a href="energy.html" class="project-item" data-category="ux" data-img="img/energia.jpg" data-id="UX22-004" data-name="Energy as Experience">
+      <li> <a href="energy.html" class="project-item" data-category="ux" data-img="img/energia.jpg" data-id="UX22-004" data-name="Energy as Experience"  data-client="KTH Royal Institute of technology">
         <span class="project-id">UX22-004</span>
         <span class="project-title"> Energy as Experience</span>
         <span class="project-type">UX Research</span>
@@ -160,29 +164,29 @@
       </li>
       <li > 
 
-        <a href="decentpeople.html" class="project-item" data-category="ux" data-img="img/studio.png" data-id="UX23-005" data-name="Decent People Studio">
+        <a href="decentpeople.html" class="project-item" data-category="ux" data-img="img/studio.png" data-id="UX23-005" data-name="Decent People Design Studio"  data-client="Decent People">
         <span class="project-id">UX23-005</span>
-        <span class="project-title">Decent People Studio</span>
+        <span class="project-title">Decent People Design Studio</span>
         <span class="project-type">UX Design</span>
         <span class="project-year">2020–23</span></a>
       </li>
 
       <li>
-       <a href="dreams.html" class="project-item" data-category="ux" data-img="img/ds.jpg" data-id="UX20-006" data-name="Expansion through Organic Growth">
+       <a href="dreams.html" class="project-item" data-category="ux" data-img="img/ds.jpg" data-id="UX20-006" data-name="Why People Share" data-client="Dreams">
         <span class="project-id">UX20-006</span>
-        <span class="project-title">Expansion through Organic Growth</span>
+        <span class="project-title">Why People Share</span>
         <span class="project-type">Design Sprint</span>
         <span class="project-year">2020</span></a>
       </li>
 
-         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/g.jpg" data-id="ES20-007" data-name="Workshops with Intention">
+         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/g.jpg" data-id="ES20-007" data-name="Workshops with Intention" data-client="Konstfack">
         <span class="project-id">ES20-007</span>
         <span class="project-title">Workshops with Intention</span>
         <span class="project-type">Essay</span>
         <span class="project-year">2020</span></a>
       </li>
 
-      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/h.jpg" data-id="ES20-008" data-name="Humane Design in Times of Crises">
+      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/h.jpg" data-id="ES20-008" data-name="Humane Design in Times of Crises" data-client="Decent People">
         <span class="project-id">ES20-008</span>
         <span class="project-title">Humane Design in Times of Crises</span>
         <span class="project-type">Essay</span>
@@ -195,7 +199,7 @@
 
     <div class="wordmark">
     <span>    <div class="kontakt">
-        <a target="blank" href="https://www.linkedin.com/in/amandaschonebeck">LinkedIn</a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" href="https://www.linkedin.com/in/amandaschonebeck">LinkedIn</a>
      <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
      </div></span>
       <span class="wordmark-sub"> ©2026<br>Stockholm, SWE</span>
@@ -222,7 +226,6 @@
 // =====================
 // THEME TOGGLE 
 // =====================
-
 const toggle = document.getElementById('theme-toggle');
 
 // set initial theme from localStorage
@@ -230,29 +233,24 @@ if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark');
 }
 
-// update label
-function updateThemeLabel() {
-  toggle.textContent = document.body.classList.contains('dark')
-    ? 'Mode: Dark'
-    : 'Mode: Light';
+// update aria-pressed
+function updateThemeState() {
+  const isDark = document.body.classList.contains('dark');
+  toggle.setAttribute('aria-pressed', isDark);
 }
 
 // click handler
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
-
-  // save preference
   localStorage.setItem(
     'theme',
     document.body.classList.contains('dark') ? 'dark' : 'light'
   );
-
-  updateThemeLabel();
+  updateThemeState();
 });
 
 // run on load
-updateThemeLabel();
-
+updateThemeState();
 </script>
 
 
@@ -284,6 +282,7 @@ if (window.innerWidth > 768) {
       const id = item.dataset.id;
       const name = item.dataset.name;
 
+
       activeId.textContent = id;
       activeName.textContent = name;
 
@@ -300,6 +299,7 @@ if (window.innerWidth > 768) {
             rightImg.classList.add('visible');
             rightCaption.textContent = name;
             rightCaption.classList.add('visible');
+            rightCaption.textContent = item.dataset.client || '';
             placeholder.classList.add('hidden');
 
           });
