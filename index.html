@@ -110,7 +110,9 @@
     </div>
 
     <div class="table-header">
-      <span>ID</span>
+      <span>ID <span 
+  class="id-info" 
+  data-tooltip="WB — Web Design&#10;UX — UX Design&#10;ES — Essay / Editorial&#10;&#10;YY — Year&#10;00X — Project no.">ⓘ</span></span>
       <span>Project</span>
       <span class="th-type">Type</span>
       <span class="th-year">Year</span>
@@ -122,10 +124,10 @@
       <a href="appelltrastudio.html" class="project-item"
        data-category="web"
        data-img="img/at.jpg"
-       data-id="AS-WB25-001"
+       data-id="WB25-001"
        data-name="Furniture Studio Website">
 
-        <span class="project-id">AS-WB25-001</span>
+        <span class="project-id">WB25-001</span>
         <span class="project-title">Furniture Studio Platform</span>
         <span class="project-type">Web Design</span>
         <span class="project-year">2025</span>
@@ -133,24 +135,24 @@
 
       </li>
 
-      <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/fz.jpg" data-id="AS-ES25-002" data-name="Designing for Stillness">
-        <span class="project-id">AS-ES25-002</span>
+      <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/fz.jpg" data-id="ES25-002" data-name="Designing for Stillness">
+        <span class="project-id">ES25-002</span>
         <span class="project-title">FIZZLED OUT — Designing for Stillness</span>
         <span class="project-type">Essay</span>
         <span class="project-year">2025</span>
         </a> 
       </li>
 
-      <li> <a href="zsongo.html" class="project-item" data-category="web" data-img="img/zsongo.gif" data-id="AS-WB24-003" data-name="Zsongo Events Website">
-        <span class="project-id">AS-WB24-003</span>
+      <li> <a href="zsongo.html" class="project-item" data-category="web" data-img="img/zsongo.gif" data-id="WB24-003" data-name="Zsongo Events Website">
+        <span class="project-id">WB24-003</span>
         <span class="project-title">Zsongo World Events</span>
         <span class="project-type">Web Design</span>
         <span class="project-year">2024</span>
         </a>
       </li>
 
-      <li> <a href="energy.html" class="project-item" data-category="ux" data-img="img/energia.jpg" data-id="AS-UX22-004" data-name="Energy as Experience">
-        <span class="project-id">AS-UX22-004</span>
+      <li> <a href="energy.html" class="project-item" data-category="ux" data-img="img/energia.jpg" data-id="UX22-004" data-name="Energy as Experience">
+        <span class="project-id">UX22-004</span>
         <span class="project-title"> Energy as Experience</span>
         <span class="project-type">UX Research</span>
         <span class="project-year">2021–22</span>
@@ -158,30 +160,30 @@
       </li>
       <li > 
 
-        <a href="decentpeople.html" class="project-item" data-category="ux" data-img="img/studio.png" data-id="AS-UX23-005" data-name="Decent People Studio">
-        <span class="project-id">AS-UX23-005</span>
+        <a href="decentpeople.html" class="project-item" data-category="ux" data-img="img/studio.png" data-id="UX23-005" data-name="Decent People Studio">
+        <span class="project-id">UX23-005</span>
         <span class="project-title">Decent People Studio</span>
         <span class="project-type">UX Design</span>
         <span class="project-year">2020–23</span></a>
       </li>
 
       <li>
-       <a href="dreams.html" class="project-item" data-category="ux" data-img="img/ds.jpg" data-id="AS-UX20-006" data-name="Design for Organic Growth">
-        <span class="project-id">AS-UX20-006</span>
-        <span class="project-title">Design for Organic Growth</span>
-        <span class="project-type">Workshop</span>
+       <a href="dreams.html" class="project-item" data-category="ux" data-img="img/ds.jpg" data-id="UX20-006" data-name="Expansion through Organic Growth">
+        <span class="project-id">UX20-006</span>
+        <span class="project-title">Expansion through Organic Growth</span>
+        <span class="project-type">Design Sprint</span>
         <span class="project-year">2020</span></a>
       </li>
 
-         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/g.jpg" data-id="AS-ES20-007" data-name="Workshops with Intention">
-        <span class="project-id">AS-ES20-007</span>
+         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/g.jpg" data-id="ES20-007" data-name="Workshops with Intention">
+        <span class="project-id">ES20-007</span>
         <span class="project-title">Workshops with Intention</span>
         <span class="project-type">Essay</span>
         <span class="project-year">2020</span></a>
       </li>
 
-      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/h.jpg" data-id="AS-ES20-008" data-name="Humane Design in Times of Crises">
-        <span class="project-id">AS-ES20-008</span>
+      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/h.jpg" data-id="ES20-008" data-name="Humane Design in Times of Crises">
+        <span class="project-id">ES20-008</span>
         <span class="project-title">Humane Design in Times of Crises</span>
         <span class="project-type">Essay</span>
         <span class="project-year">2020</span></a>
@@ -383,10 +385,11 @@ if (window.innerWidth <= 768) {
  
         const caption = document.createElement('div');
         caption.className = 'grid-caption';
-        caption.innerHTML =
-          `<span class="project-id">${item.dataset.id}</span>` +
-          `<span class="project-title">${item.dataset.name}</span>`;
- 
+     caption.innerHTML =
+  `<span class="project-id">${item.dataset.id}</span>` +
+  `<span class="project-title">${item.dataset.name}</span>` +
+  `<span class="project-type-label">${item.querySelector('.project-type')?.textContent || ''}</span>` +
+  `<span class="project-year-label">${item.querySelector('.project-year')?.textContent || ''}</span>`;
         item.prepend(caption);
         item.prepend(img);
       }

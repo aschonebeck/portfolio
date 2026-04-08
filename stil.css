@@ -276,6 +276,45 @@
       max-width: 680px;
     }
  
+
+
+ /* ID TOOLTIP */
+.id-info {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: default;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: -1PX;
+  margin-left: 0px;
+  vertical-align: middle;
+}
+
+.id-info::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: var(--font);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: pre;
+  padding: 8px 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 100;
+}
+
+.id-info:hover::after {
+  opacity: 1;
+}
     .project-section p {
       font-family: var(--paragraph);
       font-size: 14px;
@@ -1565,23 +1604,39 @@ opacity: 0.85;
 
   }
 
-  .project-list.grid-view .project-title {
-    font-size: 12.5px;
-    color: var(--text);
-    white-space: normal;
-    line-height: 1.4;
-    padding-bottom: 12px;
-    letter-spacing: 0.03em;
-    max-width: 80%;
-  }
+.project-type-label,
+.project-year-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
-  /* hide original span children in grid view — replaced by injected elements */
+.project-type-label {
+  margin-top: 20px;
+}
+
+.project-list.grid-view .grid-caption .project-title {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text);
+  padding-right: 20px;
+  white-space: normal;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  min-height: calc(12.5px * 1.4 * 2); /* exakt två raders höjd */
+}
+
+
+  /* hide original id/title — replaced by injected .grid-caption */
   .project-list.grid-view .project-item > .project-id,
   .project-list.grid-view .project-item > .project-title,
-  .project-list.grid-view .project-item > .project-type,
-  .project-list.grid-view .project-item > .project-year {
+    .project-list.grid-view .project-item > .project-year,
+      .project-list.grid-view .project-item > .project-type
+     {
     display: none;
   }
+
 
 
     blockquote {
