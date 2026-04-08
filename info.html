@@ -51,7 +51,8 @@
         <a href="index.html" >Work</a>
                 <a href="info.html" class="active">Info</a>
       </div>
-      <button id="theme-toggle">Dark / Light</button>
+  <button id="theme-toggle" aria-pressed="false"> [<span class="mode-light">Light</span> / <span class="mode-dark">Dark</span>]
+</button>
       <a href="index.html" class="mob-plus" aria-label="Back" onclick="event.preventDefault(); history.length > 1 ? history.back() : window.location='index.html'">×</a>
     </nav>
 
@@ -157,11 +158,11 @@ Interaction Designer. Interested in how people relate to the systems around them
 </div>
 
 
+
 <script>
 // =====================
 // THEME TOGGLE 
 // =====================
-
 const toggle = document.getElementById('theme-toggle');
 
 // set initial theme from localStorage
@@ -169,30 +170,26 @@ if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark');
 }
 
-// update label
-function updateThemeLabel() {
-  toggle.textContent = document.body.classList.contains('dark')
-    ? 'Mode: Dark'
-    : 'Mode: Light';
+// update aria-pressed
+function updateThemeState() {
+  const isDark = document.body.classList.contains('dark');
+  toggle.setAttribute('aria-pressed', isDark);
 }
 
 // click handler
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
-
-  // save preference
   localStorage.setItem(
     'theme',
     document.body.classList.contains('dark') ? 'dark' : 'light'
   );
-
-  updateThemeLabel();
+  updateThemeState();
 });
 
 // run on load
-updateThemeLabel();
-
+updateThemeState();
 </script>
+
 
 </body>
 </html>
