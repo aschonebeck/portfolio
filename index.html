@@ -182,14 +182,14 @@
         <span class="project-year">2020</span></a>
       </li>
 
-         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/g.jpg" data-id="ES20-007" data-name="Workshops with Intention" data-client="Konstfack">
+         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/www.jpg" data-id="ES20-007" data-name="Workshops with Intention" data-client="Konstfack">
         <span class="project-id">ES20-007</span>
         <span class="project-title">Workshops with Intention</span>
         <span class="project-type">Essay</span>
         <span class="project-year">2020</span></a>
       </li>
 
-      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/h.jpg" data-id="ES20-008" data-name="Humane Design in Times of Crises" data-client="Decent People">
+      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/humane1.jpg" data-id="ES20-008" data-name="Humane Design in Times of Crises" data-client="Decent People">
         <span class="project-id">ES20-008</span>
         <span class="project-title">Humane Design in Times of Crises</span>
         <span class="project-type">Essay</span>
@@ -293,7 +293,11 @@ if (window.innerWidth > 768) {
         // avbryt eventuell pågående rAF
         if (rafId) cancelAnimationFrame(rafId);
 
-        rightImg.src = src;
+   
+   rightImg.src = src;
+const isPoster = item.dataset.category === 'writing';
+rightImg.style.objectFit = isPoster ? 'contain' : 'cover';
+rightImg.style.padding = isPoster ? '2rem 0' : '0';
         currentSrc = src;
 
         rafId = requestAnimationFrame(() => {

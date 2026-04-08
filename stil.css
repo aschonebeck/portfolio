@@ -785,7 +785,7 @@
       height: 100vh;
       overflow: hidden;
       position: relative;
-      background: var(--border);
+      background: #111;
 
       transition: background 0.3s;
     }
@@ -802,6 +802,8 @@
   will-change: opacity;
   pointer-events: none;
 }
+
+
 
 .right-img.visible {
   opacity: 1;
