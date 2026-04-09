@@ -670,6 +670,11 @@ min-height: 100dvh;
   text-transform: uppercase;
   color: var(--muted);
 }
+
+.proto-zoom {
+  text-align: right;
+
+}
  
 .proto-prev,
 .proto-next,
@@ -703,7 +708,7 @@ min-height: 100dvh;
 /* ── CAPTION ── */
 .proto-caption {
   font-family: var(--font) !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
   letter-spacing: 0.0em;
   color: var(--muted) !important;
   padding: 14px 44px !important;
@@ -713,6 +718,10 @@ min-height: 100dvh;
   opacity: 1 !important;
 }
  
+
+ .proto-total {
+  color: var(--muted);
+ }
 
 
 
