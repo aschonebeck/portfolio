@@ -442,7 +442,7 @@ min-height: 100dvh;
     #abopic {
   display: block;
   opacity: 1;
-  filter: brightness(1.5);
+  filter: brightness(1);
  
 }
 
@@ -893,8 +893,13 @@ min-height: 100dvh;
       overflow: hidden;
       position: relative;
       background: #111;
-
       transition: background 0.3s;
+    }
+
+    .abo_body .right {
+         background: #fff;
+      transition: background 0.3s;
+
     }
 
 .right-img {
@@ -1003,8 +1008,12 @@ figure img {
 }
 
 .about .right:  {
-  background: var(--bg);
-};
+  background: #fff !important;
+}
+
+.abo_body .right:  {
+  background: #fff !important;
+}
 
 .cv-block {
   display: grid;
@@ -1801,7 +1810,7 @@ opacity: 0.85;
   gap: 12px;
   align-items: center;
   margin-top: 0px;
-  word-spacing: -0.4em;
+  word-spacing: -0.25em;
 }
 .project-type-label {
   margin-top: 0px;
