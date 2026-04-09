@@ -1731,7 +1731,7 @@ opacity: 0.85;
     border-bottom: 0.5px solid var(--border);
     animation: none;
     opacity: 1;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
   }
 
   .project-list.grid-view li:nth-child(2n) {
@@ -1753,7 +1753,7 @@ opacity: 0.85;
     flex-direction: column;
     height: auto;
     padding: 0;
-    gap: 0;
+    gap: 1px;
        border: 0;
   }
 
@@ -1786,8 +1786,9 @@ opacity: 0.85;
   }
 
   .project-list.grid-view .project-id {
-    font-size: 11.5px;
+    font-size: 11px;
     color: var(--muted);
+    opacity: 0.85;
     display: block;
     padding-top: 5px;
 
@@ -1796,7 +1797,7 @@ opacity: 0.85;
 /* Remove the flex properties from the labels — keep only typography */
 .project-type-label,
 .project-year-label {
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--muted);
   letter-spacing: 0.08em;
   text-transform: uppercase;
