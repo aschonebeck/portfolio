@@ -3,7 +3,7 @@
     :root {
       --bg: #f2f0eb;
       --text: #111;
-      --muted: #777;
+      --muted: #707070;
       --border: #ccc;
       --font: 'Space Mono', monospace;
       --paragraph:"Chivo Mono", monospace;
@@ -1299,6 +1299,10 @@ min-height: auto;
   .abo_body .right {
   display: none;
 }
+  .abo_body .left {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column; }
 
   .project-page .wordmark { display: none; }
 
@@ -1307,6 +1311,7 @@ min-height: auto;
 
 .abo_body .wordmark {
    border-top: 1px solid var(--border);
+     margin-top: auto;
 }
 
   .about p {
