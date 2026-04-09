@@ -1951,5 +1951,11 @@ opacity: 0.85;
   opacity: 1 !important;
 max-width: 90%;
 }
+.proto-stage img {
+   height: 70dvh;
+    object-fit: cover;
+ object-position: center top;
+}
+
 
 }
