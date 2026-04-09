@@ -442,7 +442,9 @@ min-height: 100dvh;
     #abopic {
   display: block;
   opacity: 1;
-width: 40%;
+width: 100%;
+height: 100dvh;
+ object-fit: contain;
   filter: brightness(1);
  
 }
