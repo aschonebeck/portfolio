@@ -442,7 +442,7 @@ min-height: 100dvh;
     #abopic {
   display: block;
   opacity: 1;
-  filter: invert(100);
+  filter: brightness(1.5);
  
 }
 
