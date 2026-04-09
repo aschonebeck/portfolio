@@ -951,15 +951,21 @@ min-height: 100dvh;
 
 
 figcaption {
-  margin-top: 20px;
-padding-left: 20px;
-padding-right: 20px;
-opacity: 0.8;
-font-size: 12.5px;
-max-width: 80%;
-text-transform: uppercase;
-padding-bottom:60px; 
-font-family: var(--text);}
+  font-family: var(--font) !important;
+  font-size: 13px !important;
+  letter-spacing: 0.0em;
+  color: var(--muted) !important;
+  padding: 14px 44px !important;
+  line-height: 1.5 !important;
+  border-bottom: 1px solid var(--border);
+  margin: 0 !important;
+  opacity: 1 !important;
+max-width: 70%;
+}
+
+figure {
+  padding-bottom: 40px;
+}
 
 figure img {
   padding-bottom: 0px;
@@ -1066,6 +1072,7 @@ text-transform: uppercase;
 .project-page h1 {
   font-weight: 400;
   max-width: 60%;
+  font-size: 28px;
   padding-bottom: 5px;
   padding-top: 0px;
   letter-spacing: -0.5px;
@@ -1221,15 +1228,16 @@ font-size: 40px !important;
     .project-hero {
      width: 100%;
   display: block;
- height:auto;
-  object-fit: contain;
-  object-position: top center;
+min-height: auto;
+  object-fit: cover;
+  object-position: top-center;
     }
  
       .project-intro-text {
      
         padding: 0px 20px 0;
-        font-size: 20px !important;
+        width: 100%;
+        font-size: 21px !important;
         font-family: 'Space Mono' !important;
       }
 
@@ -1335,7 +1343,7 @@ strong {
       font-family: var(--font);
       font-size: 11px;
       width: 100%;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.01em;
       color: var(--text);
       padding: 12px 0;
       border-top: 1px solid var(--border);
