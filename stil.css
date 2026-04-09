@@ -289,7 +289,7 @@ min-height: 100dvh;
       padding: 44px 44px 0;
   margin-top: 20px;
   margin-bottom: 20px;
-      max-width: 760px;
+      width: 80%;
       opacity: 0.82;
     }
  
@@ -1068,12 +1068,7 @@ text-transform: uppercase;
 
 }
 
-/* LEFT becomes sticky */
-.project-page .left {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-}
+
 
 .project-page h1 {
   font-weight: 400;
@@ -1224,10 +1219,12 @@ font-size: 40px !important;
 
 @media (max-width: 768px) {
 
-  .layout {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
+.layout {
+  grid-template-columns: 1fr;
+  height: auto;
+  overflow: visible;
+}
+
 
     .project-back { display:none; }
  
@@ -1262,9 +1259,11 @@ min-height: auto;
     font-size: 13px;
    }
 
-  .left, .right {
-    height:auto;
-    border-right: none;
+   .right,
+   .left {
+  height: auto !important;
+  overflow: visible !important;
+
   }
 
 
@@ -1295,17 +1294,7 @@ min-height: auto;
  width: 100%;
  height: auto;
 }
-  .project-page .left {
-    height: auto;
-    z-index: 100;
-    background: var(--bg);
-  }
 
-    .project-page .right {
-    height: auto;
-    z-index: 100;
-    background: var(--bg);
-  }
 
   .abo_body .right {
   display: none;
@@ -1507,10 +1496,18 @@ strong {
   padding-top: 20px;
 }
 
-.project-page .right{
-      background: var(--bg);
+.project-page .left {
+
+  height: auto !important;
+  overflow: visible !important;
+
 }
 
+.project-page .right {   /* ← broken selector but harmless */
+  height: auto !important;
+  overflow: visible !important;
+  position: static !important;
+}
 #meta {
   margin-top: 10px; }
 
@@ -1595,12 +1592,12 @@ opacity: 0.85;
         .info-content {
   padding: 20px;
   padding-top: 0px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-   flex: 1;
-  overflow-y: auto;
+  flex: 0;
+  overflow-y: visible;
 }
 
 
