@@ -55,7 +55,7 @@
         </div>
         <div id="notshow" class="project-meta-row">
           <span class="project-meta-label">ID</span>
-          <span class="project-meta-value">AS-ES20-007</span>
+          <span class="project-meta-value">ES20-007</span>
         </div>
       </div>
     </div>
@@ -143,27 +143,41 @@ Revised edition 2026© Amanda Schönebeck </i> </span></p>
 </div>
 
 <script>
-// THEME
+// ============================
+// THEME TOGGLE
+// ============================
 const toggle = document.getElementById('theme-toggle');
-if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-function updateThemeLabel() {
-  toggle.textContent = document.body.classList.contains('dark') ? 'Mode: Dark' : 'Mode: Light';
+
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
 }
+
+function updateThemeState() {
+  const isDark = document.body.classList.contains('dark');
+  toggle.setAttribute('aria-pressed', isDark);
+}
+
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  updateThemeLabel();
+  updateThemeState();
 });
-updateThemeLabel();
 
+updateThemeState();
+
+
+// ============================
 // SCROLL PROGRESS
+// ============================
 const bar = document.getElementById('progress-bar');
 const scroller = document.getElementById('project-right');
+
 function updateProgress() {
   const { scrollTop, scrollHeight, clientHeight } = scroller;
   const pct = scrollHeight > clientHeight ? (scrollTop / (scrollHeight - clientHeight)) * 100 : 0;
   bar.style.width = pct + '%';
 }
+
 if (scroller) scroller.addEventListener('scroll', updateProgress, { passive: true });
 window.addEventListener('scroll', () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
@@ -171,8 +185,9 @@ window.addEventListener('scroll', () => {
   bar.style.width = pct + '%';
 }, { passive: true });
 
+
 // ============================
-// FADE IN (unchanged)
+// FADE IN
 // ============================
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -193,22 +208,17 @@ const metaTable = document.querySelector('.project-meta-table');
 
 let lastScrollY = window.scrollY;
 let lastScrollTime = Date.now();
-
 let velocity = 0;
-let direction = 0; // -1 up, 1 down, 0 idle
-
+let direction = 0;
 let state = "TOP";
-
 let upAccumulator = 0;
 let downAccumulator = 0;
-
 let lock = false;
 
-// TUNING VALUES (adjust these first if needed)
-const EDGE_TOP = 250;              // zone where meta is always visible
-const VELOCITY_SMOOTHING = 0.15;   // smoothing factor
+const EDGE_TOP = 250;
+const VELOCITY_SMOOTHING = 0.15;
 const SCROLL_INTENT_THRESHOLD = 200;
-const IDLE_TIME = 120;             // ms before considered "reading"
+const IDLE_TIME = 120;
 
 
 // ============================
@@ -220,9 +230,7 @@ function collapseMeta() {
 
   const height = metaTable.offsetHeight;
   metaTable.style.height = height + 'px';
-
-  metaTable.offsetHeight; // force reflow
-
+  metaTable.offsetHeight;
   metaTable.classList.add('collapsing');
 
   setTimeout(() => {
@@ -241,9 +249,7 @@ function expandMeta() {
 
   const height = metaTable.scrollHeight;
   metaTable.style.height = '0px';
-
-  metaTable.offsetHeight; // force reflow
-
+  metaTable.offsetHeight;
   metaTable.style.height = height + 'px';
 
   setTimeout(() => {
@@ -259,23 +265,18 @@ function expandMeta() {
 function updateState(scrollY) {
   const now = Date.now();
   const deltaTime = now - lastScrollTime;
-
   const deltaY = scrollY - lastScrollY;
 
-  // velocity smoothing
+  lastScrollY = scrollY;
+  lastScrollTime = now;
+
   const instantVelocity = deltaTime > 0 ? deltaY / deltaTime : 0;
   velocity = velocity * (1 - VELOCITY_SMOOTHING) + instantVelocity * VELOCITY_SMOOTHING;
 
-  // direction
   if (Math.abs(deltaY) > 1) {
     direction = deltaY > 0 ? 1 : -1;
   }
 
-  // ============================
-  // STATE LOGIC
-  // ============================
-
-  // 1. TOP state (always visible)
   if (scrollY < EDGE_TOP) {
     state = "TOP";
     expandMeta();
@@ -283,44 +284,32 @@ function updateState(scrollY) {
     return;
   }
 
-  // 2. Idle / reading detection
   const isIdle = deltaTime > IDLE_TIME && Math.abs(velocity) < 0.05;
-
   if (isIdle) {
     state = "READING";
-    // reading = stable UI, do nothing
     resetAccumulators();
     return;
   }
 
-  // 3. DOWNWARD movement
   if (direction === 1) {
     state = "DESCENDING";
-
     downAccumulator += Math.abs(deltaY);
     upAccumulator = 0;
-
     if (downAccumulator > SCROLL_INTENT_THRESHOLD) {
       collapseMeta();
       downAccumulator = 0;
     }
   }
 
-  // 4. UPWARD movement
   if (direction === -1) {
     state = "REVISITING";
-
     upAccumulator += Math.abs(deltaY);
     downAccumulator = 0;
-
     if (upAccumulator > SCROLL_INTENT_THRESHOLD) {
       expandMeta();
       upAccumulator = 0;
     }
   }
-
-  lastScrollY = scrollY;
-  lastScrollTime = now;
 }
 
 
@@ -337,13 +326,8 @@ function resetAccumulators() {
 // SCROLL LISTENER
 // ============================
 window.addEventListener('scroll', () => {
-  const isMobile = window.innerWidth <= 768;
-  if (!isMobile || !metaTable) return;
-
-  updateState(window.scrollY);
-});
-
-</script>
+  if (window.innerWidth <= 768 && metaTable) updateState(window.scrollY);
+}, { passive: true }); </script>
 
 </body>
 </html>

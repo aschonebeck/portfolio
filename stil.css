@@ -49,6 +49,9 @@
   overflow: hidden;
 }
 
+
+
+
     html, body {
       background: var(--bg);
       color: var(--text);
@@ -1513,6 +1516,7 @@ strong {
   height: auto !important;
   overflow: visible !important;
   position: static !important;
+  background: var(--bg);
 }
 #meta {
   margin-top: 10px; }
@@ -1731,7 +1735,7 @@ opacity: 0.85;
     border-bottom: 0.5px solid var(--border);
     animation: none;
     opacity: 1;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
   }
 
   .project-list.grid-view li:nth-child(2n) {
@@ -1822,7 +1826,7 @@ opacity: 0.85;
   color: var(--text);
   padding-right: 10px;
   white-space: normal;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   line-height: 1.4;
   letter-spacing: 0.03em;
   min-height: calc(12.5px * 1.4 * 2); /* exakt två raders höjd */

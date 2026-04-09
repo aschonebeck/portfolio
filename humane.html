@@ -32,7 +32,9 @@
         <a href="index.html" >Work</a>
                 <a href="info.html">Info</a>
       </div>
-      <button id="theme-toggle">Dark / Light</button>
+    <button id="theme-toggle" aria-pressed="false"> 
+  [<span class="mode-light">Light</span> / <span class="mode-dark">Dark</span>]
+</button>
        <a href="info.html" class="mob-plus" aria-label="Info">+</a>
     </nav>
 
@@ -53,7 +55,7 @@
         </div>
         <div id="notshow" class="project-meta-row">
           <span class="project-meta-label">ID</span>
-          <span class="project-meta-value">AS-ES20-008</span>
+          <span class="project-meta-value">ES20-008</span>
         </div>
       </div>
     </div>
@@ -165,36 +167,53 @@ Supporting users through uncertainty means offering tools that are simple, effic
   </div>
 
 </div>
+
 <script>
-// THEME
+// ============================
+// THEME TOGGLE
+// ============================
 const toggle = document.getElementById('theme-toggle');
-if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-function updateThemeLabel() {
-  toggle.textContent = document.body.classList.contains('dark') ? 'Mode: Dark' : 'Mode: Light';
+
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
 }
+
+function updateThemeState() {
+  const isDark = document.body.classList.contains('dark');
+  toggle.setAttribute('aria-pressed', isDark);
+}
+
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  updateThemeLabel();
+  updateThemeState();
 });
-updateThemeLabel();
 
+updateThemeState();
+
+
+// ============================
 // SCROLL PROGRESS
+// ============================
 const bar = document.getElementById('progress-bar');
 const scroller = document.getElementById('project-right');
+
 function updateProgress() {
   const { scrollTop, scrollHeight, clientHeight } = scroller;
   const pct = scrollHeight > clientHeight ? (scrollTop / (scrollHeight - clientHeight)) * 100 : 0;
   bar.style.width = pct + '%';
 }
+
 if (scroller) scroller.addEventListener('scroll', updateProgress, { passive: true });
 window.addEventListener('scroll', () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
   const pct = (scrollTop / (scrollHeight - clientHeight)) * 100;
   bar.style.width = pct + '%';
 }, { passive: true });
+
+
 // ============================
-// FADE IN (unchanged)
+// FADE IN
 // ============================
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -209,32 +228,23 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 
 // ============================
-// META ELEMENT
+// PROJECT META STATE MACHINE
 // ============================
 const metaTable = document.querySelector('.project-meta-table');
 
-let lastY = window.scrollY;
-let lastT = performance.now();
-
-// ============================
-// PHYSICS STATE
-// ============================
+let lastScrollY = window.scrollY;
+let lastScrollTime = Date.now();
 let velocity = 0;
-let acceleration = 0;
-
-let intentDown = 0;
-let intentUp = 0;
-
-let lastDirection = 0;
-
+let direction = 0;
+let state = "TOP";
+let upAccumulator = 0;
+let downAccumulator = 0;
 let lock = false;
 
-// tuning knobs
-const FRICTION = 0.92;          // higher = smoother, lower = snappier
-const ACCEL_SMOOTHING = 0.25;
-
-const INTENT_THRESHOLD = 2.2;   // main sensitivity control
-const TOP_ZONE = 250;
+const EDGE_TOP = 250;
+const VELOCITY_SMOOTHING = 0.15;
+const SCROLL_INTENT_THRESHOLD = 200;
+const IDLE_TIME = 120;
 
 
 // ============================
@@ -244,11 +254,9 @@ function collapseMeta() {
   if (!metaTable || metaTable.classList.contains('hidden') || lock) return;
   lock = true;
 
-  const h = metaTable.offsetHeight;
-  metaTable.style.height = h + 'px';
-
+  const height = metaTable.offsetHeight;
+  metaTable.style.height = height + 'px';
   metaTable.offsetHeight;
-
   metaTable.classList.add('collapsing');
 
   setTimeout(() => {
@@ -265,12 +273,10 @@ function expandMeta() {
 
   metaTable.classList.remove('hidden');
 
-  const h = metaTable.scrollHeight;
+  const height = metaTable.scrollHeight;
   metaTable.style.height = '0px';
-
   metaTable.offsetHeight;
-
-  metaTable.style.height = h + 'px';
+  metaTable.style.height = height + 'px';
 
   setTimeout(() => {
     metaTable.style.height = '';
@@ -280,92 +286,74 @@ function expandMeta() {
 
 
 // ============================
-// PHYSICS UPDATE LOOP
+// STATE MACHINE
 // ============================
-function updatePhysics(scrollY, now) {
-  const dt = Math.max(16, now - lastT);
-  const dy = scrollY - lastY;
+function updateState(scrollY) {
+  const now = Date.now();
+  const deltaTime = now - lastScrollTime;
+  const deltaY = scrollY - lastScrollY;
 
-  // raw velocity (px/ms)
-  const newVelocity = dy / dt;
+  lastScrollY = scrollY;
+  lastScrollTime = now;
 
-  // acceleration (change in velocity)
-  const rawAcceleration = newVelocity - velocity;
+  const instantVelocity = deltaTime > 0 ? deltaY / deltaTime : 0;
+  velocity = velocity * (1 - VELOCITY_SMOOTHING) + instantVelocity * VELOCITY_SMOOTHING;
 
-  acceleration = acceleration * (1 - ACCEL_SMOOTHING) + rawAcceleration * ACCEL_SMOOTHING;
-  velocity = velocity * FRICTION + newVelocity * (1 - FRICTION);
+  if (Math.abs(deltaY) > 1) {
+    direction = deltaY > 0 ? 1 : -1;
+  }
 
-  const direction = Math.sign(velocity);
-
-  // ============================
-  // TOP SAFETY ZONE
-  // ============================
-  if (scrollY < TOP_ZONE) {
+  if (scrollY < EDGE_TOP) {
+    state = "TOP";
     expandMeta();
-    resetIntent();
-    lastY = scrollY;
-    lastT = now;
+    resetAccumulators();
     return;
   }
 
-  // ============================
-  // INTENT BUILDUP
-  // ============================
+  const isIdle = deltaTime > IDLE_TIME && Math.abs(velocity) < 0.05;
+  if (isIdle) {
+    state = "READING";
+    resetAccumulators();
+    return;
+  }
 
-  const intensity = Math.abs(velocity) + Math.abs(acceleration) * 2;
-
-  // DOWNWARD intent (reading forward)
-  if (direction > 0) {
-    intentDown += intensity;
-    intentUp *= 0.85; // decay opposite intent
-
-    if (intentDown > INTENT_THRESHOLD) {
+  if (direction === 1) {
+    state = "DESCENDING";
+    downAccumulator += Math.abs(deltaY);
+    upAccumulator = 0;
+    if (downAccumulator > SCROLL_INTENT_THRESHOLD) {
       collapseMeta();
-      intentDown = 0;
+      downAccumulator = 0;
     }
   }
 
-  // UPWARD intent (revisiting)
-  if (direction < 0) {
-    intentUp += intensity;
-    intentDown *= 0.85;
-
-    if (intentUp > INTENT_THRESHOLD) {
+  if (direction === -1) {
+    state = "REVISITING";
+    upAccumulator += Math.abs(deltaY);
+    downAccumulator = 0;
+    if (upAccumulator > SCROLL_INTENT_THRESHOLD) {
       expandMeta();
-      intentUp = 0;
+      upAccumulator = 0;
     }
   }
-
-  // idle decay (feels natural)
-  if (direction === 0) {
-    intentDown *= 0.9;
-    intentUp *= 0.9;
-  }
-
-  lastY = scrollY;
-  lastT = now;
 }
 
 
 // ============================
-// RESET
+// HELPERS
 // ============================
-function resetIntent() {
-  intentDown = 0;
-  intentUp = 0;
+function resetAccumulators() {
+  upAccumulator = 0;
+  downAccumulator = 0;
 }
 
 
 // ============================
-// LOOP
+// SCROLL LISTENER
 // ============================
 window.addEventListener('scroll', () => {
-  if (!metaTable || window.innerWidth > 768) return;
-
-  updatePhysics(window.scrollY, performance.now());
-});
-
-</script>
+  if (window.innerWidth <= 768 && metaTable) updateState(window.scrollY);
+}, { passive: true }); </script>
 
 </body>
 </html>
