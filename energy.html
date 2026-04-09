@@ -111,10 +111,30 @@ These insights shaped the concept development phase - designed to meet users whe
 </p>
     </div>
 
-<figure>
-  <img class="project-image-full fade-in" src="img/kth.png">
-  <figcaption>[PROTOTYPE] — App concept for prosumers showing real-time consumption data that connects usage to specific household activities.</figcaption>
-</figure>
+    <div class="proto-slideshow fade-in">
+
+ 
+  <div class="proto-stage">
+    <img class="proto-slide active" src="img/1.jpg" alt="App concept for prosumers" />
+    <img class="proto-slide" src="img/2.jpg" alt="Ambient lamp prototype" />
+       <img class="proto-slide" src="img/3.jpg" alt="Ambient lamp prototype" />
+    <!-- add more slides here if needed: <img class="proto-slide" src="img/yourimage.jpg" alt="..." /> -->
+  </div>
+ 
+  <div class="proto-controls">
+    <button class="proto-prev" aria-label="Previous">←</button>
+    <span class="proto-counter"><span class="proto-current">01</span> / <span class="proto-total">03</span></span>
+    <button class="proto-next" aria-label="Next">→</button>
+    <button class="proto-zoom" aria-label="Zoom in">[ PROTOTYPE ]</button>
+  </div>
+ 
+  <p class="proto-caption"></p>
+ 
+</div>
+ 
+
+ 
+
 
 <figure>
   <img class="project-image-full fade-in" style="opacity: 0.95;" src="img/lamp.gif">
@@ -166,14 +186,17 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+
+// ============================
 // PROJECT META STATE MACHINE
+// ============================
 const metaTable = document.querySelector('.project-meta-table');
 
 let lastScrollY = window.scrollY;
 let lastScrollTime = Date.now();
 
 let velocity = 0;
-let direction = 0;
+let direction = 0; // -1 up, 1 down, 0 idle
 
 let state = "TOP";
 
@@ -182,11 +205,14 @@ let downAccumulator = 0;
 
 let lock = false;
 
+// TUNING VALUES
 const EDGE_TOP = 250;
 const VELOCITY_SMOOTHING = 0.15;
 const SCROLL_INTENT_THRESHOLD = 200;
-const IDLE_TIME = 120;
+const IDLE_TIME = 300;
 
+
+// UI ACTIONS
 function collapseMeta() {
   if (!metaTable || metaTable.classList.contains('hidden') || lock) return;
   lock = true;
@@ -221,6 +247,8 @@ function expandMeta() {
   }, 250);
 }
 
+
+// STATE MACHINE
 function updateState(scrollY) {
   const now = Date.now();
   const deltaTime = now - lastScrollTime;
@@ -252,6 +280,7 @@ function updateState(scrollY) {
     state = "DESCENDING";
     downAccumulator += Math.abs(deltaY);
     upAccumulator = 0;
+
     if (downAccumulator > SCROLL_INTENT_THRESHOLD) {
       collapseMeta();
       downAccumulator = 0;
@@ -262,6 +291,7 @@ function updateState(scrollY) {
     state = "REVISITING";
     upAccumulator += Math.abs(deltaY);
     downAccumulator = 0;
+
     if (upAccumulator > SCROLL_INTENT_THRESHOLD) {
       expandMeta();
       upAccumulator = 0;
@@ -282,6 +312,48 @@ window.addEventListener('scroll', () => {
   if (!isMobile || !metaTable) return;
   updateState(window.scrollY);
 });
+</script>
+
+
+<script>
+(function () {
+  const captions = [
+    '[PROTOTYPE 01] — App concept for prosumers showing real-time consumption data that connects usage to specific household activities.',
+    'Overview of household consumption and production of energy.',
+    'Detailed information about what activities affect current load in household.'
+  ];
+  const slides = document.querySelectorAll('.proto-slide');
+  const caption = document.querySelector('.proto-caption');
+  const counter = document.querySelector('.proto-current');
+  const total = document.querySelector('.proto-total');
+  const stage = document.querySelector('.proto-stage');
+  let current = 0;
+  total.textContent = String(slides.length).padStart(2, '0');
+  caption.textContent = captions[0];
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    counter.textContent = String(current + 1).padStart(2, '0');
+    caption.textContent = captions[current] || '';
+  }
+  document.querySelector('.proto-prev').addEventListener('click', () => goTo(current - 1));
+  document.querySelector('.proto-next').addEventListener('click', () => goTo(current + 1));
+  // swipe
+  let touchStartX = 0;
+  stage.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  }, { passive: true });
+  // keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+})();
 </script>
 
 </body>

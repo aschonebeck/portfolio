@@ -267,7 +267,8 @@
     .project-hero {
      width: 100%;
   display: block;
-  min-height: 100vh;
+min-height: 100dvh;
+  height: auto;
   object-fit: cover;
   object-position: top center;
     }
@@ -619,6 +620,101 @@
      color: var(--text);
 
     }
+
+    /* ── SLIDESHOW ── */
+.proto-slideshow {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 60px;
+}
+ 
+.proto-stage {
+  position: relative;
+  width: 100%;
+    min-height: 200px;
+  overflow: hidden;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+ 
+.proto-slide {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.proto-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+
+}
+ 
+/* ── CONTROLS ── */
+.proto-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 44px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+ 
+.proto-prev,
+.proto-next,
+.proto-zoom {
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+ 
+.proto-prev:hover,
+.proto-next:hover,
+.proto-zoom:hover {
+  color: var(--text);
+}
+ 
+.proto-counter {
+  color: var(--text);
+  min-width: 48px;
+  text-align: center;
+}
+ 
+
+ 
+/* ── CAPTION ── */
+.proto-caption {
+  font-family: var(--font) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.0em;
+  color: var(--muted) !important;
+  padding: 14px 44px !important;
+  line-height: 1.5 !important;
+  border-bottom: 1px solid var(--border);
+  margin: 0 !important;
+  opacity: 1 !important;
+}
+ 
+
+
 
 
     blockquote {
@@ -1116,7 +1212,7 @@ font-size: 40px !important;
     .project-hero {
      width: 100%;
   display: block;
-  max-height: 100%;
+ height:auto;
   object-fit: contain;
   object-position: top center;
     }
@@ -1274,7 +1370,7 @@ strong {
   }
   .project-item.focused .project-id,
   .project-item.focused .project-type,
-  .project-item.focused .project-year { color: var(--bg); opacity: 0.6; }
+  .project-item.focused .project-year { color: var(--bg); opacity: 0.6;  }
 
   .project-id {
     grid-column: 1;
@@ -1512,7 +1608,7 @@ opacity: 0.85;
     align-items: center;
     padding: 14px 20px;
     border-bottom: 1px solid var(--border);
-    font-size: 11.5px;
+    font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     flex-shrink: 0;
@@ -1672,6 +1768,7 @@ opacity: 0.85;
 
   }
 
+/* Remove the flex properties from the labels — keep only typography */
 .project-type-label,
 .project-year-label {
   font-size: 11px;
@@ -1680,16 +1777,26 @@ opacity: 0.85;
   text-transform: uppercase;
 }
 
+/* Add flex to the wrapper div */
+.project-type-year {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  margin-top: 0px;
+  word-spacing: -0.4em;
+}
 .project-type-label {
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 .project-list.grid-view .grid-caption .project-title {
   display: block;
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--text);
-  padding-right: 20px;
+  padding-right: 10px;
   white-space: normal;
+  margin-bottom: 10px;
   line-height: 1.4;
   letter-spacing: 0.03em;
   min-height: calc(12.5px * 1.4 * 2); /* exakt två raders höjd */
@@ -1799,5 +1906,12 @@ opacity: 0.85;
   transition: transform 0.6s ease, opacity 0.6s ease;
   opacity: 0.8;
 }
+
+  .proto-controls {
+    padding: 12px 16px;
+  }
+  .proto-caption {
+    padding: 12px 16px !important;
+  }
 
 }

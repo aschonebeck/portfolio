@@ -386,10 +386,12 @@ function injectGridThumbs() {
       const caption = document.createElement('div');
       caption.className = 'grid-caption';
       caption.innerHTML =
-        `<span class="project-id">${item.dataset.id}</span>` +
-        `<span class="project-title">${item.dataset.name}</span>` +
-        `<span class="project-type-label">${item.querySelector('.project-type')?.textContent || ''}</span>` +
-        `<span class="project-year-label">${item.querySelector('.project-year')?.textContent || ''}</span>`;
+       `<span class="project-id">${item.dataset.id}</span>` +
+  `<span class="project-title">${item.dataset.name}</span>` +
+  `<div class="project-type-year">` +
+    `<span class="project-type-label">${item.querySelector('.project-type')?.textContent || ''}</span>` +
+    `<span class="project-year-label">${item.querySelector('.project-year')?.textContent || ''}</span>` +
+  `</div>`;
 
       item.prepend(caption);
       item.prepend(img);
