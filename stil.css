@@ -364,7 +364,7 @@ min-height: 100dvh;
     .project-deliverables li {
       font-family: var(--font);
       font-size: 11px;
-      letter-spacing: 0.02em;
+      letter-spacing: ;
       text-transform: ;
       font-weight: 300;
       color: var(--text);
@@ -1255,7 +1255,9 @@ min-height: auto;
   object-position: top-center;
     }
  
-      .project-intro-text {
+     
+
+     .project-page .project-intro-text {
      
         padding: 0px 20px 0;
         width: 100%;
@@ -1278,10 +1280,6 @@ min-height: auto;
     font-size: 13px;
    }
 
-   .right,
-   .left {
-  height: auto !important;
-  overflow: visible !important;
 
   }
 
@@ -1326,7 +1324,8 @@ min-height: auto;
   .project-page .wordmark { display: none; }
 
   .wordmark { border:1px;  
-      padding: 22px 20px; }
+      padding: 22px 20px; 
+    }
 
 .abo_body .wordmark {
    border-top: 1px solid var(--border);
@@ -1576,12 +1575,15 @@ strong {
     }
 
 
- .top-nav {
-    
-      padding:20px 20px;
 
-  
-    }
+
+    .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg); /* eller vad din bakgrundsvariabel heter */
+  }
+    
 
 
 
