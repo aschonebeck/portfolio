@@ -23,6 +23,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -165,9 +166,9 @@
       </li>
       <li > 
 
-        <a href="decentpeople.html" class="project-item" data-category="ux" data-img="img/studio.png" data-id="UX23-005" data-name="Decent People Design Studio"  data-client="Decent People">
+        <a href="decentpeople.html" class="project-item" data-category="ux" data-img="img/studio.png" data-id="UX23-005" data-name="Decent People Studio"  data-client="Decent People">
         <span class="project-id">UX23-005</span>
-        <span class="project-title">Decent People Design Studio</span>
+        <span class="project-title">Decent People Studio</span>
         <span class="project-type">UX Design</span>
         <span class="project-year">2020–23</span></a>
       </li>
@@ -503,12 +504,22 @@ function injectGridThumbs() {
 </script>
 
 <script>
-(function () {
-  const loader       = document.querySelector('.loader');
+
+  (function () {
+   const loader       = document.querySelector('.loader');
   const thumbs       = document.querySelectorAll('.thumb');
   const progressFill = document.querySelector('.progress-fill');
   const countEl      = document.getElementById('count');
   const skipBtn      = document.getElementById('loader-skip');
+
+  // Ingen loader på mobil — ta bort loading-klassen direkt
+  if (window.innerWidth <= 768) {
+    loader.style.display = 'none';
+    document.body.classList.remove('loading');
+    return;
+  }
+
+
 
   if (sessionStorage.getItem('loaderSeen')) {
     loader.style.display = 'none';
