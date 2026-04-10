@@ -191,18 +191,38 @@ The best referral is one that doesn't feel like one.
 </div>
 
 <script>
-// THEME
+// =====================
+// THEME TOGGLE 
+// =====================
 const toggle = document.getElementById('theme-toggle');
-if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-function updateThemeLabel() {
-  toggle.textContent = document.body.classList.contains('dark') ? 'Mode: Dark' : 'Mode: Light';
+
+// set initial theme from localStorage
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
 }
+
+// update aria-pressed
+function updateThemeState() {
+  const isDark = document.body.classList.contains('dark');
+  toggle.setAttribute('aria-pressed', isDark);
+}
+
+// click handler
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
-  localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  updateThemeLabel();
+  localStorage.setItem(
+    'theme',
+    document.body.classList.contains('dark') ? 'dark' : 'light'
+  );
+  updateThemeState();
 });
-updateThemeLabel();
+
+// run on load
+updateThemeState();
+</script>
+
+<script>
+
 
 // SCROLL PROGRESS
 const bar = document.getElementById('progress-bar');
@@ -222,10 +242,189 @@ window.addEventListener('scroll', () => {
 // FADE IN
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
   });
 }, { threshold: 0.06 });
+
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+// ============================
+// PROJECT META STATE MACHINE
+// ============================
+const metaTable = document.querySelector('.project-meta-table');
+
+let lastScrollY = window.scrollY;
+let lastScrollTime = Date.now();
+
+let velocity = 0;
+let direction = 0; // -1 up, 1 down, 0 idle
+
+let state = "TOP";
+
+let upAccumulator = 0;
+let downAccumulator = 0;
+
+let lock = false;
+
+// TUNING VALUES
+const EDGE_TOP = 250;
+const VELOCITY_SMOOTHING = 0.15;
+const SCROLL_INTENT_THRESHOLD_DOWN = 200;
+const SCROLL_INTENT_THRESHOLD_UP = 800;
+const IDLE_TIME = 400;
+
+
+// UI ACTIONS
+function collapseMeta() {
+  if (!metaTable || metaTable.classList.contains('hidden') || lock) return;
+  lock = true;
+
+  const height = metaTable.offsetHeight;
+  metaTable.style.height = height + 'px';
+  metaTable.offsetHeight;
+  metaTable.classList.add('collapsing');
+
+  setTimeout(() => {
+    metaTable.classList.add('hidden');
+    metaTable.classList.remove('collapsing');
+    metaTable.style.height = '';
+    lock = false;
+  }, 250);
+}
+
+function expandMeta() {
+  if (!metaTable || !metaTable.classList.contains('hidden') || lock) return;
+  lock = true;
+
+  metaTable.classList.remove('hidden');
+
+  const height = metaTable.scrollHeight;
+  metaTable.style.height = '0px';
+  metaTable.offsetHeight;
+  metaTable.style.height = height + 'px';
+
+  setTimeout(() => {
+    metaTable.style.height = '';
+    lock = false;
+  }, 250);
+}
+
+
+// STATE MACHINE
+function updateState(scrollY) {
+  const now = Date.now();
+  const deltaTime = now - lastScrollTime;
+  const deltaY = scrollY - lastScrollY;
+
+  const instantVelocity = deltaTime > 0 ? deltaY / deltaTime : 0;
+  velocity = velocity * (1 - VELOCITY_SMOOTHING) + instantVelocity * VELOCITY_SMOOTHING;
+
+  if (Math.abs(deltaY) > 1) {
+    direction = deltaY > 0 ? 1 : -1;
+  }
+
+  if (scrollY < EDGE_TOP) {
+    state = "TOP";
+    expandMeta();
+    resetAccumulators();
+    return;
+  }
+
+  const isIdle = deltaTime > IDLE_TIME && Math.abs(velocity) < 0.05;
+
+  if (isIdle) {
+    state = "READING";
+    resetAccumulators();
+    return;
+  }
+
+  if (direction === 1) {
+    state = "DESCENDING";
+    downAccumulator += Math.abs(deltaY);
+    upAccumulator = 0;
+
+ if (downAccumulator > SCROLL_INTENT_THRESHOLD_DOWN) {
+  collapseMeta();
+  downAccumulator = 0;
+}
+  }
+
+  if (direction === -1) {
+    state = "REVISITING";
+    upAccumulator += Math.abs(deltaY);
+    downAccumulator = 0;
+
+ if (upAccumulator > SCROLL_INTENT_THRESHOLD_UP) {
+  expandMeta();
+  upAccumulator = 0;
+}
+  }
+
+  lastScrollY = scrollY;
+  lastScrollTime = now;
+}
+
+function resetAccumulators() {
+  upAccumulator = 0;
+  downAccumulator = 0;
+}
+
+window.addEventListener('scroll', () => {
+  const isMobile = window.innerWidth <= 768;
+  if (!isMobile || !metaTable) return;
+  updateState(window.scrollY);
+});
+</script>
+
+
+<script>
+(function () {
+  const captions = [
+    '[PROTOTYPE 01] — App concept showing real-time consumption data that connects usage to specific household activities.',
+    'Overview of household consumption and production of energy.',
+    'Detailed information about what activities affect current load in household.'
+  ];
+  const slides = document.querySelectorAll('.proto-slide');
+  const caption = document.querySelector('.proto-caption');
+  const counter = document.querySelector('.proto-current');
+  const total = document.querySelector('.proto-total');
+  const stage = document.querySelector('.proto-stage');
+  let current = 0;
+  total.textContent = String(slides.length).padStart(2, '0');
+  caption.textContent = captions[0];
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    counter.textContent = String(current + 1).padStart(2, '0');
+    caption.textContent = captions[current] || '';
+  }
+  document.querySelector('.proto-prev').addEventListener('click', () => goTo(current - 1));
+  document.querySelector('.proto-next').addEventListener('click', () => goTo(current + 1));
+  // swipe
+let touchStartX = 0;
+let touchStartCount = 0;
+
+stage.addEventListener('touchstart', e => {
+  touchStartCount = e.touches.length;
+  touchStartX = e.touches[0].clientX;
+}, { passive: true });
+
+stage.addEventListener('touchend', e => {
+  if (touchStartCount > 1) return; // pinch — ignorera
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+}, { passive: true });
+  // keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+})();
 </script>
 
 </body>

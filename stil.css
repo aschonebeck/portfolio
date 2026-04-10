@@ -1523,11 +1523,18 @@ strong {
 }
 
 .project-page .left {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+  }
 
-  height: auto !important;
-  overflow: visible !important;
-
-}
+  .project-page .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+  }
 
 .project-page .right {   /* ← broken selector but harmless */
   height: auto !important;

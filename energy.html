@@ -234,8 +234,9 @@ let lock = false;
 // TUNING VALUES
 const EDGE_TOP = 250;
 const VELOCITY_SMOOTHING = 0.15;
-const SCROLL_INTENT_THRESHOLD = 200;
-const IDLE_TIME = 300;
+const SCROLL_INTENT_THRESHOLD_DOWN = 200;
+const SCROLL_INTENT_THRESHOLD_UP = 800;
+const IDLE_TIME = 400;
 
 
 // UI ACTIONS
@@ -307,10 +308,10 @@ function updateState(scrollY) {
     downAccumulator += Math.abs(deltaY);
     upAccumulator = 0;
 
-    if (downAccumulator > SCROLL_INTENT_THRESHOLD) {
-      collapseMeta();
-      downAccumulator = 0;
-    }
+ if (downAccumulator > SCROLL_INTENT_THRESHOLD_DOWN) {
+  collapseMeta();
+  downAccumulator = 0;
+}
   }
 
   if (direction === -1) {
@@ -318,10 +319,10 @@ function updateState(scrollY) {
     upAccumulator += Math.abs(deltaY);
     downAccumulator = 0;
 
-    if (upAccumulator > SCROLL_INTENT_THRESHOLD) {
-      expandMeta();
-      upAccumulator = 0;
-    }
+ if (upAccumulator > SCROLL_INTENT_THRESHOLD_UP) {
+  expandMeta();
+  upAccumulator = 0;
+}
   }
 
   lastScrollY = scrollY;
