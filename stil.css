@@ -1971,11 +1971,27 @@ opacity: 0.85;
   opacity: 1 !important;
 max-width: 90%;
 }
-.proto-stage img {
-   height: 70dvh;
-    object-fit: cover;
- object-position: center top;
+.proto-stage {
+  position: relative;
+  width: 100%;
+  padding-top: 40px;
+    padding-bottom: 40px;
+    min-height: 200px;
+  overflow: hidden;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
+.proto-stage img {
+max-width: 80%;
+padding: 50px;
+display: block;
+margin:0 auto;
+    object-fit:cover;
+ object-position: center top;
+filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
+        drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.07));
+}
 
 }
