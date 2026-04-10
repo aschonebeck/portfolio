@@ -729,7 +729,7 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
 /* ── CAPTION ── */
 .proto-caption {
   font-family: var(--font) !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   letter-spacing: 0.0em;
   color: var(--muted) !important;
   padding: 14px 40px !important;
@@ -1542,7 +1542,7 @@ strong {
 
 
 .project-page p {
-  font-size: 14.5px;
+  font-size: 15px !important;
   color: var(--text);
   max-width: 95%;
   line-height: 1.1;
@@ -1955,9 +1955,25 @@ opacity: 0.85;
   .proto-controls {
     padding: 12px 16px;
   }
-  .proto-caption {
-    padding: 12px 16px !important;
+
+  p.proto-caption {
+      font-size: 13px !important;
+
   }
+
+  /* ── CAPTION ── */
+.proto-caption {
+  font-family: var(--font) !important;
+
+  letter-spacing: 0.0em;
+  color: var(--muted) !important;
+  padding: 14px 20px !important;
+  line-height: 1.5 !important;
+  border-bottom: 1px solid var(--border);
+  margin: 0 !important;
+  opacity: 1 !important;
+  max-width: 90% !important;
+}
 
   figcaption {
   font-family: var(--font) !important;
