@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>A.Schönebeck — PORTFOLIO</title>
+    <link href="stil.css" rel="stylesheet" type="text/css" />
+    <meta property="og:url" content="www.amandaschonebeck.com" />
+    <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
+    <meta property="og:description" content="UX Designer based in Stockholm, exploring how people connect with digital and physical artifacts in everyday life. I craft thoughtful user experiences through interaction design, facilitation, technology, workshops, and user research. © 2026 Amanda Schönebeck" />
+  <meta property="og:image" content="https://amandaschonebeck.com/img/" />
+  <meta property="og:type" content="website" />
+<link rel="canonical" href="https://www.amandaschonebeck.com/" />
+      <link rel="shortcut icon" href="favicon2.ico"/>
+
+
+
+<!--fonts-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+
+
+<body class="index-page">
+
+
+
+<div class="loader" role="status" aria-live="polite" aria-label="Loading projects">
+
+  <div class="loader-grid">
+    <img src="img/at.jpg" class="thumb active" />
+    <img src="img/or.jpg" class="thumb" />
+    <img src="img/marack.jpg" class="thumb" />
+    <img src="img/nrg2.jpg" class="thumb" />
+      <img src="img/studio.png" class="thumb" />
+      <img src="img/dreams.png" class="thumb" />
+                 <img src="img/humane.jpg" class="thumb" />
+            <img src="img/work.jpg" class="thumb" />
+
+        
+    <!-- etc -->
+  </div>
+
+  <div class="loader-ui">
+         <span class="nav-brand"><a href="#">A.Schönebeck</a></span>
+           <button class="loader-skip" id="loader-skip">Skip</button>
+    <div class="progress-text">LOADING PROJECTS <span id="count">1</span>/8</div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="layout">
+
+  <!-- LEFT -->
+  <div class="left">
+
+    <nav class="top-nav">
+      <span class="nav-brand"><a href="index.html">A.Schönebeck</a></span>
+      <div class="nav-links nav-links--desktop">
+
+        <a href="#" class="active">Work</a>        <a href="info.html">Info</a>
+      </div>
+<button id="theme-toggle" aria-pressed="false"> 
+  [<span class="mode-light">Light</span> / <span class="mode-dark">Dark</span>]
+</button>
+      <a href="info.html" class="mob-plus" aria-label="Info">+</a>
+    </nav>
+
+    <div class="active-label">
+      <span id="active-id">—</span>
+      <span id="active-name">Hover a project</span>
+    </div>
+
+    <!-- MOBILE: view toggle + filter trigger -->
+    <div class="view-filter-row">
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="grid">Grid View</button>
+        <span class="sep">/</span>
+        <button class="view-btn" data-view="list">List View</button>
+      </div>
+      <button class="mob-filter-toggle" id="mob-filter-toggle">
+        <span class="filter-dot"></span>
+        Filter
+      </button>
+    </div>
+
+    <!-- MOBILE: filter expand -->
+    <div class="mob-filter-expand" id="mob-filter-expand">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ux">UX</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="writing">Writing</button>
+    </div>
+
+    <!-- DESKTOP: filter row -->
+    <div class="filter-row">
+      <span class="filter-dot"></span>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ux">UX</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="writing">Writing</button>
+    </div>
+
+    <div class="table-header">
+      <span>ID <span 
+  class="id-info" 
+  data-tooltip="WB — Web Design&#10;UX — UX Design&#10;ES — Essay / Editorial&#10;&#10;YY — Year&#10;00X — Project no.">ⓘ</span></span>
+      <span>Project</span>
+      <span class="th-type">Type</span>
+      <span class="th-year">Year</span>
+    </div>
+
+    <ul class="project-list">
+     <li>
+
+      <a href="appelltrastudio.html" class="project-item"
+       data-category="web"
+       data-img="img/at.jpg"
+       data-id="WB25-001"
+       data-name="Furniture Studio Website"
+        data-client="Appell Trästudio">
+
+        <span class="project-id">WB25-001</span>
+        <span class="project-title">Furniture Studio Platform</span>
+        <span class="project-type">Web Design</span>
+        <span class="project-year">2025</span>
+
+      </a>
+
+      </li>
+
+      <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/or.jpg" data-id="ES25-002" data-name="Designing for Stillness"  data-client="Independent">
+        <span class="project-id">ES25-002</span>
+        <span class="project-title">FIZZLED OUT — Designing for Stillness</span>
+        <span class="project-type">Essay</span>
+        <span class="project-year">2025</span>
+        </a> 
+      </li>
+
+      <li> <a href="zsongo.html" class="project-item" data-category="web" data-img="img/zsongo.gif" data-id="WB24-003" data-name="Zsongo Events Website"  data-client="Zsongo">
+        <span class="project-id">WB24-003</span>
+        <span class="project-title">Zsongo World Events</span>
+        <span class="project-type">Web Design</span>
+        <span class="project-year">2024</span>
+        </a>
+      </li>
+
+      <li> <a href="energy.html" class="project-item" data-category="ux" data-img="img/nrg2.jpg" data-id="UX22-004" data-name="Energy as Experience"  data-client="KTH Royal Institute of technology">
+        <span class="project-id">UX22-004</span>
+        <span class="project-title"> Energy as Experience</span>
+        <span class="project-type">UX Research</span>
+        <span class="project-year">2021–22</span>
+      </a> 
+      </li>
+      <li > 
+
+        <a href="decentpeople.html" class="project-item" data-category="ux" data-img="img/studio.png" data-id="UX23-005" data-name="Decent People Studio"  data-client="Decent People">
+        <span class="project-id">UX23-005</span>
+        <span class="project-title">Decent People Studio</span>
+        <span class="project-type">UX Design</span>
+        <span class="project-year">2020–23</span></a>
+      </li>
+
+      <li>
+       <a href="dreams.html" class="project-item" data-category="ux" data-img="img/dreams.png" data-id="UX20-006" data-name="Referrals: Why People Share" data-client="Dreams">
+        <span class="project-id">UX20-006</span>
+        <span class="project-title">Referrals: Why People Share</span>
+        <span class="project-type">Design Sprint</span>
+        <span class="project-year">2020</span></a>
+      </li>
+
+         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/work.jpg" data-id="ES20-007" data-name="Workshops with Intention" data-client="Konstfack">
+        <span class="project-id">ES20-007</span>
+        <span class="project-title">Workshops with Intention</span>
+        <span class="project-type">Essay</span>
+        <span class="project-year">2020</span></a>
+      </li>
+
+      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/humane1.jpg" data-id="ES20-008" data-name="Humane Design in Times of Crises" data-client="Decent People">
+        <span class="project-id">ES20-008</span>
+        <span class="project-title">Humane Design in Times of Crises</span>
+        <span class="project-type">Essay</span>
+        <span class="project-year">2020</span></a>
+      </li>
+   
+    </ul>
+
+    <div id="mobile-preview"></div>
+
+    <div class="wordmark">
+    <span>    <div class="kontakt">
+        <a target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" href="https://www.linkedin.com/in/amandaschonebeck">LinkedIn</a>
+     <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
+     </div></span>
+      <span class="wordmark-sub"> ©2026<br>Stockholm, SWE</span>
+    </div>
+
+  </div><!-- end .left -->
+
+  <!-- RIGHT -->
+
+  <div class="right">
+      <div class="right-inner">
+
+    <div class="right-placeholder" id="placeholder">— Select a project —</div>
+    <img class="right-img" id="right-img" src="" alt="" />
+    <div class="right-caption" id="right-caption"></div>
+  </div>
+
+</div>
+
+
+
+
+<script>
+// =====================
+// THEME TOGGLE 
+// =====================
+const toggle = document.getElementById('theme-toggle');
+
+// set initial theme from localStorage
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
+}
+
+// update aria-pressed
+function updateThemeState() {
+  const isDark = document.body.classList.contains('dark');
+  toggle.setAttribute('aria-pressed', isDark);
+}
+
+// click handler
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  localStorage.setItem(
+    'theme',
+    document.body.classList.contains('dark') ? 'dark' : 'light'
+  );
+  updateThemeState();
+});
+
+// run on load
+updateThemeState();
+</script>
+
+
+<script>
+
+
+// =====================
+// SHARED ELEMENTS
+// =====================
+const rightImg = document.getElementById('right-img');
+const rightCaption = document.getElementById('right-caption');
+const placeholder = document.getElementById('placeholder');
+const activeId = document.getElementById('active-id');
+const activeName = document.getElementById('active-name');
+
+let currentSrc = '';
+
+// =====================
+// DESKTOP: HOVER PREVIEW
+// =====================
+if (window.innerWidth > 768) {
+
+  let rafId = null;
+
+  document.querySelectorAll('.project-item').forEach(item => {
+
+    item.addEventListener('mouseenter', () => {
+      const src = item.dataset.img;
+      const id = item.dataset.id;
+      const name = item.dataset.name;
+
+
+      activeId.textContent = id;
+      activeName.textContent = name;
+
+      if (src) {
+        // avbryt eventuell pågående rAF
+        if (rafId) cancelAnimationFrame(rafId);
+
+   
+   rightImg.src = src;
+const isPoster = item.dataset.category === 'writing';
+rightImg.style.objectFit = isPoster ? 'contain' : 'cover';
+rightImg.style.padding = isPoster ? '2rem 0' : '0';
+        currentSrc = src;
+
+        rafId = requestAnimationFrame(() => {
+          rafId = requestAnimationFrame(() => {
+            rafId = null;
+            rightImg.classList.add('visible');
+            rightCaption.textContent = name;
+            rightCaption.classList.add('visible');
+            rightCaption.textContent = item.dataset.client || '';
+            placeholder.classList.add('hidden');
+
+          });
+        });
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      // avbryt rAF så visible aldrig läggs till efter leave
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+
+      activeId.textContent = '—';
+      activeName.textContent = 'Hover a project';
+
+      rightImg.classList.remove('visible');
+      rightCaption.classList.remove('visible');
+      placeholder.classList.remove('hidden');
+
+      currentSrc = '';
+   rightImg.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+    });
+
+  });
+
+}
+// =====================
+// FILTER
+// =====================
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const f = btn.dataset.filter;
+
+    document.querySelectorAll('.project-item').forEach(item => {
+      if (f === 'all' || item.dataset.category === f) {
+        item.removeAttribute('data-hidden');
+      } else {
+        item.setAttribute('data-hidden', 'true');
+      }
+    });
+
+  });
+});
+
+
+ 
+
+// =====================
+// MOBILE: VIEW TOGGLE + FILTER + TAP PREVIEW
+// =====================
+if (window.innerWidth <= 768) {
+ 
+  const list = document.querySelector('.project-list');
+  const preview = document.getElementById('mobile-preview');
+  let activeLink = null;
+  let isGridView = false;
+ 
+// ── Inject grid thumbnails (call once, idempotent) ──
+function injectGridThumbs() {
+  list.querySelectorAll('.project-item').forEach(item => {
+    if (!item.querySelector('.project-thumb')) {
+      const img = document.createElement('img');
+      img.src = item.dataset.imgMobile || item.dataset.img || '';
+      img.className = 'project-thumb';
+      img.alt = item.dataset.name || '';
+
+      // fade in när bilden laddats
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      if (img.complete) img.classList.add('loaded'); // redan cachad
+
+      const caption = document.createElement('div');
+      caption.className = 'grid-caption';
+      caption.innerHTML =
+       `<span class="project-id">${item.dataset.id}</span>` +
+  `<span class="project-title">${item.dataset.name}</span>` +
+  `<div class="project-type-year">` +
+    `<span class="project-type-label">${item.querySelector('.project-type')?.textContent || ''}</span>` +
+    `<span class="project-year-label">${item.querySelector('.project-year')?.textContent || ''}</span>` +
+  `</div>`;
+
+      item.prepend(caption);
+      item.prepend(img);
+    }
+  });
+}
+ 
+  // ── Switch to grid view ──
+  function enableGridView() {
+    isGridView = true;
+    injectGridThumbs();
+    list.classList.add('grid-view');
+    closePreview();
+    document.querySelectorAll('.view-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.view === 'grid');
+    });
+  }
+ 
+  // ── Switch to list view ──
+  function enableListView() {
+    isGridView = false;
+    list.classList.remove('grid-view');
+    closePreview();
+    // remove injected grid elements so list layout is clean
+    list.querySelectorAll('.project-thumb').forEach(el => el.remove());
+    list.querySelectorAll('.grid-caption').forEach(el => el.remove());
+    document.querySelectorAll('.view-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.view === 'list');
+    });
+  }
+ 
+  // ── Default: grid view on load ──
+  enableGridView();
+ 
+  // ── View toggle buttons ──
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.view === 'grid') enableGridView();
+      else enableListView();
+    });
+  });
+ 
+  // ── Filter expand ──
+  const mobFilterToggle = document.getElementById('mob-filter-toggle');
+  const mobFilterExpand = document.getElementById('mob-filter-expand');
+ 
+  mobFilterToggle.addEventListener('click', () => {
+    mobFilterExpand.classList.toggle('open');
+  });
+ 
+  mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      mobFilterExpand.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+ 
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.project-item').forEach(item => {
+        const li = item.closest('li');
+        if (f === 'all' || item.dataset.category === f) {
+          li.removeAttribute('data-hidden');
+        } else {
+          li.setAttribute('data-hidden', 'true');
+        }
+      });
+ 
+      mobFilterExpand.classList.remove('open');
+    });
+  });
+ 
+  // ── Tap preview (list view only) ──
+  function closePreview() {
+    preview.classList.remove('active');
+    // move preview back to end of list so it doesn't sit mid-list
+    list.after(preview);
+    if (activeLink) {
+      activeLink.classList.remove('focused');
+      activeLink = null;
+    }
+  }
+ 
+  document.querySelectorAll('.project-item').forEach(link => {
+    link.addEventListener('click', (e) => {
+      // grid view: navigate normally
+      if (isGridView) return;
+ 
+      e.preventDefault();
+ 
+      if (activeLink === link) { closePreview(); return; }
+      if (activeLink) activeLink.classList.remove('focused');
+ 
+      const src = link.dataset.imgMobile || link.dataset.img;
+      const href = link.href;
+ 
+      preview.innerHTML = `<a href="${href}"><img src="${src}" /></a>`;
+ 
+      const li = link.closest('li');
+      li.after(preview);
+ 
+      preview.classList.add('active');
+      link.classList.add('focused');
+      activeLink = link;
+    });
+  });
+ 
+  preview.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'IMG') closePreview();
+  });
+ 
+}
+
+</script>
+
+<script>
+
+  (function () {
+   const loader       = document.querySelector('.loader');
+  const thumbs       = document.querySelectorAll('.thumb');
+  const progressFill = document.querySelector('.progress-fill');
+  const countEl      = document.getElementById('count');
+  const skipBtn      = document.getElementById('loader-skip');
+
+  // Ingen loader på mobil — ta bort loading-klassen direkt
+  if (window.innerWidth <= 768) {
+    loader.style.display = 'none';
+    document.body.classList.remove('loading');
+    return;
+  }
+
+
+
+  if (sessionStorage.getItem('loaderSeen')) {
+    loader.style.display = 'none';
+    document.body.classList.remove('loading');
+    return;
+  }
+  sessionStorage.setItem('loaderSeen', '1');
+  document.body.classList.add('loading');
+
+  let current = 0;
+  const total = thumbs.length;
+  let timer = null;
+
+  function dismissLoader() {
+    if (timer) clearTimeout(timer);
+    progressFill.style.transition = 'width 0.25s ease';
+    progressFill.style.width = '100%';
+    setTimeout(() => {
+      loader.classList.add('done');
+      document.body.classList.remove('loading');
+      setTimeout(() => { loader.style.display = 'none'; }, 520);
+    }, 200);
+  }
+
+  function activateNext() {
+    thumbs.forEach(t => t.classList.remove('active'));
+    thumbs[current].classList.add('active');
+    const pct = ((current + 1) / total) * 100;
+    progressFill.style.width = pct + '%';
+    countEl.textContent = current + 1;
+    current++;
+    if (current < total) {
+      timer = setTimeout(activateNext, 450);
+    } else {
+      timer = setTimeout(dismissLoader, 600);
+    }
+  }
+
+  skipBtn.addEventListener('click', dismissLoader);
+
+  // ── WAIT FOR ALL THUMBS TO LOAD BEFORE STARTING ──
+  const imagePromises = Array.from(thumbs).map(img => {
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise(resolve => {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true }); // fail gracefully
+    });
+  });
+
+  Promise.all(imagePromises).then(() => {
+    activateNext();
+  });
+
+})();
+</script>
+
+</body>
+</html>
