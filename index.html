@@ -500,11 +500,6 @@ function injectGridThumbs() {
   const countEl      = document.getElementById('count');
   const skipBtn      = document.getElementById('loader-skip');
 
-  if (window.innerWidth <= 768) {
-    loader.style.display = 'none';
-    document.body.classList.remove('loading');
-    return;
-  }
 
   if (sessionStorage.getItem('loaderSeen')) {
     loader.style.display = 'none';
@@ -540,7 +535,7 @@ function injectGridThumbs() {
       countEl.textContent = current + 1;
       current++;
       if (current < total) {
-        timer = setTimeout(showNext, 450);
+        timer = setTimeout(showNext, 420);
       } else {
         timer = setTimeout(dismissLoader, 550);
       }
