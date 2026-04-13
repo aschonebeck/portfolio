@@ -36,19 +36,9 @@
 
 <div class="loader" role="status" aria-live="polite" aria-label="Loading projects">
 
-  <div class="loader-grid">
-    <img src="img/at.jpg" class="thumb active" />
-    <img src="img/or.jpg" class="thumb" />
-    <img src="img/marack.jpg" class="thumb" />
-    <img src="img/nrg2.jpg" class="thumb" />
-      <img src="img/studio.png" class="thumb" />
-      <img src="img/dreams.png" class="thumb" />
-                 <img src="img/humane.jpg" class="thumb" />
-            <img src="img/work.jpg" class="thumb" />
-
-        
-    <!-- etc -->
-  </div>
+<div class="loader-grid">
+  <div class="loader-id"></div>
+</div>
 
   <div class="loader-ui">
          <span class="nav-brand"><a href="#">A.Schönebeck</a></span>
@@ -202,7 +192,7 @@
     <div class="wordmark">
     <span>    <div class="kontakt">
         <a target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" href="https://www.linkedin.com/in/amandaschonebeck">LinkedIn</a>
-     <a href="mailto:amanda.schonebeck@gmail.com">Email</a>
+     <a href="/cdn-cgi/l/email-protection#fe9f939f909a9fd08d9d9691909b9c9b9d95be99939f9792d09d9193">Email</a>
      </div></span>
       <span class="wordmark-sub"> ©2026<br>Stockholm, SWE</span>
     </div>
@@ -224,7 +214,7 @@
 
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // =====================
 // THEME TOGGLE 
 // =====================
@@ -504,22 +494,17 @@ function injectGridThumbs() {
 </script>
 
 <script>
-
-  (function () {
-   const loader       = document.querySelector('.loader');
-  const thumbs       = document.querySelectorAll('.thumb');
+(function () {
+  const loader       = document.querySelector('.loader');
   const progressFill = document.querySelector('.progress-fill');
   const countEl      = document.getElementById('count');
   const skipBtn      = document.getElementById('loader-skip');
 
-  // Ingen loader på mobil — ta bort loading-klassen direkt
   if (window.innerWidth <= 768) {
     loader.style.display = 'none';
     document.body.classList.remove('loading');
     return;
   }
-
-
 
   if (sessionStorage.getItem('loaderSeen')) {
     loader.style.display = 'none';
@@ -529,8 +514,10 @@ function injectGridThumbs() {
   sessionStorage.setItem('loaderSeen', '1');
   document.body.classList.add('loading');
 
+  const ids = ['WB25-001','ES25-002','WB24-003','UX22-004','UX23-005','UX20-006','ES20-007','ES20-008'];
+  const idEl = document.querySelector('.loader-id');
   let current = 0;
-  const total = thumbs.length;
+  const total = ids.length;
   let timer = null;
 
   function dismissLoader() {
@@ -544,35 +531,24 @@ function injectGridThumbs() {
     }, 200);
   }
 
-  function activateNext() {
-    thumbs.forEach(t => t.classList.remove('active'));
-    thumbs[current].classList.add('active');
-    const pct = ((current + 1) / total) * 100;
-    progressFill.style.width = pct + '%';
-    countEl.textContent = current + 1;
-    current++;
-    if (current < total) {
-      timer = setTimeout(activateNext, 450);
-    } else {
-      timer = setTimeout(dismissLoader, 600);
-    }
+  function showNext() {
+    idEl.style.opacity = '0';
+    setTimeout(() => {
+      idEl.textContent = ids[current];
+      idEl.style.opacity = '1';
+      progressFill.style.width = ((current + 1) / total) * 100 + '%';
+      countEl.textContent = current + 1;
+      current++;
+      if (current < total) {
+        timer = setTimeout(showNext, 450);
+      } else {
+        timer = setTimeout(dismissLoader, 550);
+      }
+    }, 150);
   }
 
   skipBtn.addEventListener('click', dismissLoader);
-
-  // ── WAIT FOR ALL THUMBS TO LOAD BEFORE STARTING ──
-  const imagePromises = Array.from(thumbs).map(img => {
-    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
-    return new Promise(resolve => {
-      img.addEventListener('load', resolve, { once: true });
-      img.addEventListener('error', resolve, { once: true }); // fail gracefully
-    });
-  });
-
-  Promise.all(imagePromises).then(() => {
-    activateNext();
-  });
-
+  showNext();
 })();
 </script>
 
