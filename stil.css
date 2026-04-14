@@ -1325,7 +1325,7 @@ min-height: auto;
   .project-page .wordmark { display: none; }
 
   .wordmark { border:1px;  
-      padding: 22px 20px; }
+      padding: 20px 20px; }
 
 .abo_body .wordmark {
    border-top: 1px solid var(--border);
