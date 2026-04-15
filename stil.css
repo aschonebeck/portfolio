@@ -269,6 +269,7 @@
   display: block;
 min-height: 100dvh;
   height: auto;
+  padding-bottom: 0px !important;
   object-fit: cover;
   object-position: top center;
     }
