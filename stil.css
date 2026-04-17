@@ -15,12 +15,15 @@
 
    body.dark {
       --bg: #0e0e0c;
-      --text: rgb(245, 245, 240);
+      --text: rgb(245, 245, 240, 0.9);
       --muted: #888;
       --border: #333;
         --hover-bg: #f0f0f0;
   --hover-text: #0e0e0c;
     }
+
+
+
 
 
 .project-item:hover,
