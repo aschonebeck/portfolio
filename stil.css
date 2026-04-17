@@ -1605,7 +1605,8 @@ strong {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--bg); /* eller vad din bakgrundsvariabel heter */
+
+    background: var(--bg); 
   }
     
 
@@ -1776,7 +1777,7 @@ opacity: 0.85;
     border-bottom: 0.5px solid var(--border);
     animation: none;
     opacity: 1;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
   }
 
   .project-list.grid-view li:nth-child(2n) {
