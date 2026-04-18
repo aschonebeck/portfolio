@@ -60,7 +60,7 @@
         </div>
         <div id="notshow" class="project-meta-row">
           <span class="project-meta-label">ID</span>
-          <span class="project-meta-value">AS-WB25-001</span>
+          <span class="project-meta-value">WB25-001</span>
         </div>
       </div>
 
@@ -115,7 +115,7 @@
 
     <img class="project-image-full fade-in" src="img/a.png" alt="">
 <br><br>
-    <img class="project-image-full fade-in" src="img/appell.png" alt="">
+    <img class="lastimg fade-in" src="img/appell.png" alt="">
 
   </div>
 
@@ -203,10 +203,10 @@ let downAccumulator = 0;
 let lock = false;
 
 // TUNING VALUES
-const EDGE_TOP = 250;
+const EDGE_TOP = 200;
 const VELOCITY_SMOOTHING = 0.15;
-const SCROLL_INTENT_THRESHOLD_DOWN = 200;
-const SCROLL_INTENT_THRESHOLD_UP = 800;
+const SCROLL_INTENT_THRESHOLD_DOWN = 130;
+const SCROLL_INTENT_THRESHOLD_UP = 900;
 const IDLE_TIME = 400;
 
 
@@ -312,52 +312,6 @@ window.addEventListener('scroll', () => {
 });
 </script>
 
-
-<script>
-(function () {
-  const captions = [
-    '[PROTOTYPE 01] — App concept showing real-time consumption data that connects usage to specific household activities.',
-    'Overview of household consumption and production of energy.',
-    'Detailed information about what activities affect current load in household.'
-  ];
-  const slides = document.querySelectorAll('.proto-slide');
-  const caption = document.querySelector('.proto-caption');
-  const counter = document.querySelector('.proto-current');
-  const total = document.querySelector('.proto-total');
-  const stage = document.querySelector('.proto-stage');
-  let current = 0;
-  total.textContent = String(slides.length).padStart(2, '0');
-  caption.textContent = captions[0];
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    counter.textContent = String(current + 1).padStart(2, '0');
-    caption.textContent = captions[current] || '';
-  }
-  document.querySelector('.proto-prev').addEventListener('click', () => goTo(current - 1));
-  document.querySelector('.proto-next').addEventListener('click', () => goTo(current + 1));
-  // swipe
-let touchStartX = 0;
-let touchStartCount = 0;
-
-stage.addEventListener('touchstart', e => {
-  touchStartCount = e.touches.length;
-  touchStartX = e.touches[0].clientX;
-}, { passive: true });
-
-stage.addEventListener('touchend', e => {
-  if (touchStartCount > 1) return; // pinch — ignorera
-  const diff = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-}, { passive: true });
-  // keyboard
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') goTo(current - 1);
-    if (e.key === 'ArrowRight') goTo(current + 1);
-  });
-})();
-</script>
 
 </body>
 </html>

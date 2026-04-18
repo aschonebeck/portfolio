@@ -1301,6 +1301,14 @@ min-height: auto;
 
   }
 
+  .index-page .left {
+     min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
 
     .right {
     position: relative;
@@ -1342,7 +1350,7 @@ min-height: auto;
   .project-page .wordmark { display: none; }
 
   .wordmark { border:1px;  
-      padding: 20px 20px; }
+      padding: 20px 20px; margin-top:auto; }
 
 .abo_body .wordmark {
    border-top: 1px solid var(--border);
@@ -1430,10 +1438,15 @@ strong {
   }
 
 
+.info-content h1 {
+  padding-bottom: 10px;
+  font-size: 26px;
+}
 
 .project-meta-table {
   overflow: hidden;
   transition: height 0.25s ease;
+  margin-top: 5px;
 }
 
 .project-meta-table.collapsing {
@@ -1644,7 +1657,7 @@ opacity: 0.85;
         .info-content {
   padding: 20px;
   padding-top: 0px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   display: flex;
   flex-direction: column;
   gap: 10px;
