@@ -423,33 +423,41 @@ function injectGridThumbs() {
     });
   });
  
-  // ── Filter expand ──
-  const mobFilterToggle = document.getElementById('mob-filter-toggle');
-  const mobFilterExpand = document.getElementById('mob-filter-expand');
- 
-  mobFilterToggle.addEventListener('click', () => {
+// ── Filter expand ──
+const mobFilterToggle = document.getElementById('mob-filter-toggle');
+const mobFilterExpand = document.getElementById('mob-filter-expand');
+
+mobFilterToggle.addEventListener('click', () => {
+  const activeFilter = mobFilterExpand.querySelector('.filter-btn.active');
+  const isFiltered = activeFilter && activeFilter.dataset.filter !== 'all';
+  
+  if (!isFiltered) {
     mobFilterExpand.classList.toggle('open');
-  });
- 
-  mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      mobFilterExpand.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
- 
-      const f = btn.dataset.filter;
-      document.querySelectorAll('.project-item').forEach(item => {
-        const li = item.closest('li');
-        if (f === 'all' || item.dataset.category === f) {
-          li.removeAttribute('data-hidden');
-        } else {
-          li.setAttribute('data-hidden', 'true');
-        }
-      });
- 
-      mobFilterExpand.classList.remove('open');
+  } else {
+    mobFilterExpand.classList.add('open');
+  }
+});
+
+mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    mobFilterExpand.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.project-item').forEach(item => {
+      const li = item.closest('li');
+      if (f === 'all' || item.dataset.category === f) {
+        li.removeAttribute('data-hidden');
+      } else {
+        li.setAttribute('data-hidden', 'true');
+      }
     });
+
+    if (f === 'all') {
+      mobFilterExpand.classList.remove('open');
+    }
   });
- 
+});
   // ── Tap preview (list view only) ──
   function closePreview() {
     preview.classList.remove('active');
