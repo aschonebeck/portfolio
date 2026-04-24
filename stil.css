@@ -467,7 +467,7 @@ height: 100dvh;
 }
 
 
-    .nav-links { display: flex; gap: 24px; }
+    .nav-links { display: flex; gap: 20px; }
 
     /* new mobile-only elements — hidden on desktop */
     .mob-plus { display: none; }
@@ -477,7 +477,7 @@ height: 100dvh;
     .nav-links a, .nav-brand {
       font-family: var(--font);
       font-size: 13px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--text);
       text-decoration: none;
@@ -944,6 +944,7 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
   height: 100%;
   object-fit: cover;
   position: absolute;
+
   top: 0;
   left: 0;
   opacity: 0;
