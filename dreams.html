@@ -77,18 +77,18 @@
     <img class="project-hero fade-in" src="img/dreams.png" alt="Design for Organic Growth">
 
     <p class="project-intro-text fade-in">
-The best referral is one that doesn't feel like one.
+The best referral is one that doesn't feel like one
     </p>
 
     <div class="project-section fade-in">
-      <p>Dreams wanted to expand their reach not through ads, but by turning existing users into advocates. My team was brought in to find out how, I was part of leading the planning and facilitation of a 4-day design sprint.</p>
+      <p>Dreams wanted to grow through their existing users rather than traditional marketing. We were brought in to figure out how - I was part of planning and facilitating a 4-day design sprint, moving the team from open questions to a tested prototype ready for implementation.</p>
     </div>
 
     <div class="project-section fade-in">
       <h2>DESIGN SPRINT: DAY 1</h2>
-      <p>
-        ● Expert Insights<br><br>
-        We started by getting everyone on the same page. Through expert interviews with key people at Dreams, we mapped pain points, opportunities, and open questions — then reframed them as "Can we…?" prompts to focus the sprint. By end of day, we had a shared long-term goal and a set of sprint questions to guide everything that followed.
+      <p><br>
+        ● EXPERT INSIGHTS<br>
+        We started with expert interviews with key people at Dreams where we mapped pain points, opportunities - then reframed them as "can we…?"-questions to focus the sprint. By end of day, we had a shared long-term goal and a set of sprint questions to guide everything that followed.
       </p>
     </div>
 
@@ -96,7 +96,7 @@ The best referral is one that doesn't feel like one.
 
     <div class="project-section fade-in">
       <p>
-        ● Sketching Ideas<br><br>
+        ● SKETCHING IDEAS<br>
         The afternoon moved into idea generation. I facilitated a series of sketching exercises - note-taking, Crazy 8s, rapid ideation. For several participants, this was a new way of working, so part of my role was creating enough psychological safety to keep the pace without losing the room. Each team member left with one developed concept.
       </p>
     </div>
@@ -105,8 +105,8 @@ The best referral is one that doesn't feel like one.
 
     <div class="project-section fade-in">
       <h2>DESIGN SPRINT: DAY 2</h2>
-      <p>
-        ● Concept Evaluation<br><br>
+      <p><BR>
+        ● CONCEPT EVALUTION<br>
         Concepts were anonymized and pinned up for silent critique. Dot-voting surfaced two clear directions: one built around monetary rewards, one around playful gamification. Running two concepts in parallel added complexity, but gave us something more useful - a genuine comparison to take into testing.
       </p>
     </div>
@@ -115,7 +115,7 @@ The best referral is one that doesn't feel like one.
 
     <div class="project-section fade-in">
       <p>
-        ● Storyboarding &amp; User Flows<br><br>
+        ● STORYBOARDING & USER FLOWS<br>
         With the two concepts selected, we moved into collaborative storyboarding - mapping each into a detailed user flow that the design team could prototype directly from. The dual-track approach demanded precision here; loose storyboards would have cost us time we didn't have on day three.
       </p>
     </div>
@@ -124,8 +124,8 @@ The best referral is one that doesn't feel like one.
 
     <div class="project-section fade-in">
       <h2>DESIGN SPRINT: DAY 3</h2>
-      <p>
-        ● Prototyping<br><br>
+      <p><BR>
+        ● PROTOTYPING<br>
         The design team built out both prototypes in Figma, working closely from the storyboards. Rapid UI decisions were inevitable at this pace — Dreams' existing design system kept things consistent and cut down decision fatigue considerably. Simultaneously, we reached out to recruit participants for the following day's testing.
       </p>
     </div>
@@ -134,8 +134,8 @@ The best referral is one that doesn't feel like one.
 
     <div class="project-section fade-in">
       <h2>DESIGN SPRINT: DAY 4</h2>
-      <p>
-        ● Testing<br><br>
+      <p><BR>
+        ● TESTING<br>
         Both prototypes were tested remotely, with participants sharing their screens while moving through the flows. What came back was specific, useful, and occasionally surprising - exactly what a sprint is for.
       </p>
     </div>
@@ -167,7 +167,7 @@ The best referral is one that doesn't feel like one.
 
         ● People preferred dropping a link into an existing group chat over sending a pre-written message. It felt more natural, less like a marketing campaign.<br><br>
 
-        ● Perosnal messages outperformed pre-written ones. Users wanted to sound like themselves.<br><br>
+        ● Personal messages outperformed pre-written ones. Users wanted to sound like themselves.<br><br>
 
         ● Seeing money arrive in real time was a strong motivator for continued engagement and sharing.<br><br>
 
@@ -271,10 +271,10 @@ let downAccumulator = 0;
 let lock = false;
 
 // TUNING VALUES
-const EDGE_TOP = 250;
+const EDGE_TOP = 200;
 const VELOCITY_SMOOTHING = 0.15;
-const SCROLL_INTENT_THRESHOLD_DOWN = 200;
-const SCROLL_INTENT_THRESHOLD_UP = 800;
+const SCROLL_INTENT_THRESHOLD_DOWN = 130;
+const SCROLL_INTENT_THRESHOLD_UP = 900;
 const IDLE_TIME = 400;
 
 
@@ -380,52 +380,6 @@ window.addEventListener('scroll', () => {
 });
 </script>
 
-
-<script>
-(function () {
-  const captions = [
-    '[PROTOTYPE 01] — App concept showing real-time consumption data that connects usage to specific household activities.',
-    'Overview of household consumption and production of energy.',
-    'Detailed information about what activities affect current load in household.'
-  ];
-  const slides = document.querySelectorAll('.proto-slide');
-  const caption = document.querySelector('.proto-caption');
-  const counter = document.querySelector('.proto-current');
-  const total = document.querySelector('.proto-total');
-  const stage = document.querySelector('.proto-stage');
-  let current = 0;
-  total.textContent = String(slides.length).padStart(2, '0');
-  caption.textContent = captions[0];
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    counter.textContent = String(current + 1).padStart(2, '0');
-    caption.textContent = captions[current] || '';
-  }
-  document.querySelector('.proto-prev').addEventListener('click', () => goTo(current - 1));
-  document.querySelector('.proto-next').addEventListener('click', () => goTo(current + 1));
-  // swipe
-let touchStartX = 0;
-let touchStartCount = 0;
-
-stage.addEventListener('touchstart', e => {
-  touchStartCount = e.touches.length;
-  touchStartX = e.touches[0].clientX;
-}, { passive: true });
-
-stage.addEventListener('touchend', e => {
-  if (touchStartCount > 1) return; // pinch — ignorera
-  const diff = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-}, { passive: true });
-  // keyboard
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') goTo(current - 1);
-    if (e.key === 'ArrowRight') goTo(current + 1);
-  });
-})();
-</script>
 
 </body>
 </html>
