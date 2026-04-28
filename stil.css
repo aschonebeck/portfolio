@@ -458,9 +458,9 @@ min-height: 100vh;
 
     #abopic {
   display: block;
-  opacity: 1;
-width: 100%;
-height: 100dvh;
+  opacity: 1 !important;
+width: auto;
+height: 100vh;
  object-fit: contain;
   filter: ;
  
@@ -1094,7 +1094,7 @@ text-transform: uppercase;
 
 .cv {
   max-width: 100%;
-  margin-top: 40px;   /* ändra från 60px till 0 */
+  margin-top: 20px;   /* ändra från 60px till 0 */
   padding-bottom: 20px;
   font-size: 12.5px;
   padding-top: 20px;
