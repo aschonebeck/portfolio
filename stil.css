@@ -303,10 +303,10 @@ min-height: 100vh;
       letter-spacing: -0.01em;
       color: var(--text);
       padding: 44px 44px 0;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 0px;
       width: 80%;
-      opacity: 0.82;
+      opacity: 1;
     }
  
     .project-section {
@@ -1968,7 +1968,7 @@ opacity: 0.85;
 }
 
 .loader .nav-brand {
-  top: 25px;
+  top: 20px;
 }
 
 .loader-grid--desktop { display: none; }
