@@ -52,6 +52,10 @@
 
 }
 
+.project-section p a {
+  color: var(--text);
+}
+
 @font-face {
   font-family: sohne; /* set name */
   src: url(sohne.otf); /* url of the font */
