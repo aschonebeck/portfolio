@@ -56,6 +56,20 @@
   color: var(--text);
 }
 
+.right  a {
+  color: var(--muted);
+  padding: 20px;
+  padding-top: 10px;
+  text-align: right;
+  width: 100%;
+  float: right;
+  font-size: 13px !important;
+  margin-bottom: 20px;
+
+}
+
+
+
 @font-face {
   font-family: sohne; /* set name */
   src: url(sohne.otf); /* url of the font */
