@@ -56,13 +56,15 @@
   color: var(--text);
 }
 
-.right  a {
+
+.right .instagram  {
   color: var(--muted);
+
   padding: 20px;
   padding-top: 10px;
   text-align: right;
   width: 100%;
-  float: right;
+float: right;
   font-size: 13px !important;
   margin-bottom: 20px;
 
@@ -770,13 +772,14 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
   margin: 0 !important;
   opacity: 1 !important;
   font-weight: 300;
-  max-width: 90% !important;
+  
 }
  
 
  .proto-total {
   color: var(--muted);
  }
+
 
 
 
