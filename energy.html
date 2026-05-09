@@ -85,7 +85,7 @@
 Energy is abstract and invisible until it needs our attention - the project asked how design can help households navigate power-based tariffs without requiring anyone to become an energy expert. A collaboration between KTH, Uppsala University, Ellevio and Bright, funded by <a href="https://www.energimyndigheten.se/en/" target="blank">Energymyndigheten</a>.<br><br>
 
 
-Rather than treating energy behaviour as a technical problem, it reframed it as a question of perception. Through interviews, workshops, and usability testing with consumers and prosumers (households that produce their own energy, typically via solar panels), I developed and tested concepts of interfaces and ambient objects.
+Rather than treating energy behaviour as a technical problem, we reframed it as a question of perception. Through interviews, workshops, and usability testing with consumers and prosumers (households that produce their own energy, typically via solar panels), I developed and tested concepts of interfaces and ambient objects.
 <br><br>
 
 The project ran from November 2021 to July 2022, following a Research by Design methodology, where design is used to test the research question itself.</p>
@@ -147,10 +147,67 @@ Some users didn't want to depend on a screen for awareness. This led to a second
 </p>
 </div>
 
+<!-- PART 1: ANIMATION -->
+<figure class="lamp-figure fade-in">
+ 
+  <div class="lamp-stage">
+    <div class="lamp-slide" data-index="0">
+      <img src="img/lamp1.jpg" alt="Lamp — low grid load" />
+    </div>
+    <div class="lamp-slide" data-index="1">
+      <img src="img/lamp2.jpg" alt="Lamp — medium grid load" />
+    </div>
+    <div class="lamp-slide" data-index="2">
+      <img src="img/lamp3.jpg" alt="Lamp — high grid load" />
+    </div>
+ 
+    <div class="lamp-label">
+      <span class="lamp-index">01</span>
+      <span class="lamp-sep">/</span>
+      <span class="lamp-state">grid load — low</span>
+    </div>
+ 
+    <div class="lamp-dots">
+      <span class="lamp-dot active" data-dot="0"></span>
+      <span class="lamp-dot" data-dot="1"></span>
+      <span class="lamp-dot" data-dot="2"></span>
+    </div>
+  </div>
+ 
+  <figcaption>[PROTOTYPE] — Ambient lamp showing either grid load or household consumption, depending on choice, shifting in light intensity and colour to reflect current state</figcaption>
+ 
+</figure>
+ 
+ 
+<!-- PART 2: INTERACTIVE SCENARIO -->
+<figure class="lamp-scenario fade-in">
+ 
+  <div class="lamp-scenario-stage">
+    <img class="lamp-scenario-img active" src="img/lamp1.jpg" alt="Household — low effect" />
+    <img class="lamp-scenario-img" src="img/lamp3.jpg" alt="Grid — high load" />
+ 
+    <div class="lamp-scenario-timestamp">
+      <span class="lamp-scenario-day">Tuesday</span>
+      <span class="lamp-scenario-time">16:30</span>
+    </div>
+  </div>
+ 
+  <div class="lamp-scenario-controls">
+    <button class="lamp-scenario-btn active" data-view="household">Household</button>
+    <span class="lamp-scenario-sep">/</span>
+    <button class="lamp-scenario-btn" data-view="grid">Grid</button>
+    <span class="lamp-scenario-reading">household — low effect</span>
+  </div>
+ 
+ 
+ 
+</figure>
+
+<!--
 <figure>
   <img class="project-image-full fade-in" style="opacity: 0.9;" src="img/lamp.gif">
-  <figcaption>[PROTOTYPE 02] —  Ambient lamp with two modes: grid load and household consumption, shifting in light intensity and color to reflect current state</figcaption>
-</figure>
+  <figcaption>[PROTOTYPE 02] —  Ambient lamp with two modes: grid load / household consumption, shifting in light intensity and color to reflect current state</figcaption>
+</figure>-->
 
 <div class="project-section fade-in">
   <p>
@@ -355,7 +412,7 @@ window.addEventListener('scroll', () => {
 <script>
 (function () {
   const captions = [
-    '[PROTOTYPE 01] — Part of app concept showing real-time consumption data that connects usage to specific household activities',
+    '[PROTOTYPE] — Part of app concept showing real-time consumption data that connects usage to specific household activities',
     'Overview of household consumption and production of energy',
     'Detailed information about what activities affect current load in household'
   ];
@@ -394,6 +451,81 @@ stage.addEventListener('touchend', e => {
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') goTo(current - 1);
     if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+})();
+</script>
+
+<script>
+// ── ANIMATION ──
+(function () {
+  const states = [
+    { index: '01', label: 'grid load — low'    },
+    { index: '02', label: 'grid load — medium' },
+    { index: '03', label: 'grid load — high'   },
+  ];
+ 
+  const slides  = document.querySelectorAll('.lamp-slide');
+  const label   = document.querySelector('.lamp-label');
+  const indexEl = document.querySelector('.lamp-index');
+  const stateEl = document.querySelector('.lamp-state');
+  const dots    = document.querySelectorAll('.lamp-dot');
+ 
+  let current = 0;
+  const HOLD     = 2800;
+  const FADE_OUT = 400;
+ 
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+ 
+    label.classList.add('fading');
+    setTimeout(() => {
+      indexEl.textContent = states[current].index;
+      stateEl.textContent = states[current].label;
+      label.classList.remove('fading');
+    }, FADE_OUT);
+  }
+ 
+  slides[0].classList.add('active');
+  setInterval(() => goTo(current + 1), HOLD);
+})();
+ 
+ 
+// ── SCENARIO TOGGLE ──
+(function () {
+  const readings = {
+    household: 'household — low effect',
+    grid:      'grid — high load',
+  };
+ 
+  const imgs    = document.querySelectorAll('.lamp-scenario-img');
+  const btns    = document.querySelectorAll('.lamp-scenario-btn');
+  const reading = document.querySelector('.lamp-scenario-reading');
+ 
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
+ 
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+ 
+      const view = btn.dataset.view;
+ 
+      // swap image
+      imgs.forEach(img => img.classList.remove('active'));
+      document.querySelector(`.lamp-scenario-img[alt*="${view === 'household' ? 'Household' : 'Grid'}"]`)
+        .classList.add('active');
+ 
+      // update reading label
+      reading.classList.add('fading');
+      setTimeout(() => {
+        reading.textContent = readings[view];
+        reading.classList.remove('fading');
+      }, 300);
+    });
   });
 })();
 </script>
