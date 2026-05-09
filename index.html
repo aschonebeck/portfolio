@@ -79,7 +79,7 @@
 
     <div class="active-label">
       <span id="active-id">—</span>
-      <span id="active-name">Hover a project</span>
+      <span id="active-name">—</span>
     </div>
 
     <!-- MOBILE: view toggle + filter trigger -->
@@ -105,7 +105,8 @@
 
     <!-- DESKTOP: filter row -->
     <div class="filter-row">
-      <span class="filter-dot"></span>
+
+      FILTER:
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="ux">UX</button>
       <button class="filter-btn" data-filter="web">Web</button>
@@ -213,7 +214,7 @@
   <div class="right">
       <div class="right-inner">
 
-    <div class="right-placeholder" id="placeholder">— Select a project —</div>
+    <div class="right-placeholder" id="placeholder"> Select a project</div>
     <img class="right-img" id="right-img" src="" alt="" />
     <div class="right-caption" id="right-caption"></div>
   </div>
@@ -319,7 +320,7 @@ rightImg.style.padding = isPoster ? '3rem 0' : '0';
       }
 
       activeId.textContent = '—';
-      activeName.textContent = 'Hover a project';
+      activeName.textContent = '—';
 
       rightImg.classList.remove('visible');
       rightCaption.classList.remove('visible');
