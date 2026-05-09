@@ -15,6 +15,7 @@
 
 <link as="font" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link as="font" href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="project-page">
@@ -174,10 +175,16 @@ Some users didn't want to depend on a screen for awareness. This led to a second
     </div>
   </div>
  
-  <figcaption>[PROTOTYPE] — Ambient lamp showing either grid load or household consumption, depending on choice, shifting in light intensity and colour to reflect current state</figcaption>
+  <figcaption>[PROTOTYPE] — Lamp showing grid load or household consumption depending on choice, shifting light intensity and color to reflect current state</figcaption>
  
 </figure>
  
+<div class="project-section fade-in">
+  <p>
+Testing the app with 10 participants (5 prosumers, 5 consumers) confirmed the split. Prosumers engaged with the data directly. Consumers responded primarily to real-time price in relation to their own usage. <br><br>The lamp was tested differently: room-based, with experience questions after. It sparked curiosity and reflection more than immediate action — as a presence in the periphery.
+
+</p>
+  </div>
  
 <!-- PART 2: INTERACTIVE SCENARIO -->
 <figure class="lamp-scenario fade-in">
@@ -187,8 +194,9 @@ Some users didn't want to depend on a screen for awareness. This led to a second
     <img class="lamp-scenario-img" src="img/lamp3.jpg" alt="Grid — high load" />
  
     <div class="lamp-scenario-timestamp">
-      <span class="lamp-scenario-day">Tuesday</span>
-      <span class="lamp-scenario-time">16:30</span>
+      <span class="live-dot" id="live-dot">●</span>
+      <span id="live-timestamp"></span>
+
     </div>
   </div>
  
@@ -209,12 +217,6 @@ Some users didn't want to depend on a screen for awareness. This led to a second
   <figcaption>[PROTOTYPE 02] —  Ambient lamp with two modes: grid load / household consumption, shifting in light intensity and color to reflect current state</figcaption>
 </figure>-->
 
-<div class="project-section fade-in">
-  <p>
-Testing the app with 10 participants (5 prosumers, 5 consumers) confirmed the split. Prosumers engaged with the data directly. Consumers responded primarily to real-time price in relation to their own usage. <br><br>The lamp was tested differently: room-based, with experience questions after. It sparked curiosity and reflection more than immediate action — as a presence in the periphery.
-
-</p>
-  </div>
 
 </div>
 
@@ -530,5 +532,19 @@ stage.addEventListener('touchend', e => {
 })();
 </script>
 
+<script>
+(function () {
+  const el = document.getElementById('live-timestamp');
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    const now = new Date();
+    const d = [pad(now.getDate()), pad(now.getMonth() + 1), now.getFullYear()].join('.');
+    const t = [pad(now.getHours()), pad(now.getMinutes()), pad(now.getSeconds())].join(':');
+    el.textContent = '' + d + ' / ' + t;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 </body>
 </html>
