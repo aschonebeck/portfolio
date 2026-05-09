@@ -318,7 +318,7 @@ min-height: 100vh;
     .project-intro-text {
       font-family: var(--font);
       font-size: 18px;
-      line-height: 1.2;
+      line-height: 1.1;
       font-style:italic ;
       letter-spacing: -0.02em;
       color: var(--text);
@@ -1339,11 +1339,12 @@ text-transform: uppercase;
 .project-page h1 {
   font-weight: 400;
   max-width: 60%;
-  font-size: 28px;
+  font-size: 30px;
   padding-bottom: 5px;
   padding-top: 0px;
-  letter-spacing: -0.5px;
+  letter-spacing: 0px;
   font-family: var(--font);
+  text-transform: ;
 }
 
 /* RIGHT becomes scrollable */
