@@ -444,7 +444,7 @@ min-height: 100vh;
   overflow: hidden;
   background: #0e0e0c;
   aspect-ratio: 1 / 1;
-  max-height: 85vh;
+  max-height: 88vh;
 }
  
 .lamp-slide {
@@ -587,6 +587,14 @@ min-height: 100vh;
   padding: 12px 20px;
   border-top: 1px solid var(--border, #ccc);
   border-bottom: 1px solid var(--border, #ccc);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: transparent;
+  color: white;
+
 }
  
 .lamp-scenario-btn {
@@ -596,24 +604,26 @@ min-height: 100vh;
   font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--muted, #707070);
+  color: white;
   cursor: pointer;
   padding: 0;
   transition: color 0.2s ease;
 }
  
 .lamp-scenario-btn:hover {
-  color: var(--text, #111);
+  color: #fff;
 }
- 
+ .lamp-scenario-btn.active::before { content: '['; }
+.lamp-scenario-btn.active::after  { content: ']'; }
+
 .lamp-scenario-btn.active {
-  color: var(--text, #111);
-  text-decoration: underline;
+  color:#fff;
+  text-decoration:;
   text-underline-offset: 3px;
 }
  
 .lamp-scenario-sep {
-  color: var(--muted, #707070);
+  color: #fff;
   font-family: 'Space Mono', monospace;
   font-size: 11px;
 }
@@ -623,7 +633,8 @@ min-height: 100vh;
   font-family: 'Space Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.06em;
-  color: var(--muted);
+  color: white;
+  opacity: 0.9;
   text-transform: uppercase;
   transition: opacity 0.3s ease;
 }
