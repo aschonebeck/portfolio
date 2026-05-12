@@ -1025,6 +1025,10 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
 
 }
 
+.project-back--mobile {
+  display: none;
+}
+
 
     /* TABLE HEADER */
     .table-header {
@@ -2251,6 +2255,15 @@ opacity: 0.85;
   .thumb {
 
 }
+
+.project-back--mobile {
+  display: flex;
+  border-top: 1px solid var(--border);
+  padding: 16px 20px;
+  margin-top: 20px;
+}
+
+/* göm den på desktop */
 
   .proto-controls {
     padding: 12px 16px;
