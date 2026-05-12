@@ -2233,6 +2233,18 @@ opacity: 0.85;
   top: 20px;
 }
 
+.loader-id {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(2rem, 7.5vw, 5rem);
+  letter-spacing: 0.08em;
+  color: var(--text);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
 .loader-grid--desktop { display: none; }
   .loader-grid--mobile  { display: flex; }
 
