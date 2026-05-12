@@ -1841,7 +1841,7 @@ strong {
 
 
 .project-page p {
-  font-size: 15px !important;
+  font-size: 14px !important;
   color: var(--text);
   max-width: 95%;
   line-height: 1.1;
@@ -2049,17 +2049,15 @@ opacity: 0.85;
 
 
   .project-list.grid-view li {
-    border-right: 0.5px solid var(--border);
     border-bottom: 0.5px solid var(--border);
     animation: none;
     opacity: 1;
-        padding-bottom: 5px;
-  }
+    padding-bottom: 5px;
+}
 
-  .project-list.grid-view li:nth-child(2n) {
-    border-right: none;
-
-  }
+.project-list.grid-view li:nth-child(odd) {
+    border-right: 0.5px solid var(--border);
+}
 
   .project-list.grid-view .project-item {
     display: flex;
@@ -2078,6 +2076,10 @@ opacity: 0.85;
     gap: 1px;
        border: 0;
   }
+
+  .left {
+    border-right: none;
+}
 
 
   .project-list.grid-view .project-item:hover {
