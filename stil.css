@@ -333,7 +333,7 @@ min-height: 100vh;
       padding: 48px 48px;
       padding-top: 30px;
   
-      max-width: 680px;
+      max-width: 700px;
     }
  
 
@@ -431,6 +431,14 @@ min-height: 100vh;
       display: block;
 
     }
+
+    .link-arrow {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 0.9em;
+  transform: translateY(-1px);
+  opacity: 0.7;
+}
 
  
 /* ── ANIMATION STAGE ── */
@@ -2170,11 +2178,11 @@ opacity: 0.85;
 
 
     blockquote {
-      padding:20px;
+      padding:15px;
       font-family: var(--font);
-      font-size: 18px;
+      font-size: 17px;
       color: var(--text);
-      max-width: 95%;
+      max-width: 100%;
       opacity: 0.9;
       padding-bottom: 20px;
     }
