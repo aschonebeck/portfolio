@@ -2180,7 +2180,7 @@ opacity: 0.85;
     blockquote {
       padding:15px;
       font-family: var(--font);
-      font-size: 17px;
+      font-size: 18px;
       color: var(--text);
       max-width: 100%;
       opacity: 0.9;
@@ -2332,6 +2332,23 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
         drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.07));
 }
 
+/* ── CONTROLS ── */
+.lamp-scenario-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border, #ccc);
+  border-bottom: 1px solid var(--border, #ccc);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 18px 16px;
+  background: transparent;
+  color: white;
+
+}
 
 
 }
