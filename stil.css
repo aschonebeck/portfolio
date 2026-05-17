@@ -336,6 +336,10 @@ min-height: 100vh;
       max-width: 700px;
     }
 
+    a.email-link.copied::after {
+  opacity: 0 !important;
+}
+
 a.email-link {
   position: relative;
   padding-right: 1.2em;
@@ -356,8 +360,10 @@ a.email-link::after {
   transition: opacity 0.2s;
 }
 
-a.email-link:hover::after {
-  opacity: 0.85;
+@media (hover: hover) {          
+  a.email-link:hover::after {
+    opacity: 0.85;
+  }
 }
  
 

@@ -568,12 +568,18 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
 <script>
 function copyEmail() {
   navigator.clipboard.writeText('amanda.schonebeck@gmail.com').then(() => {
+    const link = document.querySelector('.email-link');
     const el = document.getElementById('copy-confirm');
+    
+    link.classList.add('copied');
     el.style.opacity = '1';
-    setTimeout(() => el.style.opacity = '0', 2000);
+    
+    setTimeout(() => {
+      el.style.opacity = '0';
+      link.classList.remove('copied');
+    }, 2000);
   });
 }
-
 </script>
 
 </body>
