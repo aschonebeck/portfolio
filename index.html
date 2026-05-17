@@ -202,8 +202,9 @@
 
     <div class="wordmark">
     <span>    <div class="kontakt">
-        <a target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" href="https://www.linkedin.com/in/amandaschonebeck">LinkedIn</a>
-     <a href="/cdn-cgi/l/email-protection#fe9f939f909a9fd08d9d9691909b9c9b9d95be99939f9792d09d9193">Email</a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)" href="https://www.linkedin.com/in/amandaschonebeck">LinkedIn<span class="link-arrow">↗</span></a>
+    <a class="email-link" href="#" onclick="copyEmail(); return false;">Email</a>
+<span id="copy-confirm" style="opacity:0; transition: opacity 0.3s; font-size: 0.8em;">Copied ✓</span>
      </div></span>
       <span class="wordmark-sub"> ©2026<br>Stockholm, SWE</span>
     </div>
@@ -563,6 +564,16 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   skipBtn.addEventListener('click', dismissLoader);
   showNext();
 })();
+</script>
+<script>
+function copyEmail() {
+  navigator.clipboard.writeText('amanda.schonebeck@gmail.com').then(() => {
+    const el = document.getElementById('copy-confirm');
+    el.style.opacity = '1';
+    setTimeout(() => el.style.opacity = '0', 2000);
+  });
+}
+
 </script>
 
 </body>
