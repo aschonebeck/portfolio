@@ -346,6 +346,7 @@ a.email-link {
 }
 
 a.email-link::after {
+  color: var(--text);
   content: '';
   position: absolute;
   right: 14;
