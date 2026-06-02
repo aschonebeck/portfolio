@@ -1761,9 +1761,7 @@ strong {
   font-size: 26px;
 }
 
-#mobile {
-  display: block;
-}
+
 .project-meta-table {
   overflow: hidden;
   transition: height 0.25s ease;
@@ -2353,6 +2351,10 @@ opacity: 0.85;
   margin: 0 !important;
   opacity: 1 !important;
 max-width: 90%;
+}
+
+#mobile {
+  display: block;
 }
 .proto-stage {
   position: relative;
