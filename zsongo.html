@@ -115,6 +115,7 @@ Though rooted in Madrid, <a href="https://www.zsongo.es/" target="_blank">Zsongo
   <source src="img/zsongo.ogg" type="video/ogg">
 Your browser does not support the video tag.
 </video>
+
     <video class="project-video fade-in" id="mobile" autoplay muted playsinline loop>
   <source src="img/zs.mp4" type="video/mp4">
   <source src="img/zs.ogg" type="video/ogg">
@@ -128,6 +129,15 @@ Your browser does not support the video tag.
 
 
 </div>
+
+<script>
+  if (window.innerWidth <= 768) {
+    var mobileVid = document.getElementById('mobile');
+    if (mobileVid) {
+      mobileVid.play().catch(function(){});
+    }
+  }
+</script>
 
 <script>
 // =====================
