@@ -314,6 +314,15 @@ min-height: 100vh;
   height: auto;
   object-fit: contain;
 }
+
+#mobile {
+  display: none;
+}
+
+
+#desktop {
+  display: block;
+}
  
     .project-intro-text {
       font-family: var(--font);
@@ -1395,8 +1404,8 @@ text-transform: uppercase;
 
 .cv {
   max-width: 100%;
-  margin-top: 20px;   /* ändra från 60px till 0 */
-  padding-bottom: 20px;
+  margin-top: 0px;   /* ändra från 60px till 0 */
+  padding-bottom: 0px;
   font-size: 12.5px;
   padding-top: 20px;
 }
@@ -1404,6 +1413,8 @@ text-transform: uppercase;
 .cv {
 
 }
+
+
 
 
 
@@ -1750,6 +1761,9 @@ strong {
   font-size: 26px;
 }
 
+#mobile {
+  display: block;
+}
 .project-meta-table {
   overflow: hidden;
   transition: height 0.25s ease;
@@ -2379,6 +2393,10 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
   background: transparent;
   color: white;
 
+}
+
+#desktop {
+  display: none;
 }
 
 
