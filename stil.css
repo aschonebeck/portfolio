@@ -2399,7 +2399,7 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
   display: none;
 }
 #mobile {
-  display: block;
+  display: block !important;
 }
 
 
