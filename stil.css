@@ -1605,7 +1605,7 @@ min-height: auto;
    .cv {
     font-size: 13px;
     letter-spacing: -0.5px;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
    }
 
    .cv-year {
@@ -2133,9 +2133,9 @@ opacity: 0.85;
        border: 0;
   }
 
-  .left {
-    border-right: none;
-}
+
+
+
 
 
   .project-list.grid-view .project-item:hover {
