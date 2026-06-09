@@ -2080,7 +2080,7 @@ opacity: 0.85;
       background: none; border: none;
       cursor: pointer;
       font-family: var(--font);
-      font-size: 13px;
+      font-size: 12px;
     }
   /* hide desktop filter row on mobile */
   .filter-row { display: none; }
