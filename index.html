@@ -117,7 +117,7 @@
     <div class="table-header">
       <span>ID <span 
   class="id-info" 
-  data-tooltip="WB — Web Design&#10;UX — UX Design&#10;ES — Essay&#10;&#10;YY — Year&#10;00X — Project no.">ⓘ</span></span>
+  data-tooltip="WB — Web Design&#10;UX — UX Design&#10;AR — Article&#10;&#10;YY — Year&#10;00X — Project no.">ⓘ</span></span>
       <span>Project</span>
       <span class="th-type">Type</span>
       <span class="th-year">Year</span>
@@ -142,8 +142,8 @@
 
       </li>
 
-      <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/stilla.jpg" data-id="ES25-002" data-name="Designing for Stillness"  data-client="Independent">
-        <span class="project-id">ES25-002</span>
+      <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/stilla.jpg" data-id="AR25-002" data-name="Designing for Stillness"  data-client="Independent">
+        <span class="project-id">AR25-002</span>
         <span class="project-title">FIZZLED OUT — Designing for Stillness</span>
         <span class="project-type">Article</span>
         <span class="project-year">2025</span>
@@ -182,15 +182,15 @@
         <span class="project-year">2020</span></a>
       </li>
 
-         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/wsii.jpg" data-id="ES20-007" data-name="Workshops with Intention" data-client="Konstfack">
-        <span class="project-id">ES20-007</span>
+         <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/wsii.jpg" data-id="AR20-007" data-name="Workshops with Intention" data-client="Konstfack">
+        <span class="project-id">AR20-007</span>
         <span class="project-title">Workshops with Intention</span>
         <span class="project-type">Article</span>
         <span class="project-year">2020</span></a>
       </li>
 
-      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/hdi.jpg" data-id="ES20-008" data-name="Humane Design in Times of Crisis" data-client="Decent People">
-        <span class="project-id">ES20-008</span>
+      <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/hdi.jpg" data-id="AR20-008" data-name="Humane Design in Times of Crisis" data-client="Decent People">
+        <span class="project-id">AR20-008</span>
         <span class="project-title">Humane Design in Times of Crisis</span>
         <span class="project-type">Article</span>
         <span class="project-year">2020</span></a>
@@ -235,7 +235,7 @@ if (savedTheme) {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   document.body.classList.toggle('dark', prefersDark);
 }
-  
+
 // =====================
 // THEME TOGGLE 
 // =====================
@@ -538,7 +538,7 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   sessionStorage.setItem('loaderSeen', '1');
   document.body.classList.add('loading');
 
-  const ids = ['WB25-001','ES25-002','WB24-003','UX22-004','UX23-005','UX20-006','ES20-007','ES20-008'];
+  const ids = ['WB25-001','AR25-002','WB24-003','UX22-004','UX23-005','UX20-006','AR20-007','AR20-008'];
   const idEl = document.querySelector('.loader-id');
   let current = 0;
   const total = ids.length;
