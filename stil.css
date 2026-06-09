@@ -819,7 +819,7 @@ height: 100vh;
       font-family: var(--font);
       font-size: 12px;
       letter-spacing: 0.04em;
-      text-transform: uppercase;
+      text-transform: uppercase !important;
       color: var(--muted);
       padding: 0;
       transition: color 0.2s;
@@ -2081,6 +2081,7 @@ opacity: 0.85;
       cursor: pointer;
       font-family: var(--font);
       font-size: 12px;
+      display: none;
     }
   /* hide desktop filter row on mobile */
   .filter-row { display: none; }

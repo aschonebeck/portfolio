@@ -73,7 +73,7 @@
         <a href="#" class="active">Work</a>        <a href="info.html">Info</a>
       </div>
 <button id="theme-toggle" aria-pressed="false"> 
-  [<span class="mode-light">Light</span>/<span class="mode-dark">Dark</span>]
+ [<span class="mode-light">Light</span>/<span class="mode-dark">Dark</span>]
 </button>
       <a href="info.html" class="mob-plus" aria-label="Info">+</a>
     </nav>
@@ -86,9 +86,9 @@
     <!-- MOBILE: view toggle + filter trigger -->
     <div class="view-filter-row">
       <div class="view-toggle">
-        <button class="view-btn active" data-view="grid">Grid View</button>
+        <button class="view-btn active" data-view="grid">Grid</button>
         <span class="sep">/</span>
-        <button class="view-btn" data-view="list">List View</button>
+        <button class="view-btn" data-view="list">List</button>
       </div>
       <button class="mob-filter-toggle" id="mob-filter-toggle">
         <span class="filter-dot"></span>
@@ -145,7 +145,7 @@
       <li> <a href="stillness.html" class="project-item" data-category="writing" data-img="img/stilla.jpg" data-id="ES25-002" data-name="Designing for Stillness"  data-client="Independent">
         <span class="project-id">ES25-002</span>
         <span class="project-title">FIZZLED OUT — Designing for Stillness</span>
-        <span class="project-type">Essay</span>
+        <span class="project-type">Article</span>
         <span class="project-year">2025</span>
         </a> 
       </li>
@@ -185,14 +185,14 @@
          <li>  <a href="workshops.html" class="project-item" data-category="writing" data-img="img/wsii.jpg" data-id="ES20-007" data-name="Workshops with Intention" data-client="Konstfack">
         <span class="project-id">ES20-007</span>
         <span class="project-title">Workshops with Intention</span>
-        <span class="project-type">Essay</span>
+        <span class="project-type">Article</span>
         <span class="project-year">2020</span></a>
       </li>
 
       <li>  <a href="humane.html" class="project-item" data-category="writing" data-img="img/hdi.jpg" data-id="ES20-008" data-name="Humane Design in Times of Crisis" data-client="Decent People">
         <span class="project-id">ES20-008</span>
         <span class="project-title">Humane Design in Times of Crisis</span>
-        <span class="project-type">Essay</span>
+        <span class="project-type">Article</span>
         <span class="project-year">2020</span></a>
       </li>
    
@@ -226,6 +226,16 @@
 
 
 <script>
+
+// THEME: respect system preference, fall back to saved
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  document.body.classList.toggle('dark', savedTheme === 'dark');
+} else {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.body.classList.toggle('dark', prefersDark);
+}
+  
 // =====================
 // THEME TOGGLE 
 // =====================
