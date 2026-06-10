@@ -196,6 +196,15 @@ The best referral doesn't feel like one
 </div>
 
 <script>
+    // THEME: respect system preference, fall back to saved
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  document.body.classList.toggle('dark', savedTheme === 'dark');
+} else {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.body.classList.toggle('dark', prefersDark);
+}
+
 // =====================
 // THEME TOGGLE 
 // =====================
