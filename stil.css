@@ -284,6 +284,7 @@ float: right;
     /* ── LEFT: BACK LINK (desktop only) ── */
     .project-back {
       display: flex;
+      background: var(--bg);
       align-items: center;
       gap: 7px;
       font-family: var(--font);
@@ -2312,9 +2313,10 @@ opacity: 0.85;
 
 .project-back--mobile {
   display: flex;
+  background: var();
   border-top: 1px solid var(--border);
   padding: 20px 20px;
-  margin-top: 20px;
+
 }
 
 /* göm den på desktop */
