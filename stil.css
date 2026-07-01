@@ -731,6 +731,14 @@ a.email-link::after {
       overflow: hidden;
     }
 
+    .project-page .left {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    background: var(--bg);
+  }
+
     /* TOP NAV */
     .top-nav {
       display: flex;
@@ -834,15 +842,17 @@ height: 100vh;
 
 /* light mode aktiv = aria-pressed false */
 #theme-toggle[aria-pressed="false"] .mode-light {
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
+  color: var(--text);
 
 }
 
 /* dark mode aktiv = aria-pressed true */
 #theme-toggle[aria-pressed="true"] .mode-dark {
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
+  color: var(--text);
     
 }
 
@@ -1507,6 +1517,7 @@ text-transform: uppercase;
   width: 100%;
   display: block;
   margin-bottom: 0px;
+    padding-top: 0px;
   padding-bottom: 0px;
 }
 
