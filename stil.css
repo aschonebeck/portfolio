@@ -811,7 +811,7 @@ height: 100vh;
 
 .project-page .right ul li {
   font-family: var(--paragraph);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.4;
   padding: 16px 0;
   border-top: 1px solid var(--border);
@@ -1356,7 +1356,7 @@ figure img {
 }
 
 .about p {
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.5;
   max-width:60%;
   letter-spacing: -0.3px;
@@ -1375,7 +1375,7 @@ figure img {
   text-align: left;
   margin-bottom: 15px;
 
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .cv-row {
@@ -1389,7 +1389,7 @@ figure img {
 .cv-year {
   font-family: var(--font);
   color: var(--muted);
-   font-size: 13px;
+   font-size: 12px;
 
 }
 
@@ -1477,9 +1477,10 @@ text-transform: uppercase;
 .project-page .right .project-section p {
   padding: 0;
   max-width: 100%;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.7;
   opacity: 0.88;
+
   margin-bottom: 18px;
 }
 
