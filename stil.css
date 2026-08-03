@@ -1358,7 +1358,7 @@ figure img {
 .about p {
   font-size: 13px;
   line-height: 1.5;
-  max-width:100%;
+  max-width:70%;
   letter-spacing: -0.3px;
   font-weight: 300;
   margin-bottom: 12px;
@@ -1584,6 +1584,17 @@ font-size: 40px !important;
   grid-template-columns: 1fr;
   height: auto;
   overflow: visible;
+}
+
+.about p {
+  font-size: 13px;
+  line-height: 1.5;
+  max-width:100%;
+  letter-spacing: -0.3px;
+  font-weight: 300;
+  margin-bottom: 12px;
+  font-family: var(--paragraph);
+
 }
 
 
