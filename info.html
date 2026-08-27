@@ -423,8 +423,6 @@ updateThemeState();
           // sprinkled "A"/"S" initial, or a rare instance of the shape's
           // own glyph -- a signature woven into the densest fabric
           const r2 = hash2(i,c);
-          if(r2 < 0.03){ ctx.fillStyle = textColor; ctx.fillText('A', x, y0); continue; }
-          if(r2 < 0.06){ ctx.fillStyle = textColor; ctx.fillText('S', x, y0); continue; }
           if(r2 < 0.16){ ctx.fillStyle = textColor; ctx.fillText(coreChar, x, y0); continue; }
           ctx.fillStyle = textColor;
         } else {
