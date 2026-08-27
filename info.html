@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INFO — A.SCHÖNEBECK</title>
+  <title>INFO — A. Schönebeck</title>
 
   <!-- External CSS -->
   <title>A.Schönebeck — INFO</title>
@@ -153,7 +153,7 @@ UX / Product Designer. Works across research and implementation — where concep
 
     <!-- A.S kinetic tapestry -->
     <div class="right-placeholder subtle" id="asTapestry">
-      <div id="asTapStage"></div>
+      <canvas id="asTapCanvas"></canvas>
     </div>
 
   </div>
@@ -202,27 +202,30 @@ updateThemeState();
 </script>
 
 <script>
-/* ASCII kinetic tapestry — a dithered, halftone-style character field
-   (two layers sharing one fixed grid: faint background dots + a denser
-   "core" glyph tracing the current shape, plus an internal weave texture
-   for depth) that continuously interpolates between shapes every tick, so
-   it reads as one living, breathing texture rather than a slideshow.
-   Mirrored top/bottom & left/right, edge-to-edge in the column. Colour
-   simply follows the site's own light/dark toggle (var(--bg)/--text/--muted
-   from stil.css) rather than cycling on its own. */
+/* ASCII kinetic tapestry — a true variable-size halftone dot field on
+   canvas (dot radius scales continuously with local "density" instead of
+   flipping fixed-size characters on/off), with the occasional "A"/"S" or
+   the current shape's glyph sprinkled into the densest areas as a quiet
+   signature. Continuously interpolates between shapes every tick, so it
+   reads as one living, breathing photograph-like texture rather than a
+   slideshow. Mirrored top/bottom & left/right, edge-to-edge in the
+   column. Colour follows the site's own light/dark toggle
+   (var(--bg)/--text/--muted from stil.css). */
 (function(){
-  const host  = document.getElementById('asTapestry');
-  const stage = document.getElementById('asTapStage');
-  if(!host || !stage) return;
+  const host   = document.getElementById('asTapestry');
+  const canvas = document.getElementById('asTapCanvas');
+  if(!host || !canvas) return;
+  const ctx = canvas.getContext('2d');
 
-  const LINE_H = 11;
+  const CELL = 8;         // square grid cell, in CSS px -- square = true circular dots
   const CYCLE_MS = 4000;  // time to fully morph from one shape into the next
-  const TICK_MS  = 140;   // render interval — the smaller, the smoother the morph
-  const EDGE_SOFT = 3.2;  // columns of dither/blur at the shape's boundary
-  const BG_DENSITY = 0.09;
-  const CORE_DENSITY = 0.94;
+  const TICK_MS  = 140;   // render interval -- the smaller, the smoother the morph
+  const EDGE_SOFT = 4.2;  // cells of dither/blur at the shape's boundary
+  const BG_FLOOR = 0.04;  // faintest dot size, kept nonzero everywhere = paper grain
+  const CORE_CEIL = 0.78; // largest dot size, reached deep inside a shape -- kept airy
+  const CORE_S = 0.74;    // how deep ("s") a cell must be before it can show a glyph
 
-  let ROWS = 50, COLS = 60, CENTER = 30, ROW_CENTER = 25, cellW = 6.5;
+  let ROWS = 60, COLS = 50, CENTER = 25, ROW_CENTER = 30, dpr = 1;
 
   // each shape blends two or three harmonics (+ a touch of abs()-ripple,
   // which stays mirror-symmetric under t -> 1-t at any frequency) so the
@@ -277,17 +280,16 @@ updateThemeState();
       }}
   ];
 
-  let bgEls = [], coreEls = [];
   let curIdx = 0, nextIdx = 1, blend = 0, tickCount = 0;
 
-  // stable per-cell pseudo-random, so a given cell's dot fades in/out at a
-  // consistent density threshold as the shape morphs, instead of flickering
+  // stable per-cell pseudo-random, so a dot's size settles at a consistent
+  // point as the shape morphs, instead of flickering
   function hash(i,c){
     const x = Math.sin(i*127.1 + c*311.7) * 43758.5453;
     return x - Math.floor(x);
   }
-  // a second, independently-seeded hash — used to sprinkle the occasional
-  // "A" / "S" into the weave without correlating to the on/off pattern above
+  // a second, independently-seeded hash -- sprinkles the occasional glyph
+  // into the weave without correlating to the dot-size pattern above
   function hash2(i,c){
     const x = Math.sin(i*269.5 + c*183.3) * 12943.83;
     return x - Math.floor(x);
@@ -298,75 +300,73 @@ updateThemeState();
   }
   function easeInOut(x){ return x<0.5 ? 2*x*x : 1-Math.pow(-2*x+2,2)/2; }
 
+  // bilinearly-interpolated value noise + 3-octave fBm, used instead of a
+  // clean periodic wave for the interior texture -- a single cosine reads
+  // as regular, machine-made "tiger stripes"; layered noise reads as rough,
+  // organic grain (closer to real halftone/newsprint texture)
+  function valueNoise(x, y, seed){
+    const x0 = Math.floor(x), y0 = Math.floor(y);
+    const sx = x-x0, sy = y-y0;
+    const h = (xx,yy)=>hash(xx*3 + seed*131, yy*5 + seed*257);
+    const n00=h(x0,y0),   n10=h(x0+1,y0);
+    const n01=h(x0,y0+1), n11=h(x0+1,y0+1);
+    const ix0 = n00 + (n10-n00)*sx;
+    const ix1 = n01 + (n11-n01)*sx;
+    return ix0 + (ix1-ix0)*sy;
+  }
+  function fbm(x, y, seed){
+    let v = 0, amp = 0.42, freq = 1.6, norm = 0;
+    for(let o=0; o<3; o++){
+      v += amp * valueNoise(x*freq, y*freq, seed + o*19);
+      norm += amp;
+      amp *= 0.52;
+      freq *= 2.13; // irrational-ish step so octaves don't line up into bands
+    }
+    return v / norm;
+  }
+
   function measure(){
     const rect = host.getBoundingClientRect();
-    const availW = Math.max(160, Math.round(rect.width));
-    const availH = Math.max(160, Math.round(rect.height));
-    ROWS = Math.max(24, Math.floor(availH / LINE_H));
+    const availW = Math.max(160, rect.width);
+    const availH = Math.max(160, rect.height);
+    dpr = window.devicePixelRatio || 1;
 
-    const probe = document.createElement('div');
-    probe.className = 'as-tap-row';
-    probe.style.position = 'absolute';
-    probe.style.visibility = 'hidden';
-    probe.style.whiteSpace = 'pre';
-    probe.textContent = '\u00b7'.repeat(30);
-    stage.appendChild(probe);
-    cellW = probe.offsetWidth / 30;
-    probe.remove();
-
-    COLS = Math.max(20, Math.floor(availW / cellW));
-    if(COLS % 2 === 0) COLS -= 1;
+    COLS = Math.max(20, Math.floor(availW / CELL));
+    ROWS = Math.max(20, Math.floor(availH / CELL));
     CENTER = (COLS-1)/2;
     ROW_CENTER = (ROWS-1)/2;
 
-    host.style.setProperty('--as-grid-w', cellW + 'px');
-    stage.style.width = (COLS*cellW) + 'px';
-    stage.style.height = (ROWS*LINE_H) + 'px';
+    canvas.width  = Math.round(availW * dpr);
+    canvas.height = Math.round(availH * dpr);
+    canvas.style.width  = availW + 'px';
+    canvas.style.height = availH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    host.style.setProperty('--as-grid-w', CELL + 'px');
   }
 
-  function initRows(){
-    measure();
-    stage.innerHTML = '';
-    bgEls = []; coreEls = [];
-
-    for(let i=0;i<ROWS;i++){
-      const bg = document.createElement('div');
-      bg.className = 'as-tap-row as-tap-bg';
-      bg.style.top = (i*LINE_H) + 'px';
-      stage.appendChild(bg);
-      bgEls.push(bg);
-
-      const core = document.createElement('div');
-      core.className = 'as-tap-row as-tap-core';
-      core.style.top = (i*LINE_H) + 'px';
-      stage.appendChild(core);
-      coreEls.push(core);
-    }
-  }
-
-  // interior texture for a cell: either the default drifting interference
-  // weave, or — for the spiral shape — a two-armed logarithmic spiral
-  // (tight coils near the centre, loosening outward, with an open "eye"
-  // in the middle) modelled after the 🌀 cyclone emoji: airier and more
-  // intricate than a plain Archimedean swirl
-  function weaveFor(shape, t, xNorm, dxCells, dyCells){
+  // interior texture for a cell: either rough noise-based grain, or -- for
+  // the spiral shape -- a two-armed logarithmic spiral (tight coils near
+  // the centre, loosening outward, with an open "eye" in the middle)
+  // modelled after a cyclone
+  function weaveFor(shape, seed, dxCells, dyCells){
     if(shape.isSpiral){
-      const dx = dxCells * cellW;
-      const dy = dyCells * LINE_H;
-      const r = Math.sqrt(dx*dx + dy*dy) / cellW; // back to "cell" units
-      const theta = Math.atan2(dy,dx) + tickCount*0.015;
+      const r = Math.sqrt(dxCells*dxCells + dyCells*dyCells);
+      const theta = Math.atan2(dyCells,dxCells) + tickCount*0.015;
       const armCount = 2;
       const logSpacing = 0.85;
       const rLog = Math.log(Math.max(r, 0.6));
       let phase = (rLog/logSpacing - (theta*armCount)/(2*Math.PI)) % 1;
       if(phase < 0) phase += 1;
       const d = Math.min(phase, 1-phase);
-      const armWidth = 0.10; // thin arms = airier, more open between them
+      const armWidth = 0.10;
       let val = Math.max(0, 1 - d/armWidth);
-      val *= smoothstep(0, 2.4, r); // clear open "eye" at the very centre
-      return 0.08 + 0.55*val; // lower ceiling than the other shapes = airier overall
+      val *= smoothstep(0, 2.4, r);
+      return 0.08 + 0.55*val;
     }
-    return 0.62 + 0.38*Math.cos(t*Math.PI*8 + xNorm*Math.PI*6 + tickCount*0.025);
+    const drift = tickCount*0.012;
+    const n = fbm(dxCells*0.42 + drift, dyCells*0.42 - drift*0.6, seed);
+    return 0.14 + 0.55*n;
   }
 
   function render(){
@@ -375,38 +375,68 @@ updateThemeState();
     const coreChar = blend < 0.5 ? shapeA.core : shapeB.core;
     const breathe = Math.sin(tickCount*0.05) * 1.1;
 
+    const styles = getComputedStyle(host);
+    const textColor  = (styles.getPropertyValue('--text')  || '#111').trim();
+    const mutedColor = (styles.getPropertyValue('--muted') || '#999').trim();
+
+    ctx.clearRect(0, 0, canvas.width/dpr, canvas.height/dpr);
+    ctx.font = Math.round(CELL*1.25) + 'px "Space Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    const maxR = CELL*0.40;
+
     for(let i=0;i<ROWS;i++){
       const t = i/(ROWS-1);
       const envA = shapeA.envelope(t), envB = shapeB.envelope(t);
       const boundary = (envA + (envB-envA)*p) * CENTER + breathe;
       const dyCells = i - ROW_CENTER;
 
-      let bgStr = '', coreStr = '';
       for(let c=0;c<COLS;c++){
-        const colDist = Math.abs(c-CENTER);
-        const s = 1 - smoothstep(boundary-EDGE_SOFT, boundary+EDGE_SOFT, colDist);
-        // internal texture gives the interior visible grain/banding
-        // instead of a flat solid fill — blended between the two shapes
-        // currently morphing, same as the boundary itself
-        const xNorm = colDist/CENTER;
         const dxCells = c - CENTER;
-        const weaveA = weaveFor(shapeA, t, xNorm, dxCells, dyCells);
-        const weaveB = weaveFor(shapeB, t, xNorm, dxCells, dyCells);
+        const colDist = Math.abs(dxCells);
+
+        // ragged edge: perturb the boundary itself (not just the density)
+        // with noise, so the silhouette's outline is jagged/hand-cut
+        // instead of a perfect mathematical curve
+        const edgeJitter = (valueNoise(dxCells*0.30, dyCells*0.30 + i*0.02, 91) - 0.5) * 7.5;
+        const s = 1 - smoothstep((boundary+edgeJitter)-EDGE_SOFT, (boundary+edgeJitter)+EDGE_SOFT, colDist);
+
+        const weaveA = weaveFor(shapeA, curIdx, dxCells, dyCells);
+        const weaveB = weaveFor(shapeB, nextIdx, dxCells, dyCells);
         const weave = weaveA + (weaveB-weaveA)*p;
-        const density = BG_DENSITY + (CORE_DENSITY-BG_DENSITY)*s*weave;
-        const on = hash(i,c) < density;
-        if(on && s > 0.55){
-          bgStr += ' ';
-          // sprinkle in the occasional initial — a quiet signature woven
-          // into the texture rather than the main motif
+
+        // large, slow-drifting blotches -- like uneven ink/scan exposure --
+        // so density doesn't fall off as a clean uniform gradient
+        const blotch = 0.62 + 0.38*fbm(dxCells*0.045 + tickCount*0.004, dyCells*0.045, 140);
+
+        const density = Math.min(1, BG_FLOOR + (CORE_CEIL-BG_FLOOR)*s*weave*blotch);
+        // small per-dot position jitter -- a hair off-grid reads as printed
+        // rather than plotted
+        const jx = (hash(i*3+1, c*7+2) - 0.5) * 2.2;
+        const jy = (hash(i*7+5, c*3+9) - 0.5) * 2.2;
+        const x = (c+0.5)*CELL + jx;
+        const y0 = (i+0.5)*CELL + jy;
+
+        if(s > CORE_S){
+          // deep inside the shape: mostly a larger dot, occasionally a
+          // sprinkled "A"/"S" initial, or a rare instance of the shape's
+          // own glyph -- a signature woven into the densest fabric
           const r2 = hash2(i,c);
-          coreStr += r2 < 0.035 ? 'A' : (r2 < 0.07 ? 'S' : coreChar);
+          if(r2 < 0.03){ ctx.fillStyle = textColor; ctx.fillText('A', x, y0); continue; }
+          if(r2 < 0.06){ ctx.fillStyle = textColor; ctx.fillText('S', x, y0); continue; }
+          if(r2 < 0.16){ ctx.fillStyle = textColor; ctx.fillText(coreChar, x, y0); continue; }
+          ctx.fillStyle = textColor;
+        } else {
+          ctx.fillStyle = mutedColor;
         }
-        else if(on){ bgStr += '\u00b7'; coreStr += ' '; }
-        else { bgStr += ' '; coreStr += ' '; }
+
+        const r = maxR * Math.pow(density, 0.88) * (0.82 + 0.36*hash(i,c));
+        if(r < 0.15) continue;
+        ctx.beginPath();
+        ctx.arc(x, y0, r, 0, Math.PI*2);
+        ctx.fill();
       }
-      bgEls[i].textContent = bgStr;
-      coreEls[i].textContent = coreStr;
     }
   }
 
@@ -424,10 +454,10 @@ updateThemeState();
   let resizeDebounce;
   window.addEventListener('resize', ()=>{
     clearTimeout(resizeDebounce);
-    resizeDebounce = setTimeout(initRows, 150);
+    resizeDebounce = setTimeout(()=>{ measure(); render(); }, 150);
   });
 
-  initRows();
+  measure();
   render();
   setInterval(tick, TICK_MS);
 })();
