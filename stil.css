@@ -2444,3 +2444,42 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
 
 
 }
+
+
+/* ── ASCII KINETIC TAPESTRY (right column, replaces static portrait) ──
+   colour follows the page's own light/dark toggle (var(--bg)/--text/--muted),
+   it does not cycle its own palette */
+#asTapestry{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  opacity:1 !important;
+  background:var(--bg);
+  transition:background 0.3s;
+}
+
+#asTapStage{
+  position:relative;
+  max-width:100%;
+  opacity:0;
+  animation:asTapFadeIn .9s cubic-bezier(.65,0,.35,1) .1s forwards;
+}
+@keyframes asTapFadeIn{ to{ opacity:1; } }
+
+/* two stacked layers sharing one grid: faint dot texture behind,
+   a denser glyph tracing the current shape in front */
+.as-tap-row{
+  position:absolute;
+  left:0;
+  white-space:pre;
+  font-family:'Space Mono','Courier New',monospace;
+  font-size:9px;
+  line-height:11px;
+  letter-spacing:0.4px;
+}
+.as-tap-bg{ color:var(--muted); transition:color 0.3s; }
+.as-tap-core{ color:var(--text); transition:color 0.3s; }
+
