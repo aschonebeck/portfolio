@@ -1658,6 +1658,11 @@ min-height: auto;
     overflow: visible;
   }
 
+  /* tapestry is desktop-only — skipped on mobile */
+  body.abo_body .right {
+    display: none;
+  }
+
 
 
   .right-img {
@@ -1681,9 +1686,6 @@ min-height: auto;
 }
 
 
-  .abo_body .right {
-  display: none;
-}
   .abo_body .left {
   min-height: 100dvh;
   display: flex;
