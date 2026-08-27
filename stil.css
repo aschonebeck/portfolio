@@ -2463,17 +2463,21 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
   /* deliberately reversed vs. the page's own mode -- dark widget on a
      light page and vice versa, so the panel reads as its own contrasting
      window rather than blending into the surrounding layout */
-  --as-bg:#0e0e0c;
-  --as-text:rgba(245,245,240,.9);
-  --as-border:#333;
+
+      --as-bg:#FFFFFD;
+  --as-text:#111111;
+  --as-border:#ccc;
+
+  
   background:var(--as-bg);
   transition:background 0.3s;
   --as-grid-w:6.6px;
 }
 body.dark #asTapestry{
-  --as-bg:#FFFFFD;
-  --as-text:#111111;
-  --as-border:#ccc;
+ 
+  --as-bg:#0e0e0c;
+  --as-text:rgba(245,245,240,.9);
+  --as-border:#333;
 }
 
 /* faint graph-paper grid behind the weave, for a bit of paper texture.
