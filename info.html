@@ -286,6 +286,12 @@ updateThemeState();
     const x = Math.sin(i*127.1 + c*311.7) * 43758.5453;
     return x - Math.floor(x);
   }
+  // a second, independently-seeded hash — used to sprinkle the occasional
+  // "A" / "S" into the weave without correlating to the on/off pattern above
+  function hash2(i,c){
+    const x = Math.sin(i*269.5 + c*183.3) * 12943.83;
+    return x - Math.floor(x);
+  }
   function smoothstep(e0,e1,x){
     const k = Math.min(1, Math.max(0, (x-e0)/(e1-e0)));
     return k*k*(3-2*k);
@@ -313,6 +319,7 @@ updateThemeState();
     CENTER = (COLS-1)/2;
     ROW_CENTER = (ROWS-1)/2;
 
+    host.style.setProperty('--as-grid-w', cellW + 'px');
     stage.style.width = (COLS*cellW) + 'px';
     stage.style.height = (ROWS*LINE_H) + 'px';
   }
@@ -338,20 +345,26 @@ updateThemeState();
   }
 
   // interior texture for a cell: either the default drifting interference
-  // weave, or — for the spiral shape — a rotating Archimedean spiral-arm
-  // pattern in true polar coordinates (aspect-corrected so it reads round,
-  // not elliptical)
+  // weave, or — for the spiral shape — a two-armed logarithmic spiral
+  // (tight coils near the centre, loosening outward, with an open "eye"
+  // in the middle) modelled after the 🌀 cyclone emoji: airier and more
+  // intricate than a plain Archimedean swirl
   function weaveFor(shape, t, xNorm, dxCells, dyCells){
     if(shape.isSpiral){
       const dx = dxCells * cellW;
       const dy = dyCells * LINE_H;
       const r = Math.sqrt(dx*dx + dy*dy) / cellW; // back to "cell" units
-      const theta = Math.atan2(dy,dx) + tickCount*0.018;
-      const armSpacing = 3.1;
-      let phase = (r/armSpacing - theta/(2*Math.PI)) % 1;
+      const theta = Math.atan2(dy,dx) + tickCount*0.015;
+      const armCount = 2;
+      const logSpacing = 0.85;
+      const rLog = Math.log(Math.max(r, 0.6));
+      let phase = (rLog/logSpacing - (theta*armCount)/(2*Math.PI)) % 1;
       if(phase < 0) phase += 1;
       const d = Math.min(phase, 1-phase);
-      return 0.15 + 0.85*Math.max(0, 1 - d/0.16);
+      const armWidth = 0.10; // thin arms = airier, more open between them
+      let val = Math.max(0, 1 - d/armWidth);
+      val *= smoothstep(0, 2.4, r); // clear open "eye" at the very centre
+      return 0.08 + 0.55*val; // lower ceiling than the other shapes = airier overall
     }
     return 0.62 + 0.38*Math.cos(t*Math.PI*8 + xNorm*Math.PI*6 + tickCount*0.025);
   }
@@ -382,7 +395,13 @@ updateThemeState();
         const weave = weaveA + (weaveB-weaveA)*p;
         const density = BG_DENSITY + (CORE_DENSITY-BG_DENSITY)*s*weave;
         const on = hash(i,c) < density;
-        if(on && s > 0.55){ bgStr += ' '; coreStr += coreChar; }
+        if(on && s > 0.55){
+          bgStr += ' ';
+          // sprinkle in the occasional initial — a quiet signature woven
+          // into the texture rather than the main motif
+          const r2 = hash2(i,c);
+          coreStr += r2 < 0.035 ? 'A' : (r2 < 0.07 ? 'S' : coreChar);
+        }
         else if(on){ bgStr += '\u00b7'; coreStr += ' '; }
         else { bgStr += ' '; coreStr += ' '; }
       }
