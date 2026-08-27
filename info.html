@@ -221,39 +221,51 @@ updateThemeState();
   const CYCLE_MS = 4000;  // time to fully morph from one shape into the next
   const TICK_MS  = 140;   // render interval -- the smaller, the smoother the morph
   const EDGE_SOFT = 4.2;  // cells of dither/blur at the shape's boundary
-  const BG_FLOOR = 0.04;  // faintest dot size, kept nonzero everywhere = paper grain
-  const CORE_CEIL = 0.78; // largest dot size, reached deep inside a shape -- kept airy
-  const CORE_S = 0.74;    // how deep ("s") a cell must be before it can show a glyph
+  const BG_FLOOR = 0.16;  // keeps the lightest ramp character visible everywhere, like the reference's even background texture
+  const CORE_CEIL = 0.95; // top of the density range, reached deep inside a shape
 
-  let ROWS = 60, COLS = 50, CENTER = 25, ROW_CENTER = 30, dpr = 1;
+
+  // a small shared pool of technical/typographic marks, sprinkled rarely
+  // alongside each shape's own glyph -- registration-mark / type-specimen
+  // character rather than one repeated symbol everywhere
+  const EXTRA_GLYPHS = ['\u00d7','\u00f7','\u00a7','\u2020','\u00b6','\u2021'];
+
+  // classic ASCII-art brightness ramp, light to heavy -- index 0 is
+  // "background, draw nothing", the rest scale up in visual weight
+  const RAMP = [' ', '.', ':', ';', 'x', 'X', '+', '$'];
+
+  let ROWS = 60, COLS = 50, CENTER = 25, ROW_CENTER = 30, GRID_CX = 25, GRID_CY = 30, dpr = 1;
 
   // each shape blends two or three harmonics (+ a touch of abs()-ripple,
   // which stays mirror-symmetric under t -> 1-t at any frequency) so the
   // silhouettes read as intricate, hand-drawn contours rather than clean
-  // textbook geometry
+  // textbook geometry. ox/oy place that shape's own mirror-centre off the
+  // canvas's true centre (as a fraction of grid width/height) -- varied
+  // per shape, left and right and centred, so the composition wanders
+  // around across the cycle instead of sitting fixed to one side
   const shapes = [
-    { name:'timglas', core:'x', envelope(t){
+    { name:'timglas', core:'x', ox:0, oy:0, envelope(t){
         const g1 = Math.exp(-Math.pow((t-0.28)/0.15,2));
         const g2 = Math.exp(-Math.pow((t-0.72)/0.15,2));
         const ripple = 0.05*Math.abs(Math.cos(t*Math.PI*11));
         return 0.13 + 0.80*Math.max(g1,g2) + ripple;
       }},
-    { name:'diamant', core:'+', envelope(t){
+    { name:'diamant', core:'+', ox:-0.13, oy:0.05, envelope(t){
         const d = 1 - Math.abs(t-0.5)*2;
         const notch = 0.05*Math.abs(Math.cos(t*Math.PI*9));
         const swell = 0.06*Math.exp(-Math.pow((t-0.5)/0.09,2));
         return 0.07 + 0.85*Math.max(0,d) + notch + swell;
       }},
-    { name:'spiral', core:'@', isSpiral:true, envelope(t){
+    { name:'spiral', core:'@', isSpiral:true, ox:0.12, oy:-0.08, envelope(t){
         const x = (t-0.5)*2;
         return 0.05 + 0.85*Math.sqrt(Math.max(0,1-x*x));
       }},
-    { name:'v\u00e5g', core:'~', envelope(t){
+    { name:'v\u00e5g', core:'~', ox:0, oy:0.07, envelope(t){
         const wave = (Math.sin(t*Math.PI*4 - Math.PI/2)+1)/2;
         const fine = (Math.sin(t*Math.PI*10 - Math.PI/2)+1)/2;
         return 0.18 + 0.52*wave + 0.16*fine;
       }},
-    { name:'dubbelspets', core:'^', envelope(t){
+    { name:'dubbelspets', core:'^', ox:-0.09, oy:-0.06, envelope(t){
         const g1 = Math.exp(-Math.pow((t-0.5)/0.13,2));
         const tips = 0.5*Math.max(
           Math.exp(-Math.pow((t-0.1)/0.11,2)),
@@ -262,18 +274,18 @@ updateThemeState();
         const ripple = 0.05*Math.abs(Math.cos(t*Math.PI*13));
         return 0.15 + 0.28*(1-g1) + tips + ripple;
       }},
-    { name:'fyrlob', core:'/', envelope(t){
+    { name:'fyrlob', core:'/', ox:0.14, oy:0.04, envelope(t){
         const g = (c,s)=>Math.exp(-Math.pow((t-c)/s,2));
         const lobes = Math.max(g(0.15,0.085), g(0.38,0.085), g(0.62,0.085), g(0.85,0.085));
         const ripple = 0.04*Math.abs(Math.cos(t*Math.PI*17));
         return 0.10 + 0.80*lobes + ripple;
       }},
-    { name:'sicksack', core:'*', envelope(t){
+    { name:'sicksack', core:'*', ox:-0.11, oy:0.08, envelope(t){
         const coarse = Math.abs(Math.cos(t*Math.PI*3));
         const fine = Math.abs(Math.cos(t*Math.PI*9));
         return 0.14 + 0.62*coarse + 0.20*fine;
       }},
-    { name:'stj\u00e4rna', core:'#', envelope(t){
+    { name:'stj\u00e4rna', core:'#', ox:0.08, oy:-0.05, envelope(t){
         const spikes = Math.pow(Math.abs(Math.cos(t*Math.PI*5)), 0.5);
         const inner = Math.pow(Math.abs(Math.cos(t*Math.PI*15)), 2);
         return 0.13 + 0.66*spikes + 0.18*inner;
@@ -333,8 +345,13 @@ updateThemeState();
 
     COLS = Math.max(20, Math.floor(availW / CELL));
     ROWS = Math.max(20, Math.floor(availH / CELL));
-    CENTER = (COLS-1)/2;
-    ROW_CENTER = (ROWS-1)/2;
+    // pure geometric centre of the grid -- each shape's own offset (ox/oy)
+    // is applied per-frame in render(), blended as shapes morph into
+    // each other, so the composition drifts rather than sitting fixed
+    GRID_CX = (COLS-1)/2;
+    GRID_CY = (ROWS-1)/2;
+    CENTER = GRID_CX;
+    ROW_CENTER = GRID_CY;
 
     canvas.width  = Math.round(availW * dpr);
     canvas.height = Math.round(availH * dpr);
@@ -375,22 +392,25 @@ updateThemeState();
     const coreChar = blend < 0.5 ? shapeA.core : shapeB.core;
     const breathe = Math.sin(tickCount*0.05) * 1.1;
 
+    // drift the composition's centre between the two shapes' own offsets
+    CENTER = GRID_CX + COLS*(shapeA.ox + (shapeB.ox-shapeA.ox)*p);
+    ROW_CENTER = GRID_CY + ROWS*(shapeA.oy + (shapeB.oy-shapeA.oy)*p);
+
     const styles = getComputedStyle(host);
-    const textColor  = (styles.getPropertyValue('--text')  || '#111').trim();
-    const mutedColor = (styles.getPropertyValue('--muted') || '#999').trim();
+    const textColor = (styles.getPropertyValue('--text') || '#111').trim();
 
     ctx.clearRect(0, 0, canvas.width/dpr, canvas.height/dpr);
-    ctx.font = Math.round(CELL*1.25) + 'px "Space Mono", monospace';
+    ctx.font = Math.round(CELL*1.15) + 'px "Space Mono", monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-
-    const maxR = CELL*0.20;
+    ctx.fillStyle = textColor;
 
     for(let i=0;i<ROWS;i++){
       const t = i/(ROWS-1);
       const envA = shapeA.envelope(t), envB = shapeB.envelope(t);
       const boundary = (envA + (envB-envA)*p) * CENTER + breathe;
       const dyCells = i - ROW_CENTER;
+      const y = (i+0.5)*CELL;
 
       for(let c=0;c<COLS;c++){
         const dxCells = c - CENTER;
@@ -411,29 +431,28 @@ updateThemeState();
         const blotch = 0.62 + 0.38*fbm(dxCells*0.045 + tickCount*0.004, dyCells*0.045, 140);
 
         const density = Math.min(1, BG_FLOOR + (CORE_CEIL-BG_FLOOR)*s*weave*blotch);
-        // small per-dot position jitter -- a hair off-grid reads as printed
-        // rather than plotted
-        const jx = (hash(i*3+1, c*7+2) - 0.5) * 2.2;
-        const jy = (hash(i*7+5, c*3+9) - 0.5) * 2.2;
-        const x = (c+0.5)*CELL + jx;
-        const y0 = (i+0.5)*CELL + jy;
+        const x = (c+0.5)*CELL;
 
-        if(s > CORE_S){
-          // deep inside the shape: mostly a larger dot, occasionally a
-          // sprinkled "A"/"S" initial, or a rare instance of the shape's
-          // own glyph -- a signature woven into the densest fabric
+        // classic ASCII-art brightness ramp: pick a character by density
+        // instead of varying a dot's size -- fixed grid, one weight of
+        // mark per cell, like a real ASCII/halftone text render
+        let idx = Math.floor(density * RAMP.length);
+        if(idx >= RAMP.length) idx = RAMP.length - 1;
+        if(idx <= 0) continue; // pure background, nothing to draw
+
+        // at the very densest tier, occasionally swap in the shape's own
+        // glyph (or a rarer shared technical mark) instead of the ramp's
+        // heaviest character -- a quiet signature, not the main texture
+        if(idx === RAMP.length-1){
           const r2 = hash2(i,c);
-          if(r2 < 0.16){ ctx.fillStyle = textColor; ctx.fillText(coreChar, x, y0); continue; }
-          ctx.fillStyle = textColor;
-        } else {
-          ctx.fillStyle = mutedColor;
+          if(r2 < 0.05){
+            const gi = Math.floor(hash(i*11+3, c*13+7) * EXTRA_GLYPHS.length);
+            ctx.fillText(EXTRA_GLYPHS[gi], x, y);
+            continue;
+          }
+          if(r2 < 0.22){ ctx.fillText(coreChar, x, y); continue; }
         }
-
-        const r = maxR * Math.pow(density, 0.88) * (0.82 + 0.36*hash(i,c));
-        if(r < 0.15) continue;
-        ctx.beginPath();
-        ctx.arc(x, y0, r, 0, Math.PI*2);
-        ctx.fill();
+        ctx.fillText(RAMP[idx], x, y);
       }
     }
   }
