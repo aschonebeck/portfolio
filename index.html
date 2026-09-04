@@ -47,6 +47,7 @@
 <div class="loader" role="status" aria-live="polite" aria-label="Loading projects">
 
 <div class="loader-grid">
+  <canvas class="loader-ascii" id="loader-ascii" aria-hidden="true"></canvas>
   <div class="loader-id"></div>
 </div>
 
@@ -528,6 +529,8 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   const progressFill = document.querySelector('.progress-fill');
   const countEl      = document.getElementById('count');
   const skipBtn      = document.getElementById('loader-skip');
+  const asciiEl      = document.getElementById('loader-ascii');
+  const idEl         = document.querySelector('.loader-id'); // kept for screen readers only now
 
 
   if (sessionStorage.getItem('loaderSeen')) {
@@ -539,13 +542,257 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   document.body.classList.add('loading');
 
   const ids = ['WB25-001','AR25-002','WB24-003','UX22-004','UX23-005','UX20-006','AR20-007','AR20-008'];
-  const idEl = document.querySelector('.loader-id');
+  let activeId = ids[0];
+
+  // =====================
+  // ASCII TAPESTRY: ported from info.html's kinetic tapestry — canvas-
+  // rendered halftone characters, continuously morphing between several
+  // silhouette shapes (one of them a logarithmic spiral), textured with
+  // layered fBm noise, a jittered/ragged edge, and slow-drifting blotches.
+  // The active project ID is blended into the same density field: a
+  // letter only shows in a local gap, same as the reference's own glyph
+  // accents, so it reads as embedded in the texture rather than pasted on.
+  // =====================
+  const canvas = asciiEl;
+  const ctx = canvas ? canvas.getContext('2d') : null;
+
+  const CELL = 8;         // square grid cell, in CSS px
+  const CYCLE_MS = 380;  // time to fully morph — matches the 420ms per-project cadence
+  const TICK_MS  = 140;   // render interval
+  const EDGE_SOFT = 4.2;  // cells of dither/blur at the shape's boundary
+  const BG_FLOOR = 0.16;
+  const CORE_CEIL = 0.95;
+  const TEXT_DENSITY = 0.42; // ID letters show where local density is below this
+
+  const EXTRA_GLYPHS = ['\u00d7', '\u00f7', '\u00a7', '\u2020', '\u00b6', '\u2021'];
+  const RAMP = [' ', '.', ':', ';', 'x', 'X', '+', '$'];
+
+  let ROWS = 60, COLS = 50, CENTER = 25, ROW_CENTER = 30, GRID_CX = 25, GRID_CY = 30, dpr = 1;
+  let tickCount = 0;
+  let tickInterval = null;
+
+  const shapes = [
+    { name: 'timglas', core: 'x', ox: 0, oy: 0, envelope(t) {
+        const g1 = Math.exp(-Math.pow((t - 0.28) / 0.15, 2));
+        const g2 = Math.exp(-Math.pow((t - 0.72) / 0.15, 2));
+        const ripple = 0.05 * Math.abs(Math.cos(t * Math.PI * 11));
+        return 0.13 + 0.80 * Math.max(g1, g2) + ripple;
+      } },
+    { name: 'diamant', core: '+', ox: -0.13, oy: 0.05, envelope(t) {
+        const d = 1 - Math.abs(t - 0.5) * 2;
+        const notch = 0.05 * Math.abs(Math.cos(t * Math.PI * 9));
+        const swell = 0.06 * Math.exp(-Math.pow((t - 0.5) / 0.09, 2));
+        return 0.07 + 0.85 * Math.max(0, d) + notch + swell;
+      } },
+    { name: 'spiral', core: '@', radial: 'spiral', ox: 0.12, oy: -0.08, envelope(t) {
+        const x = (t - 0.5) * 2;
+        return 0.05 + 0.85 * Math.sqrt(Math.max(0, 1 - x * x));
+      } },
+    { name: 'vag', core: '~', ox: 0, oy: 0.07, envelope(t) {
+        const wave = (Math.sin(t * Math.PI * 4 - Math.PI / 2) + 1) / 2;
+        const fine = (Math.sin(t * Math.PI * 10 - Math.PI / 2) + 1) / 2;
+        return 0.18 + 0.52 * wave + 0.16 * fine;
+      } },
+    { name: 'dubbelspets', core: '^', ox: -0.09, oy: -0.06, envelope(t) {
+        const g1 = Math.exp(-Math.pow((t - 0.5) / 0.13, 2));
+        const tips = 0.5 * Math.max(
+          Math.exp(-Math.pow((t - 0.1) / 0.11, 2)),
+          Math.exp(-Math.pow((t - 0.9) / 0.11, 2))
+        );
+        const ripple = 0.05 * Math.abs(Math.cos(t * Math.PI * 13));
+        return 0.15 + 0.28 * (1 - g1) + tips + ripple;
+      } },
+    { name: 'fyrlob', core: '/', ox: 0.14, oy: 0.04, envelope(t) {
+        const g = (c, s) => Math.exp(-Math.pow((t - c) / s, 2));
+        const lobes = Math.max(g(0.15, 0.085), g(0.38, 0.085), g(0.62, 0.085), g(0.85, 0.085));
+        const ripple = 0.04 * Math.abs(Math.cos(t * Math.PI * 17));
+        return 0.10 + 0.80 * lobes + ripple;
+      } },
+    { name: 'sicksack', core: '*', ox: -0.11, oy: 0.08, envelope(t) {
+        const coarse = Math.abs(Math.cos(t * Math.PI * 3));
+        const fine = Math.abs(Math.cos(t * Math.PI * 9));
+        return 0.14 + 0.62 * coarse + 0.20 * fine;
+      } },
+    { name: 'stjarna', core: '#', ox: 0.08, oy: -0.05, envelope(t) {
+        const spikes = Math.pow(Math.abs(Math.cos(t * Math.PI * 5)), 0.5);
+        const inner = Math.pow(Math.abs(Math.cos(t * Math.PI * 15)), 2);
+        return 0.13 + 0.66 * spikes + 0.18 * inner;
+      } }
+  ];
+
+  let curIdx = 0, nextIdx = 0, blend = 0;
+
+  function hash(i, c) {
+    const x = Math.sin(i * 127.1 + c * 311.7) * 43758.5453;
+    return x - Math.floor(x);
+  }
+  function hash2(i, c) {
+    const x = Math.sin(i * 269.5 + c * 183.3) * 12943.83;
+    return x - Math.floor(x);
+  }
+  function smoothstep(e0, e1, x) {
+    const k = Math.min(1, Math.max(0, (x - e0) / (e1 - e0)));
+    return k * k * (3 - 2 * k);
+  }
+  function easeInOut(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+
+  function valueNoise(x, y, seed) {
+    const x0 = Math.floor(x), y0 = Math.floor(y);
+    const sx = x - x0, sy = y - y0;
+    const h = (xx, yy) => hash(xx * 3 + seed * 131, yy * 5 + seed * 257);
+    const n00 = h(x0, y0), n10 = h(x0 + 1, y0);
+    const n01 = h(x0, y0 + 1), n11 = h(x0 + 1, y0 + 1);
+    const ix0 = n00 + (n10 - n00) * sx;
+    const ix1 = n01 + (n11 - n01) * sx;
+    return ix0 + (ix1 - ix0) * sy;
+  }
+  function fbm(x, y, seed) {
+    let v = 0, amp = 0.42, freq = 1.6, norm = 0;
+    for (let o = 0; o < 3; o++) {
+      v += amp * valueNoise(x * freq, y * freq, seed + o * 19);
+      norm += amp;
+      amp *= 0.52;
+      freq *= 2.13;
+    }
+    return v / norm;
+  }
+
+  function measure() {
+    const availW = Math.max(160, window.innerWidth);
+    const availH = Math.max(160, window.innerHeight);
+    dpr = window.devicePixelRatio || 1;
+
+    COLS = Math.max(20, Math.floor(availW / CELL));
+    ROWS = Math.max(20, Math.floor(availH / CELL));
+    GRID_CX = (COLS - 1) / 2;
+    GRID_CY = (ROWS - 1) / 2;
+    CENTER = GRID_CX;
+    ROW_CENTER = GRID_CY;
+
+    canvas.width = Math.round(availW * dpr);
+    canvas.height = Math.round(availH * dpr);
+    canvas.style.width = availW + 'px';
+    canvas.style.height = availH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function weaveFor(shape, seed, dxCells, dyCells) {
+    if (shape.radial === 'spiral') {
+      const r = Math.sqrt(dxCells * dxCells + dyCells * dyCells);
+      const theta = Math.atan2(dyCells, dxCells) + tickCount * 0.015;
+      const armCount = 2;
+      const logSpacing = 0.85;
+      const rLog = Math.log(Math.max(r, 0.6));
+      let phase = (rLog / logSpacing - (theta * armCount) / (2 * Math.PI)) % 1;
+      if (phase < 0) phase += 1;
+      const d = Math.min(phase, 1 - phase);
+      const armWidth = 0.10;
+      let val = Math.max(0, 1 - d / armWidth);
+      val *= smoothstep(0, 2.4, r);
+      return 0.08 + 0.55 * val;
+    }
+    const drift = tickCount * 0.012;
+    const n = fbm(dxCells * 0.42 + drift, dyCells * 0.42 - drift * 0.6, seed);
+    return 0.14 + 0.55 * n;
+  }
+
+  function render() {
+    if (!ctx) return;
+    const shapeA = shapes[curIdx], shapeB = shapes[nextIdx];
+    const p = easeInOut(blend);
+    const coreChar = blend < 0.5 ? shapeA.core : shapeB.core;
+    const breathe = Math.sin(tickCount * 0.05) * 1.1;
+
+    CENTER = GRID_CX + COLS * (shapeA.ox + (shapeB.ox - shapeA.ox) * p);
+    ROW_CENTER = GRID_CY + ROWS * (shapeA.oy + (shapeB.oy - shapeA.oy) * p);
+
+    const textColor = getComputedStyle(document.body).getPropertyValue('--text').trim() || '#111';
+
+    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+    ctx.font = Math.round(CELL * 1.15) + 'px "Space Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = textColor;
+
+    const idRow = Math.round(ROWS * 0.52);
+    const idSpaced = activeId.split('').join(' ');
+    const idStartCol = Math.round(COLS / 2 - idSpaced.length / 2);
+
+    for (let i = 0; i < ROWS; i++) {
+      const t = i / (ROWS - 1);
+      const envA = shapeA.envelope(t), envB = shapeB.envelope(t);
+      const boundary = (envA + (envB - envA) * p) * CENTER + breathe;
+      const dyCells = i - ROW_CENTER;
+      const y = (i + 0.5) * CELL;
+
+      for (let c = 0; c < COLS; c++) {
+        const dxCells = c - CENTER;
+        const colDist = Math.abs(dxCells);
+
+        const edgeJitter = (valueNoise(dxCells * 0.30, dyCells * 0.30 + i * 0.02, 91) - 0.5) * 7.5;
+        const s = 1 - smoothstep((boundary + edgeJitter) - EDGE_SOFT, (boundary + edgeJitter) + EDGE_SOFT, colDist);
+
+        const weaveA = weaveFor(shapeA, curIdx, dxCells, dyCells);
+        const weaveB = weaveFor(shapeB, nextIdx, dxCells, dyCells);
+        const weave = weaveA + (weaveB - weaveA) * p;
+
+        const blotch = 0.62 + 0.38 * fbm(dxCells * 0.045 + tickCount * 0.004, dyCells * 0.045, 140);
+
+        const density = Math.min(1, BG_FLOOR + (CORE_CEIL - BG_FLOOR) * s * weave * blotch);
+        const x = (c + 0.5) * CELL;
+
+        // ID text: a letter only shows in a local gap — same organic
+        // blend logic as the reference's own glyph accents
+        if (i === idRow && c >= idStartCol && c < idStartCol + idSpaced.length) {
+          const ch = idSpaced[c - idStartCol];
+          if (ch !== ' ' && density < TEXT_DENSITY) {
+            ctx.fillText(ch, x, y);
+            continue;
+          }
+        }
+
+        let idx = Math.floor(density * RAMP.length);
+        if (idx >= RAMP.length) idx = RAMP.length - 1;
+        if (idx <= 0) continue;
+
+        if (idx === RAMP.length - 1) {
+          const r2 = hash2(i, c);
+          if (r2 < 0.05) {
+            const gi = Math.floor(hash(i * 11 + 3, c * 13 + 7) * EXTRA_GLYPHS.length);
+            ctx.fillText(EXTRA_GLYPHS[gi], x, y);
+            continue;
+          }
+          if (r2 < 0.22) { ctx.fillText(coreChar, x, y); continue; }
+        }
+        ctx.fillText(RAMP[idx], x, y);
+      }
+    }
+  }
+
+  function tick() {
+    tickCount++;
+    blend = Math.min(1, blend + TICK_MS / CYCLE_MS);
+    render();
+  }
+
+  if (canvas) {
+    let resizeDebounce;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeDebounce);
+      resizeDebounce = setTimeout(() => { measure(); render(); }, 150);
+    });
+    measure();
+    render();
+    tickInterval = setInterval(tick, TICK_MS);
+  }
+
   let current = 0;
   const total = ids.length;
   let timer = null;
 
   function dismissLoader() {
     if (timer) clearTimeout(timer);
+    if (tickInterval) clearInterval(tickInterval);
     progressFill.style.transition = 'width 0.25s ease';
     progressFill.style.width = '100%';
     setTimeout(() => {
@@ -556,19 +803,23 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   }
 
   function showNext() {
-    idEl.style.opacity = '0';
-    setTimeout(() => {
-      idEl.textContent = ids[current];
-      idEl.style.opacity = '1';
-      progressFill.style.width = ((current + 1) / total) * 100 + '%';
-      countEl.textContent = current + 1;
-      current++;
-      if (current < total) {
-        timer = setTimeout(showNext, 420);
-      } else {
-        timer = setTimeout(dismissLoader, 550);
-      }
-    }, 150);
+    activeId = ids[current];
+    if (idEl) idEl.textContent = activeId; // sr-only, kept for aria-live progress
+    progressFill.style.width = ((current + 1) / total) * 100 + '%';
+    countEl.textContent = current + 1;
+
+    // shapes and projects line up 1:1 (8 of each) — morph into this
+    // project's own shape as it comes up
+    curIdx = nextIdx;
+    nextIdx = current % shapes.length;
+    blend = 0;
+
+    current++;
+    if (current < total) {
+      timer = setTimeout(showNext, 420);
+    } else {
+      timer = setTimeout(dismissLoader, 550);
+    }
   }
 
   skipBtn.addEventListener('click', dismissLoader);

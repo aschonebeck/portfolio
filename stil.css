@@ -127,22 +127,31 @@ float: right;
 
 
 .loader-grid {
+  flex: 1;
+  min-height: 0;
   position: relative;
   width: 100%;
   height: 100%;
 }
 
+.loader-ascii {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 80px;
+  z-index: -1; /* sits behind the nav, skip button and progress bar, in front of the loader bg */
+  pointer-events: none;
+  opacity: 0.92;
+}
+
 .loader-id {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(2rem, 6vw, 5rem);
-  letter-spacing: 0.08em;
-  color: var(--text);
-  opacity: 1;
-  transition: opacity 0.3s ease;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .thumb::-webkit-scrollbar { display: none; }
@@ -925,7 +934,7 @@ height: 100vh;
       display: inline-block;
       margin-right: 10px;
         font-family: var(--font);
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--muted);
@@ -1995,7 +2004,7 @@ opacity: 0.85;
     .kontakt a {
       display: inline-block;
       margin-top: 0px;
-      font-size: 13px;
+      font-size: 11px;
       color: var(--muted);
       font-family: var(--font);
     }
@@ -2317,18 +2326,6 @@ opacity: 0.85;
   top: 20px;
 }
 
-.loader-id {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(2rem, 7.5vw, 5rem);
-  letter-spacing: 0.08em;
-  color: var(--text);
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
 .loader-grid--desktop { display: none; }
   .loader-grid--mobile  { display: flex; }
 
