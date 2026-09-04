@@ -823,9 +823,21 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
     ctx.textBaseline = 'middle';
     ctx.fillStyle = textColor;
 
-    const idRow = Math.round(ROWS * 0.52);
-    const idSpaced = activeId.split('').join(' ');
-    const idStartCol = Math.round(COLS / 2 - idSpaced.length / 2);
+    const idLetters = activeId.split('');
+    const idSpacing = 2;
+    const idStartCol = Math.round(COLS / 2 - (idLetters.length * idSpacing) / 2);
+    const idBaseRow = Math.round(ROWS * 0.52);
+    // each letter gets a small, stable row offset (scattered across nearby
+    // rows rather than one flat line) and a reveal point along this
+    // project's morph-in, so they come in one at a time like a scan line
+    // reading across rather than the whole word snapping on at once
+    const idCellMap = {};
+    idLetters.forEach((ch, j) => {
+      const rowJitter = Math.round((hash(j * 7 + 1, ch.charCodeAt(0) * 3 + 2) - 0.5) * 4);
+      const row = idBaseRow + rowJitter;
+      const col = idStartCol + j * idSpacing;
+      idCellMap[row + ',' + col] = { ch, revealAt: (j + 0.15) / idLetters.length };
+    });
 
     const normScale = Math.min(COLS, ROWS) * 0.44;
     const breathe = 1 + Math.sin(tickCount * 0.05) * 0.04;
@@ -860,20 +872,17 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
         const density = Math.min(1, BG_FLOOR + (CORE_CEIL - BG_FLOOR) * s * blotch * grain);
         const x = (c + 0.5) * CELL;
 
-        // ID text: every letter always renders (the full ID reads reliably)
-        // but at reduced opacity, softening more where the branch texture
-        // underneath is sparse and less where it's dense — so it stays
-        // legible as a whole word without popping off the texture as a
-        // stark, obviously-pasted-on label
-        if (i === idRow && c >= idStartCol && c < idStartCol + idSpaced.length) {
-          const ch = idSpaced[c - idStartCol];
-          if (ch !== ' ') {
-            ctx.save();
-            ctx.globalAlpha = 0.5 + Math.min(0.35, density * 0.4);
-            ctx.fillText(ch, x, y);
-            ctx.restore();
-            continue;
-          }
+        // ID text: letters are scattered across a few nearby rows and
+        // revealed one at a time as this project's shape morphs in, like a
+        // scan line reading across — full word, staggered arrival, and
+        // softened opacity so it stays embedded rather than a stark label
+        const idHit = idCellMap[i + ',' + c];
+        if (idHit && blend >= idHit.revealAt) {
+          ctx.save();
+          ctx.globalAlpha = 0.5 + Math.min(0.35, density * 0.4);
+          ctx.fillText(idHit.ch, x, y);
+          ctx.restore();
+          continue;
         }
 
         let idx = Math.floor(density * RAMP.length);
