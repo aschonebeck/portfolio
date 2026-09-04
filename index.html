@@ -533,7 +533,11 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   const idEl         = document.querySelector('.loader-id'); // kept for screen readers only now
 
 
-  if (sessionStorage.getItem('loaderSeen')) {
+  // visit the page with ?loader in the URL to force the loader to replay,
+  // bypassing the once-per-session gate below — handy for testing
+  const forcePreview = new URLSearchParams(location.search).has('loader');
+
+  if (!forcePreview && sessionStorage.getItem('loaderSeen')) {
     loader.style.display = 'none';
     document.body.classList.remove('loading');
     return;
@@ -559,10 +563,8 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   const CELL = 8;         // square grid cell, in CSS px
   const CYCLE_MS = 380;  // time to fully morph — matches the 420ms per-project cadence
   const TICK_MS  = 140;   // render interval
-  const EDGE_SOFT = 4.2;  // cells of dither/blur at the shape's boundary
   const BG_FLOOR = 0.16;
   const CORE_CEIL = 0.95;
-  const TEXT_DENSITY = 0.42; // ID letters show where local density is below this
 
   const EXTRA_GLYPHS = ['\u00d7', '\u00f7', '\u00a7', '\u2020', '\u00b6', '\u2021'];
   const RAMP = [' ', '.', ':', ';', 'x', 'X', '+', '$'];
@@ -571,53 +573,22 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   let tickCount = 0;
   let tickInterval = null;
 
+  const REF_RES = 64; // resolution of each shape's precomputed grid
+
+  // Eight shapes: mostly branching-tendril silhouettes — a hub with
+  // several tapered branches, sub-branches ramifying off those, each
+  // ending in a spiral curl or a small star-point — plus one true spiral,
+  // early in the rotation. Built once at load (the build functions are
+  // defined further down but available here via function hoisting).
   const shapes = [
-    { name: 'timglas', core: 'x', ox: 0, oy: 0, envelope(t) {
-        const g1 = Math.exp(-Math.pow((t - 0.28) / 0.15, 2));
-        const g2 = Math.exp(-Math.pow((t - 0.72) / 0.15, 2));
-        const ripple = 0.05 * Math.abs(Math.cos(t * Math.PI * 11));
-        return 0.13 + 0.80 * Math.max(g1, g2) + ripple;
-      } },
-    { name: 'diamant', core: '+', ox: -0.13, oy: 0.05, envelope(t) {
-        const d = 1 - Math.abs(t - 0.5) * 2;
-        const notch = 0.05 * Math.abs(Math.cos(t * Math.PI * 9));
-        const swell = 0.06 * Math.exp(-Math.pow((t - 0.5) / 0.09, 2));
-        return 0.07 + 0.85 * Math.max(0, d) + notch + swell;
-      } },
-    { name: 'spiral', core: '@', radial: 'spiral', ox: 0.12, oy: -0.08, envelope(t) {
-        const x = (t - 0.5) * 2;
-        return 0.05 + 0.85 * Math.sqrt(Math.max(0, 1 - x * x));
-      } },
-    { name: 'vag', core: '~', ox: 0, oy: 0.07, envelope(t) {
-        const wave = (Math.sin(t * Math.PI * 4 - Math.PI / 2) + 1) / 2;
-        const fine = (Math.sin(t * Math.PI * 10 - Math.PI / 2) + 1) / 2;
-        return 0.18 + 0.52 * wave + 0.16 * fine;
-      } },
-    { name: 'dubbelspets', core: '^', ox: -0.09, oy: -0.06, envelope(t) {
-        const g1 = Math.exp(-Math.pow((t - 0.5) / 0.13, 2));
-        const tips = 0.5 * Math.max(
-          Math.exp(-Math.pow((t - 0.1) / 0.11, 2)),
-          Math.exp(-Math.pow((t - 0.9) / 0.11, 2))
-        );
-        const ripple = 0.05 * Math.abs(Math.cos(t * Math.PI * 13));
-        return 0.15 + 0.28 * (1 - g1) + tips + ripple;
-      } },
-    { name: 'fyrlob', core: '/', ox: 0.14, oy: 0.04, envelope(t) {
-        const g = (c, s) => Math.exp(-Math.pow((t - c) / s, 2));
-        const lobes = Math.max(g(0.15, 0.085), g(0.38, 0.085), g(0.62, 0.085), g(0.85, 0.085));
-        const ripple = 0.04 * Math.abs(Math.cos(t * Math.PI * 17));
-        return 0.10 + 0.80 * lobes + ripple;
-      } },
-    { name: 'sicksack', core: '*', ox: -0.11, oy: 0.08, envelope(t) {
-        const coarse = Math.abs(Math.cos(t * Math.PI * 3));
-        const fine = Math.abs(Math.cos(t * Math.PI * 9));
-        return 0.14 + 0.62 * coarse + 0.20 * fine;
-      } },
-    { name: 'stjarna', core: '#', ox: 0.08, oy: -0.05, envelope(t) {
-        const spikes = Math.pow(Math.abs(Math.cos(t * Math.PI * 5)), 0.5);
-        const inner = Math.pow(Math.abs(Math.cos(t * Math.PI * 15)), 2);
-        return 0.13 + 0.66 * spikes + 0.18 * inner;
-      } }
+    { name: 'gren-1', core: 'x', grid: buildBranchGrid(1) },
+    { name: 'spiral', core: '@', grid: buildSpiralGrid(20) },
+    { name: 'gren-2', core: '+', grid: buildBranchGrid(2) },
+    { name: 'gren-3', core: '~', grid: buildBranchGrid(3) },
+    { name: 'gren-4', core: '^', grid: buildBranchGrid(4) },
+    { name: 'gren-5', core: '/', grid: buildBranchGrid(5) },
+    { name: 'gren-6', core: 'S', grid: buildBranchGrid(6) },
+    { name: 'gren-7', core: '#', grid: buildBranchGrid(7) }
   ];
 
   let curIdx = 0, nextIdx = 0, blend = 0;
@@ -629,10 +600,6 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
   function hash2(i, c) {
     const x = Math.sin(i * 269.5 + c * 183.3) * 12943.83;
     return x - Math.floor(x);
-  }
-  function smoothstep(e0, e1, x) {
-    const k = Math.min(1, Math.max(0, (x - e0) / (e1 - e0)));
-    return k * k * (3 - 2 * k);
   }
   function easeInOut(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
 
@@ -676,24 +643,170 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  function weaveFor(shape, seed, dxCells, dyCells) {
-    if (shape.radial === 'spiral') {
-      const r = Math.sqrt(dxCells * dxCells + dyCells * dyCells);
-      const theta = Math.atan2(dyCells, dxCells) + tickCount * 0.015;
-      const armCount = 2;
-      const logSpacing = 0.85;
-      const rLog = Math.log(Math.max(r, 0.6));
-      let phase = (rLog / logSpacing - (theta * armCount) / (2 * Math.PI)) % 1;
-      if (phase < 0) phase += 1;
-      const d = Math.min(phase, 1 - phase);
-      const armWidth = 0.10;
-      let val = Math.max(0, 1 - d / armWidth);
-      val *= smoothstep(0, 2.4, r);
-      return 0.08 + 0.55 * val;
+  function stampSegment(grid, res, x1, y1, x2, y2, w1, w2) {
+    const dx = x2 - x1, dy = y2 - y1;
+    const lenSq = dx * dx + dy * dy || 1e-6;
+    for (let gy = 0; gy < res; gy++) {
+      const py = (gy / (res - 1)) * 2 - 1;
+      for (let gx = 0; gx < res; gx++) {
+        const px = (gx / (res - 1)) * 2 - 1;
+        let tt = ((px - x1) * dx + (py - y1) * dy) / lenSq;
+        tt = Math.max(0, Math.min(1, tt));
+        const cx = x1 + tt * dx, cy = y1 + tt * dy;
+        const ddx = px - cx, ddy = py - cy;
+        const dist = Math.sqrt(ddx * ddx + ddy * ddy);
+        const width = w1 + (w2 - w1) * tt;
+        const val = Math.max(0, 1 - dist / (width + 0.02));
+        if (val > grid[gy][gx]) grid[gy][gx] = val;
+      }
     }
-    const drift = tickCount * 0.012;
-    const n = fbm(dxCells * 0.42 + drift, dyCells * 0.42 - drift * 0.6, seed);
-    return 0.14 + 0.55 * n;
+  }
+
+  function stampPoint(grid, res, px, py, radius, weight) {
+    const gx = (px + 1) / 2 * (res - 1);
+    const gy = (py + 1) / 2 * (res - 1);
+    const rad = (radius * (res - 1)) / 2;
+    const r0 = Math.max(0, Math.floor(gy - rad - 1));
+    const r1 = Math.min(res - 1, Math.ceil(gy + rad + 1));
+    const c0 = Math.max(0, Math.floor(gx - rad - 1));
+    const c1 = Math.min(res - 1, Math.ceil(gx + rad + 1));
+    for (let gyy = r0; gyy <= r1; gyy++) {
+      for (let gxx = c0; gxx <= c1; gxx++) {
+        const d = Math.sqrt((gxx - gx) * (gxx - gx) + (gyy - gy) * (gyy - gy));
+        const val = weight * Math.max(0, 1 - d / (rad + 1));
+        if (val > grid[gyy][gxx]) grid[gyy][gxx] = val;
+      }
+    }
+  }
+
+  // a paisley-style curl: spirals inward from a wide tail to a tight center
+  function stampCurl(grid, res, cx, cy, dir, size) {
+    const steps = 70;
+    for (let i = 0; i <= steps; i++) {
+      const p = i / steps;
+      const t = p * Math.PI * 2.5;
+      const r = size * (1 - p * 0.9);
+      const px = cx + dir * r * Math.cos(t);
+      const py = cy + r * Math.sin(t);
+      const w = 0.05 * (1 - p * 0.4);
+      stampPoint(grid, res, px, py, w, 1 - p * 0.15);
+    }
+  }
+
+  // a small 4-point sparkle/star accent
+  function stampStar(grid, res, cx, cy, size) {
+    for (let a = 0; a < 4; a++) {
+      const ang = a * (Math.PI / 2) + Math.PI / 4;
+      const x2 = cx + Math.cos(ang) * size;
+      const y2 = cy + Math.sin(ang) * size;
+      stampSegment(grid, res, cx, cy, x2, y2, 0.028, 0.002);
+    }
+  }
+
+  // Procedurally builds one branching-tendril silhouette: a hub with
+  // several tapered branches radiating out, each sprouting its own
+  // secondary sub-branches partway along, every terminal ending in a
+  // spiral curl or a small star-point — the same grammar as the flourish
+  // reference, just generated rather than hand-drawn, so each of the
+  // 8 projects gets a distinct but stylistically consistent pattern.
+  function buildBranchGrid(seed) {
+    const grid = Array.from({ length: REF_RES }, () => new Array(REF_RES).fill(0));
+    const hubX = (hash(seed, 1) - 0.5) * 0.3;
+    const hubY = (hash(seed, 2) - 0.5) * 0.3;
+    const branchCount = 5 + Math.floor(hash(seed, 3) * 4); // 5-8 primary branches
+
+    function growBranch(x0, y0, ang, len, depth, salt) {
+      const bendAng = ang + (hash(seed, salt + 5) - 0.5) * 0.65;
+      const midX = x0 + Math.cos(ang) * len * 0.5 + Math.cos(bendAng) * 0.07;
+      const midY = y0 + Math.sin(ang) * len * 0.5 + Math.sin(bendAng) * 0.07;
+      const endX = x0 + Math.cos(ang) * len;
+      const endY = y0 + Math.sin(ang) * len;
+
+      const w1 = 0.078 * Math.pow(0.62, depth);
+      const w2 = w1 * 0.5;
+      stampSegment(grid, REF_RES, x0, y0, midX, midY, w1, (w1 + w2) / 2);
+      stampSegment(grid, REF_RES, midX, midY, endX, endY, (w1 + w2) / 2, w2);
+
+      // terminal ornament: curl or star, shrinking with depth
+      if (hash(seed, salt + 40) < 0.62) {
+        const dir = hash(seed, salt + 50) < 0.5 ? 1 : -1;
+        stampCurl(grid, REF_RES, endX, endY, dir, (0.11 + hash(seed, salt + 60) * 0.08) * Math.pow(0.8, depth));
+      } else {
+        stampStar(grid, REF_RES, endX, endY, (0.065 + hash(seed, salt + 61) * 0.04) * Math.pow(0.84, depth));
+      }
+
+      // secondary sub-branches sprouting partway along this one — this is
+      // what gives the pattern real decorative density instead of a bare
+      // hub-and-spoke look
+      if (depth < 3) {
+        const subCount = hash(seed, salt + 70) < 0.4 ? 1 : (hash(seed, salt + 71) < 0.7 ? 2 : 3);
+        for (let s = 0; s < subCount; s++) {
+          const tt = 0.28 + hash(seed, salt + 80 + s * 3) * 0.5;
+          const sx = x0 + (endX - x0) * tt;
+          const sy = y0 + (endY - y0) * tt;
+          const side = hash(seed, salt + 90 + s * 3) < 0.5 ? -1 : 1;
+          const spread = 0.5 + hash(seed, salt + 91 + s * 3) * 0.6;
+          const subAng = ang + side * spread;
+          const subLen = len * (0.32 + hash(seed, salt + 92 + s * 3) * 0.32);
+          growBranch(sx, sy, subAng, subLen, depth + 1, salt + 211 + s * 47);
+        }
+      }
+    }
+
+    for (let b = 0; b < branchCount; b++) {
+      const ang = (b / branchCount) * Math.PI * 2 + hash(seed, 10 + b) * 1.3 + seed * 0.9;
+      const len = 0.48 + hash(seed, 20 + b) * 0.4;
+      growBranch(hubX, hubY, ang, len, 0, 300 + b * 31);
+    }
+
+    // a small cluster of extra curls right at the hub, for the dense
+    // decorative knot your reference photos have at branch junctions
+    stampCurl(grid, REF_RES, hubX, hubY, 1, 0.09);
+    for (let k = 0; k < 3; k++) {
+      const kAng = hash(seed, 900 + k) * Math.PI * 2;
+      const kx = hubX + Math.cos(kAng) * 0.05;
+      const ky = hubY + Math.sin(kAng) * 0.05;
+      stampCurl(grid, REF_RES, kx, ky, hash(seed, 910 + k) < 0.5 ? 1 : -1, 0.045 + hash(seed, 920 + k) * 0.03);
+    }
+    return grid;
+  }
+
+  // A true two-armed spiral, rasterized into the same grid format so it
+  // slots into the shape rotation like any other — kept early in the
+  // sequence since it reads as a distinct beat against the branch shapes.
+  function buildSpiralGrid(seed) {
+    const grid = Array.from({ length: REF_RES }, () => new Array(REF_RES).fill(0));
+    const armCount = 2;
+    const turns = 2.1;
+    const steps = 600;
+    for (let i = 0; i <= steps; i++) {
+      const p = i / steps;
+      const t = p * Math.PI * 2 * turns;
+      const r = 0.05 + p * 0.86;
+      const w = 0.026 + 0.01 * Math.sin(p * Math.PI * 7);
+      for (let a = 0; a < armCount; a++) {
+        const aOff = a * (Math.PI * 2 / armCount) + hash(seed, 1) * 0.6;
+        const px = r * Math.cos(t + aOff);
+        const py = r * Math.sin(t + aOff);
+        stampPoint(grid, REF_RES, px, py, w, 1 - p * 0.2);
+      }
+    }
+    // small star flourishes at the outer tips
+    const tipAng = turns * Math.PI * 2 + hash(seed, 1) * 0.6;
+    stampStar(grid, REF_RES, 0.91 * Math.cos(tipAng), 0.91 * Math.sin(tipAng), 0.09);
+    stampStar(grid, REF_RES, 0.91 * Math.cos(tipAng + Math.PI), 0.91 * Math.sin(tipAng + Math.PI), 0.09);
+    return grid;
+  }
+
+  function sampleGrid(grid, u, v) {
+    const gx = (u + 1) / 2 * (REF_RES - 1);
+    const gy = (v + 1) / 2 * (REF_RES - 1);
+    if (gx < 0 || gy < 0 || gx >= REF_RES - 1 || gy >= REF_RES - 1) return 0;
+    const x0 = Math.floor(gx), y0 = Math.floor(gy);
+    const fx = gx - x0, fy = gy - y0;
+    const a = grid[y0][x0], b = grid[y0][x0 + 1];
+    const c = grid[y0 + 1][x0], d = grid[y0 + 1][x0 + 1];
+    return a * (1 - fx) * (1 - fy) + b * fx * (1 - fy) + c * (1 - fx) * fy + d * fx * fy;
   }
 
   function render() {
@@ -701,10 +814,6 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
     const shapeA = shapes[curIdx], shapeB = shapes[nextIdx];
     const p = easeInOut(blend);
     const coreChar = blend < 0.5 ? shapeA.core : shapeB.core;
-    const breathe = Math.sin(tickCount * 0.05) * 1.1;
-
-    CENTER = GRID_CX + COLS * (shapeA.ox + (shapeB.ox - shapeA.ox) * p);
-    ROW_CENTER = GRID_CY + ROWS * (shapeA.oy + (shapeB.oy - shapeA.oy) * p);
 
     const textColor = getComputedStyle(document.body).getPropertyValue('--text').trim() || '#111';
 
@@ -718,35 +827,51 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
     const idSpaced = activeId.split('').join(' ');
     const idStartCol = Math.round(COLS / 2 - idSpaced.length / 2);
 
+    const normScale = Math.min(COLS, ROWS) * 0.44;
+    const breathe = 1 + Math.sin(tickCount * 0.05) * 0.04;
+    const rot = tickCount * 0.004; // slow continuous rotation
+    const cosR = Math.cos(rot), sinR = Math.sin(rot);
+
     for (let i = 0; i < ROWS; i++) {
-      const t = i / (ROWS - 1);
-      const envA = shapeA.envelope(t), envB = shapeB.envelope(t);
-      const boundary = (envA + (envB - envA) * p) * CENTER + breathe;
       const dyCells = i - ROW_CENTER;
       const y = (i + 0.5) * CELL;
 
       for (let c = 0; c < COLS; c++) {
         const dxCells = c - CENTER;
-        const colDist = Math.abs(dxCells);
 
-        const edgeJitter = (valueNoise(dxCells * 0.30, dyCells * 0.30 + i * 0.02, 91) - 0.5) * 7.5;
-        const s = 1 - smoothstep((boundary + edgeJitter) - EDGE_SOFT, (boundary + edgeJitter) + EDGE_SOFT, colDist);
+        // ragged edge: wobble the sample point itself rather than a
+        // threshold, so the precomputed clean vector shape reads as
+        // hand-drawn rather than perfectly smooth
+        const jitterX = (valueNoise(dxCells * 0.30, dyCells * 0.30 + i * 0.02, 91) - 0.5) * 3.4;
+        const jitterY = (valueNoise(dxCells * 0.30 + 50, dyCells * 0.30 + i * 0.02, 91) - 0.5) * 3.4;
 
-        const weaveA = weaveFor(shapeA, curIdx, dxCells, dyCells);
-        const weaveB = weaveFor(shapeB, nextIdx, dxCells, dyCells);
-        const weave = weaveA + (weaveB - weaveA) * p;
+        const ux = (dxCells + jitterX) / (normScale * breathe);
+        const uy = (dyCells + jitterY) / (normScale * breathe);
+        const ru = ux * cosR - uy * sinR;
+        const rv = ux * sinR + uy * cosR;
+
+        const wA = sampleGrid(shapeA.grid, ru, rv);
+        const wB = sampleGrid(shapeB.grid, ru, rv);
+        const s = wA + (wB - wA) * p;
 
         const blotch = 0.62 + 0.38 * fbm(dxCells * 0.045 + tickCount * 0.004, dyCells * 0.045, 140);
+        const grain = 0.75 + 0.25 * fbm(dxCells * 0.6 + tickCount * 0.01, dyCells * 0.6, 300);
 
-        const density = Math.min(1, BG_FLOOR + (CORE_CEIL - BG_FLOOR) * s * weave * blotch);
+        const density = Math.min(1, BG_FLOOR + (CORE_CEIL - BG_FLOOR) * s * blotch * grain);
         const x = (c + 0.5) * CELL;
 
-        // ID text: a letter only shows in a local gap — same organic
-        // blend logic as the reference's own glyph accents
+        // ID text: every letter always renders (the full ID reads reliably)
+        // but at reduced opacity, softening more where the branch texture
+        // underneath is sparse and less where it's dense — so it stays
+        // legible as a whole word without popping off the texture as a
+        // stark, obviously-pasted-on label
         if (i === idRow && c >= idStartCol && c < idStartCol + idSpaced.length) {
           const ch = idSpaced[c - idStartCol];
-          if (ch !== ' ' && density < TEXT_DENSITY) {
+          if (ch !== ' ') {
+            ctx.save();
+            ctx.globalAlpha = 0.5 + Math.min(0.35, density * 0.4);
             ctx.fillText(ch, x, y);
+            ctx.restore();
             continue;
           }
         }
