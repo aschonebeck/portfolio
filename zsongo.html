@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zsongo World Events — A. Schönebeck</title>
+  <title>ZSONGO WORLD EVENTS — A. Schönebeck</title>
   <link href="stil.css" rel="stylesheet" type="text/css" />
   <meta property="og:url" content="www.amandaschonebeck.com" />
   <meta property="og:title" content="Amanda Schönebeck — PORTFOLIO" />
@@ -83,8 +83,13 @@
     </p>
  <br><br>
 
-    <img class="project-image-full fade-in" class="lastimg" src="img/dezktop.png" />
+    <img class="project-image-full fade-in" class="" src="img/dezktop.png" />
 
+<div style="padding: 0 44px;">
+      <button class="live-preview-trigger" data-url="https://www.zsongo.es">
+        LIVE WEBSITE PREVIEW
+      </button>
+    </div>
 
     <div class="project-section fade-in">
 <BR>
@@ -96,7 +101,6 @@ Though rooted in Madrid, <a href="https://www.zsongo.es/" target="_blank">Zsongo
 
  
 <img class="project-image-full fade-in" style="padding:20px;" src="img/zz.png" />
-
 
     <div class="project-section fade-in">
 
@@ -129,6 +133,72 @@ Your browser does not support the video tag.
 
 
 </div>
+
+
+
+<!-- LIVE SITE WALKTHROUGH MODUL -->
+<div class="live-preview-modal" id="live-preview-modal">
+  <div class="live-preview-bar">
+    <span class="live-preview-url" id="live-preview-url"></span>
+    <button class="live-preview-close" id="live-preview-close">✕ CLOSE</button>
+  </div>
+  <div class="live-preview-frame-wrap">
+    <iframe class="live-preview-frame" id="live-preview-frame" title="Live site preview"></iframe>
+    <div class="live-preview-fallback" id="live-preview-fallback">
+      <p>This site can't be shown, some sites block for security.</p>
+      <a id="live-preview-fallback-link" href="#" target="_blank" rel="noopener">Open in a new tab↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const modal = document.getElementById('live-preview-modal');
+  const frame = document.getElementById('live-preview-frame');
+  const urlLabel = document.getElementById('live-preview-url');
+  const fallback = document.getElementById('live-preview-fallback');
+  const fallbackLink = document.getElementById('live-preview-fallback-link');
+  const closeBtn = document.getElementById('live-preview-close');
+  let loadTimer = null;
+  let lastTrigger = null;
+
+  function openPreview(url, triggerEl) {
+    lastTrigger = triggerEl;
+    fallback.classList.remove('show');
+    urlLabel.textContent = url;
+    fallbackLink.href = url;
+    frame.src = url; // set only on open — avoids loading it in the background otherwise
+    document.body.style.overflow = 'hidden';
+    modal.classList.add('open');
+
+    // many sites block being framed (X-Frame-Options / CSP) with no JS-visible
+    // error — if nothing has loaded after a few seconds, assume it's blocked
+    clearTimeout(loadTimer);
+    loadTimer = setTimeout(() => fallback.classList.add('show'), 4000);
+  }
+
+  function closePreview() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    clearTimeout(loadTimer);
+    frame.src = 'about:blank'; // stop whatever the embedded page was doing
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  frame.addEventListener('load', () => {
+    if (frame.src !== 'about:blank' && frame.src !== '') clearTimeout(loadTimer);
+  });
+
+  document.querySelectorAll('.live-preview-trigger').forEach(btn => {
+    btn.addEventListener('click', () => openPreview(btn.dataset.url, btn));
+  });
+
+  closeBtn.addEventListener('click', closePreview);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closePreview();
+  });
+})();
+</script>
 
 <script>
   if (window.innerWidth <= 768) {
