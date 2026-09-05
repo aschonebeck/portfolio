@@ -453,9 +453,9 @@ min-height: 100vh;
  
     .project-intro-text {
       font-family: var(--font);
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.1;
-      font-style:italic ;
+      font-style:;
       letter-spacing: -0.02em;
       color: var(--text);
       padding: 64px 64px 0;
@@ -1736,6 +1736,9 @@ min-height: auto;
   object-position: top-center;
     }
  
+ .project-hero2 {
+  display: ;
+ }
 
 
      
