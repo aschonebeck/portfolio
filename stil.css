@@ -80,7 +80,7 @@ float: right;
   border: 1px solid var(--border);
   background: none;
   color: var(--text);
-  font-family: var(--font);
+  font-family: var(--paragraph);
   font-size: 12px;
   letter-spacing: 0.03em;
   text-transform: uppercase;
