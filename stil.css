@@ -70,6 +70,122 @@ float: right;
 
 }
 
+/* ── LIVE SITE WALKTHROUGH ── */
+.live-preview-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 24px 0;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, opacity 0.2s;
+  opacity: 0.85;
+}
+.live-preview-trigger:hover { opacity: 1; border-color: var(--text); }
+.live-preview-trigger .arrow { font-size: 13px; transition: transform 0.2s; }
+.live-preview-trigger:hover .arrow { transform: translate(2px, -2px); }
+
+.live-preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.98);
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0s linear 0.28s;
+}
+.live-preview-modal.open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0s;
+}
+
+.live-preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--paragraph);
+  font-size: 12px;
+  color: var(--text);
+  flex-shrink: 0;
+}
+.live-preview-url {
+  opacity: 0.7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.live-preview-close {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.2s, opacity 0.2s;
+  opacity: 0.85;
+}
+.live-preview-close:hover { opacity: 1; border-color: var(--text); }
+
+.live-preview-frame-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+.live-preview-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.live-preview-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px;
+  text-align: center;
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+}
+.live-preview-fallback.show { display: flex; }
+.live-preview-fallback a {
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.live-preview-fallback a:hover { border-color: var(--text); }
+
+@media (max-width: 768px) {
+  .live-preview-trigger { width: 100%; justify-content: center; }
+}
+
 
 
 @font-face {
@@ -342,9 +458,9 @@ min-height: 100vh;
       font-style:italic ;
       letter-spacing: -0.02em;
       color: var(--text);
-      padding: 44px 44px 0;
+      padding: 64px 64px 0;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
       width: 80%;
       opacity: 1;
     }
@@ -451,8 +567,9 @@ a.email-link::after {
       font-size: 12px;
       letter-spacing:0.01em ;
       line-height: 1.6;
+        list-style: none;
       text-transform: ;
-      font-weight: 300;
+      font-weight: 100;
       color: var(--text);
       padding: 12px 0;
       border-top: 1px solid var(--border);
@@ -463,7 +580,7 @@ a.email-link::after {
     .project-deliverables li:last-child { border-bottom: 1px solid var(--border); }
     .project-deliverables li::before {
       content: '';
-      width: 4px; height: 4px;
+     
       border-radius: 50%;
       background: var(--muted);
       flex-shrink: 0;
@@ -824,6 +941,7 @@ height: 100vh;
   font-size: 13px;
   line-height: 1.4;
   padding: 16px 0;
+  font-weight: 300;
   border-top: 1px solid var(--border);
   opacity: 0.9;
 }
@@ -1476,7 +1594,7 @@ text-transform: uppercase;
 
 /* new project-intro-text — override padding/max-width */
 .project-page .right .project-intro-text {
-  padding: 44px 44px 0;
+  padding: 44px 44px 28px;
   max-width: 760px;
   font-size: clamp(25px, 2vw, 28px);
   line-height: 1.3;
@@ -1618,6 +1736,8 @@ min-height: auto;
   object-position: top-center;
     }
  
+
+
      
 
      .project-page .project-intro-text {
@@ -2239,7 +2359,7 @@ opacity: 0.85;
   color: var(--text);
   padding-right: 10px;
   white-space: normal;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   line-height: 1.4;
   letter-spacing: 0.03em;
   min-height: calc(12.5px * 1.4 * 2); /* exakt två raders höjd */
@@ -2498,4 +2618,7 @@ body.dark #asTapestry{
   animation:asTapFadeIn .9s cubic-bezier(.65,0,.35,1) .1s forwards;
 }
 @keyframes asTapFadeIn{ to{ opacity:1; } }
+
+
+
 
