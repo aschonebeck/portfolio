@@ -53,7 +53,7 @@
         </div>
         <div class="project-meta-row">
           <span class="project-meta-label">Role</span>
-          <span class="project-meta-value">UX/UI &amp; Development</span>
+          <span class="project-meta-value">Concept &amp; UX/UI Design</span>
         </div>
         <div  id="notshow" class="project-meta-row">
           <span class="project-meta-label">ID</span>
@@ -85,12 +85,16 @@ Where do you go if you want to produce something in Europe?
 
 
  <figure>
-       <img class="project-image-full fade-in" class="" src="img/emr.png" />
+       <img class="project-image-full fade-in" class="" src="img/material.png" />
 
 
  </figure>
 
-
+<div style="padding: 0 44px;">
+      <button class="live-preview-trigger" data-url="https://aschonebeck.github.io/europeanmaterialregistry/">
+        LIVE WEBSITE PREVIEW
+      </button>
+    </div>
 
 
     <div class="project-section fade-in">
@@ -103,7 +107,7 @@ A designer knows Carrara marble exists. Finding who produces it, who will sell a
 </p>
 </div>
 <figure>
-  <img class="project-image-full fade-in" style="" src="img/glry.png" />
+  <img class="project-image-full fade-in" style="" src="img/index.png" />
 
 </figure>
     <div class="project-section fade-in">
@@ -191,6 +195,73 @@ With thirty rows on screen the decoration was doing the opposite of its job. Col
 
 
 </div>
+
+
+
+<!-- LIVE SITE WALKTHROUGH MODUL -->
+<div class="live-preview-modal" id="live-preview-modal">
+  <div class="live-preview-bar">
+    <span class="live-preview-url" id="live-preview-url"></span>
+    <button class="live-preview-close" id="live-preview-close">✕ CLOSE</button>
+  </div>
+  <div class="live-preview-frame-wrap">
+    <iframe class="live-preview-frame" id="live-preview-frame" title="Live site preview"></iframe>
+    <div class="live-preview-fallback" id="live-preview-fallback">
+      <p>This site can't be shown, some sites block for security.</p>
+      <a id="live-preview-fallback-link" href="#" target="_blank" rel="noopener">Open in a new tab↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const modal = document.getElementById('live-preview-modal');
+  const frame = document.getElementById('live-preview-frame');
+  const urlLabel = document.getElementById('live-preview-url');
+  const fallback = document.getElementById('live-preview-fallback');
+  const fallbackLink = document.getElementById('live-preview-fallback-link');
+  const closeBtn = document.getElementById('live-preview-close');
+  let loadTimer = null;
+  let lastTrigger = null;
+
+  function openPreview(url, triggerEl) {
+    lastTrigger = triggerEl;
+    fallback.classList.remove('show');
+    urlLabel.textContent = url;
+    fallbackLink.href = url;
+    frame.src = url; // set only on open — avoids loading it in the background otherwise
+    document.body.style.overflow = 'hidden';
+    modal.classList.add('open');
+
+    // many sites block being framed (X-Frame-Options / CSP) with no JS-visible
+    // error — if nothing has loaded after a few seconds, assume it's blocked
+    clearTimeout(loadTimer);
+    loadTimer = setTimeout(() => fallback.classList.add('show'), 4000);
+  }
+
+  function closePreview() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    clearTimeout(loadTimer);
+    frame.src = 'about:blank'; // stop whatever the embedded page was doing
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  frame.addEventListener('load', () => {
+    if (frame.src !== 'about:blank' && frame.src !== '') clearTimeout(loadTimer);
+  });
+
+  document.querySelectorAll('.live-preview-trigger').forEach(btn => {
+    btn.addEventListener('click', () => openPreview(btn.dataset.url, btn));
+  });
+
+  closeBtn.addEventListener('click', closePreview);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closePreview();
+  });
+})();
+</script>
+
 
 <script>
   if (window.innerWidth <= 768) {
