@@ -1596,7 +1596,7 @@ text-transform: uppercase;
 .project-page .right .project-intro-text {
   padding: 44px 44px 28px;
   max-width: 760px;
-  font-size: clamp(25px, 2vw, 28px);
+  font-size: 22px;
   line-height: 1.3;
   opacity: 0.82;
 }
