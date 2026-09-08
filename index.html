@@ -134,36 +134,38 @@
 
     <ul class="project-list">
 
-       <li>
-      <a href="slobodanzivic.html" class="project-item"
-       data-category="web"
-       data-img="img/closeup.png"
-          data-img-mobile="img/closeup2.png"
-       data-id="WB26-010"
-       data-name="Slobodan Zivic Website"
-        data-client="Slobodan Zivic">
+    
+  <li>
 
-        <span class="project-id">WB26-010</span>
-        <span class="project-title">Artist Website</span>
-        <span class="project-type">Web DESIGN</span>
+      <a href="emr.html" class="project-item"
+       data-category="ux"
+       data-img="img/gal.png"
+          data-img-mobile="img/gal.png"
+       data-id="UX26-010"
+       data-name="European Material Registry"
+        data-client="EMR - European Material Registry">
+
+        <span class="project-id">UX26-010</span>
+        <span class="project-title">European Material Registry</span>
+        <span class="project-type">UX DESIGN</span>
         <span class="project-year">2026</span>
 
       </a>
 
       </li>
-  <li>
 
-      <a href="emr.html" class="project-item"
-       data-category="ux"
-       data-img="img/ero.png"
-          data-img-mobile="img/mater.png"
-       data-id="UX26-009"
-       data-name="European Material Registry"
-        data-client="EMR - European Material Registry">
+         <li>
+      <a href="slobodanzivic.html" class="project-item"
+       data-category="web"
+       data-img="img/closeup.png"
+          data-img-mobile="img/closeup2.png"
+       data-id="WB26-009"
+       data-name="Slobodan Zivic Website"
+        data-client="Slobodan Zivic">
 
-        <span class="project-id">UX26-009</span>
-        <span class="project-title">European Material Registry</span>
-        <span class="project-type">UX DESIGN</span>
+        <span class="project-id">WB26-009</span>
+        <span class="project-title">Artist Website</span>
+        <span class="project-type">Web DESIGN</span>
         <span class="project-year">2026</span>
 
       </a>
@@ -264,6 +266,7 @@
 
     <div class="right-placeholder" id="placeholder">— Select a project —</div>
     <img class="right-img" id="right-img" src="" alt="" />
+    <video class="right-video" id="right-video" muted loop playsinline preload="none"></video>
     <div class="right-caption" id="right-caption"></div>
   </div>
 
@@ -320,6 +323,7 @@ updateThemeState();
 // SHARED ELEMENTS
 // =====================
 const rightImg = document.getElementById('right-img');
+const rightVideo = document.getElementById('right-video');
 const rightCaption = document.getElementById('right-caption');
 const placeholder = document.getElementById('placeholder');
 const activeId = document.getElementById('active-id');
@@ -338,6 +342,7 @@ if (window.innerWidth > 768) {
 
     item.addEventListener('mouseenter', () => {
       const src = item.dataset.img;
+      const videoSrc = item.dataset.video;
       const id = item.dataset.id;
       const name = item.dataset.name;
 
@@ -345,11 +350,41 @@ if (window.innerWidth > 768) {
       activeId.textContent = id;
       activeName.textContent = name;
 
-      if (src) {
+      if (videoSrc) {
         // avbryt eventuell pågående rAF
         if (rafId) cancelAnimationFrame(rafId);
 
-   
+        rightImg.classList.remove('visible');
+
+        if (rightVideo.dataset.src !== videoSrc) {
+          rightVideo.pause();
+          rightVideo.src = videoSrc;
+          rightVideo.dataset.src = videoSrc;
+        }
+        if (src) rightVideo.poster = src;
+        rightVideo.currentTime = 0;
+        const playPromise = rightVideo.play();
+        if (playPromise && playPromise.catch) playPromise.catch(() => {});
+
+        currentSrc = videoSrc;
+
+        rafId = requestAnimationFrame(() => {
+          rafId = requestAnimationFrame(() => {
+            rafId = null;
+            rightVideo.classList.add('visible');
+            rightCaption.textContent = name;
+            rightCaption.classList.add('visible');
+            rightCaption.textContent = item.dataset.client || '';
+            placeholder.classList.add('hidden');
+          });
+        });
+      } else if (src) {
+        // avbryt eventuell pågående rAF
+        if (rafId) cancelAnimationFrame(rafId);
+
+        rightVideo.classList.remove('visible');
+        rightVideo.pause();
+
    rightImg.src = src;
 const isPoster = item.dataset.category === 'writing';
 rightImg.style.objectFit = isPoster ? 'contain' : 'cover';
@@ -381,6 +416,8 @@ rightImg.style.padding = isPoster ? '6rem 0' : '0';
       activeName.textContent = '—';
 
       rightImg.classList.remove('visible');
+      rightVideo.classList.remove('visible');
+      rightVideo.pause();
       rightCaption.classList.remove('visible');
       placeholder.classList.remove('hidden');
 
@@ -547,9 +584,14 @@ mobFilterExpand.querySelectorAll('.filter-btn').forEach(btn => {
       if (activeLink) activeLink.classList.remove('focused');
  
       const src = link.dataset.imgMobile || link.dataset.img;
+      const videoSrc = link.dataset.video;
       const href = link.href;
  
-      preview.innerHTML = `<a href="${href}"><img src="${src}" /></a>`;
+      if (videoSrc) {
+        preview.innerHTML = `<a href="${href}"><video src="${videoSrc}" ${src ? `poster="${src}"` : ''} autoplay muted loop playsinline></video></a>`;
+      } else {
+        preview.innerHTML = `<a href="${href}"><img src="${src}" /></a>`;
+      }
  
       const li = link.closest('li');
       li.after(preview);
