@@ -580,7 +580,7 @@ a.email-link::after {
   align-items: center;
   gap: 6px;
   text-transform: uppercase;
-  
+  font-weight: 300;
   font-size: 12px;
   color: rgba(255, 255, 255, 1);
   letter-spacing: 0.04em;
@@ -696,7 +696,7 @@ a.email-link::after {
 .lamp-scenario-btn {
   background: none;
   border: none;
-  
+  font-family: var(--paragraph);
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
