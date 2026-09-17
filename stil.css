@@ -1414,7 +1414,7 @@ figure img {
 
 .info-content h1 {
   font-family: var(--font);
-  font-size: 3em !important;
+  font-size: 2.7em !important;
   line-height: 1;
   font-weight: 300 !important;
   text-transform: ;
@@ -1425,7 +1425,7 @@ figure img {
 .about p {
   font-size: 13px;
   line-height: 1.5;
-  max-width:70%;
+  max-width:60%;
   letter-spacing: -0.3px;
   font-weight: 300;
   margin-bottom: 12px;
@@ -1464,7 +1464,7 @@ figure img {
   font-size: 13px !important;
 text-transform: uppercase;
    float: right;
-   opacity: 0.9;
+   opacity: 0.7;
 
 }
 
