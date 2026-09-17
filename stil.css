@@ -5,7 +5,7 @@
       --text: #111;
       --muted: #767676;
       --border: #ccc;
-      --font: 'Space Mono', monospace;
+      --font: 'Chivo Mono', monospace;
       --paragraph:"Chivo Mono", monospace;
         --hover-bg: #111;
   --hover-text: #f5f5f5;
@@ -580,7 +580,7 @@ a.email-link::after {
   align-items: center;
   gap: 6px;
   text-transform: uppercase;
-  font-family: 'Space Mono', monospace;
+  
   font-size: 12px;
   color: rgba(255, 255, 255, 1);
   letter-spacing: 0.04em;
@@ -663,7 +663,7 @@ a.email-link::after {
  
 .lamp-scenario-day,
 .lamp-scenario-time {
-  font-family: 'Space Mono', monospace;
+
   font-size: 12px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.7);
@@ -696,7 +696,7 @@ a.email-link::after {
 .lamp-scenario-btn {
   background: none;
   border: none;
-  font-family: 'Space Mono', monospace;
+  
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -722,13 +722,13 @@ a.email-link::after {
  
 .lamp-scenario-sep {
   color: #fff;
-  font-family: 'Space Mono', monospace;
+  
   font-size: 12px;
 }
  
 .lamp-scenario-reading {
   margin-left: auto;
-  font-family: 'Space Mono', monospace;
+
   font-size: 12px;
   letter-spacing: 0.06em;
   color: white;
@@ -1248,7 +1248,7 @@ filter: drop-shadow(0px 24px 48px rgba(0, 0, 0, 0.1))
       border-top: 1px solid var(--border);
       flex-shrink: 0;
       transition: border-color 0.3s;
-      font-family: 'Space Mono', serif;
+
       display: flex;
       background: var(--bg);
       justify-content: space-between;
@@ -1414,9 +1414,10 @@ figure img {
 
 .info-content h1 {
   font-family: var(--font);
-  font-size: clamp(22px, 3vw, 32px);
-  line-height: 1.1;
-  letter-spacing: -0.04em !important;
+  font-size: 3em !important;
+  line-height: 1;
+  text-transform: ;
+  letter-spacing: -0.06em !important;
 
 }
 
@@ -1693,7 +1694,7 @@ min-height: auto;
         padding-bottom: 0px;
         letter-spacing: -1px;
         font-size: 20px !important;
-        font-family: 'Space Mono' !important;
+      
       }
 
       #notshow {
@@ -2552,7 +2553,7 @@ body.loading { overflow: hidden; }
 }
 
 .loader-id {
-  font-family: 'Space Mono', monospace;
+
   font-size: clamp(2rem, 6vw, 5rem);
   letter-spacing: 0.08em;
   color: var(--text);
@@ -2569,7 +2570,7 @@ body.loading { overflow: hidden; }
   align-items: center;
   justify-content: center;
   gap: 16px;
-  font-family: 'Space Mono', monospace;
+
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
