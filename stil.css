@@ -57,6 +57,31 @@
   color: var(--text);
 }
 
+.project-image-grid {
+  display: grid;
+    position: relative;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.project-image-grid img {
+  width: 100%;
+    filter: grayscale(0.2) contrast(1);
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.project-image-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:; /* sample this directly from the hero's dark red */
+  mix-blend-mode: multiply;
+  opacity: 0.1;
+  pointer-events: none;
+}
 
 .right .instagram  {
   color: var(--muted);
@@ -1637,6 +1662,10 @@ font-size: 40px !important;
   font-family: var(--paragraph);
 
 }
+
+ .project-image-grid {
+    grid-template-columns: 1fr;
+  }
 
 
     .project-back { display:none; }
