@@ -1956,10 +1956,10 @@ strong {
   top: 5px;
   right: 20px;
   padding: 5px;
-  font-weight: 200;
+  font-weight: 100;
   font-size: 40px;
   color: #fff;
-  mix-blend-mode: difference;
+  mix-blend-mode: exclusion;
   z-index: 1;
 }
 
