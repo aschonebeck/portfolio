@@ -1866,6 +1866,10 @@ strong {
   font-weight: 300 !important;
 }
 
+#hidemobil {
+  display: none;
+}
+
 
 .project-meta-table {
   overflow: hidden;
